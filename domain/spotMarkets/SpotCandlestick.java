@@ -1,4 +1,4 @@
-package com.dzappz.finance.domain.spotMarkets;
+package com.dz_fs_dev.finance.domain.spotMarkets;
 
 import java.math.BigInteger;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 /**
  * Abstract data type for basic Candlesticks on Spot Markets
- * @author DzAppz
+ * @author DzFSDev
  * @version 0.1
  */
 
