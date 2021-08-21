@@ -2,11 +2,16 @@ package com.dz_fs_dev.finance.domain.spotMarkets;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 import com.example.restservice.Asset;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +21,8 @@ import lombok.Setter;
 
 /**
  * Domain Object for basic Candlesticks on Spot Markets
- * @author DzFSDev
+ * @author DZ-FSDev
+ * @since 15
  * @version 0.1
  */
 
@@ -29,10 +35,12 @@ public class SpotCandlestick implements Serializable{
 	private @Getter @Setter BigDecimal high;
 	private @Getter @Setter BigDecimal low;
 	private @Getter @Setter BigDecimal quoteVolume;
-	private @Getter @Setter BigDecimal assetVolume;
+	private @Getter @Setter BigInteger assetVolume;
 
 	private @Getter @Setter Long startTimeStamp;
 	private @Getter @Setter Long endTimeStamp;
+	
+	private @Getter @Setter @OneToMany(fetch = FetchType.LAZY) @JsonIgnore List<SpotTrade> executedTrades;
 
 	/**
 	 * Zero-arg constructor for SpotCandlestick
@@ -51,9 +59,32 @@ public class SpotCandlestick implements Serializable{
 		setLow(getClose());
 	}
 	
+	/**
+	 * Registers a Spot Trade to the candle. Fails if trade falls outside the time range of the current candle by throwing a TradeException.
+	 * @param trade The Spot Trade to be registered to the candle.
+	 * @throws TradeException Exception when trade registration was unsuccessful.
+	 */
+	public void registerTrade(SpotTrade trade) throws TradeException {
+		if(trade.getTransactTime() > startTimeStamp && endTimeStamp != 0 && trade.getTransactTime() < endTimeStamp)
+			throw new TradeException("Failed to Register Trade " + trade.getTradeId() + " - registration out of current candle time stamps.");
+		
+		setClose(trade.getMaker().getQuote());
+		if(getLow().compareTo(getClose()) > 0)setLow(getClose());
+		if(getHigh().compareTo(getClose()) < 0)setHigh(getClose());
+		setAssetVolume(getAssetVolume().add(trade.getTransactedAssetVolume()));
+		setQuoteVolume(getQuoteVolume().add(trade.getMaker().getQuote().multiply(new BigDecimal(trade.getTransactedAssetVolume()))));
+	}
+	
+	/**
+	 * Closes the current candle. All subsequent trade registrations will fail on this candle.
+	 */
+	public void closeCandle() {
+		setEndTimeStamp(System.currentTimeMillis());
+	}
+	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final int prime = 171731;
 		int result = 1;
 		result = prime * result + ((assetVolume == null) ? 0 : assetVolume.hashCode());
 		result = prime * result + ((close == null) ? 0 : close.hashCode());
