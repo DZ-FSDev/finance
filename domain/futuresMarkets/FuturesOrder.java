@@ -5,6 +5,10 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +24,10 @@ import lombok.Setter;
 @Entity
 public class FuturesOrder implements Serializable{
 	private static final long serialVersionUID = -8994718820789379908L;
+	
+	private @Getter @Setter @GeneratedValue @Id long orderId;
+	
+	private @Getter @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false) FuturesAsset asset;
 	
 	private @Getter @Setter BigInteger contracts;
 	private @Getter @Setter BigInteger executedContracts;
@@ -38,9 +46,11 @@ public class FuturesOrder implements Serializable{
 	public int hashCode() {
 		final int prime = 737411;
 		int result = 1;
+		result = prime * result + ((asset == null) ? 0 : asset.hashCode());
 		result = prime * result + ((contracts == null) ? 0 : contracts.hashCode());
 		result = prime * result + ((executedContracts == null) ? 0 : executedContracts.hashCode());
 		result = prime * result + (int) (expiry ^ (expiry >>> 32));
+		result = prime * result + (int) (orderId ^ (orderId >>> 32));
 		result = prime * result + ((premium == null) ? 0 : premium.hashCode());
 		result = prime * result + ((strikePrice == null) ? 0 : strikePrice.hashCode());
 		return result;
@@ -53,6 +63,11 @@ public class FuturesOrder implements Serializable{
 		if (!(obj instanceof FuturesOrder))
 			return false;
 		FuturesOrder other = (FuturesOrder) obj;
+		if (asset == null) {
+			if (other.asset != null)
+				return false;
+		} else if (!asset.equals(other.asset))
+			return false;
 		if (contracts == null) {
 			if (other.contracts != null)
 				return false;
@@ -64,6 +79,8 @@ public class FuturesOrder implements Serializable{
 		} else if (!executedContracts.equals(other.executedContracts))
 			return false;
 		if (expiry != other.expiry)
+			return false;
+		if (orderId != other.orderId)
 			return false;
 		if (premium == null) {
 			if (other.premium != null)
