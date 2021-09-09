@@ -3,32 +3,33 @@ package com.dz_fs_dev.finance.domain.spotMarkets;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import com.example.restservice.Asset;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Domain Object for basic Candlesticks on Spot Markets
+ * 
  * @author DZ-FSDev
  * @since 15
  * @version 0.1
  */
-
 @Entity
 public class SpotCandlestick implements Serializable{
 	private static final long serialVersionUID = 3048151457044300946L;
+	
+	private @Getter @Setter @Id @GeneratedValue long id;
 	
 	private @Getter @Setter BigDecimal open;
 	private @Getter @Setter BigDecimal close;
@@ -49,6 +50,7 @@ public class SpotCandlestick implements Serializable{
 	
 	/**
 	 * Constructs a new SpotCandlestick that should follow a previously closed candlestick
+	 * 
 	 * @param prev The previous candlestick to grab the start time and price to open the new candlestick
 	 */
 	public SpotCandlestick(SpotCandlestick prev) {
@@ -61,18 +63,22 @@ public class SpotCandlestick implements Serializable{
 	
 	/**
 	 * Registers a Spot Trade to the candle. Fails if trade falls outside the time range of the current candle by throwing a TradeException.
+	 * 
 	 * @param trade The Spot Trade to be registered to the candle.
 	 * @throws TradeException Exception when trade registration was unsuccessful.
 	 */
 	public void registerTrade(SpotTrade trade) throws TradeException {
 		if(trade.getTransactTime() > startTimeStamp && endTimeStamp != 0 && trade.getTransactTime() < endTimeStamp)
-			throw new TradeException("Failed to Register Trade " + trade.getTradeId() + " - registration out of current candle time stamps.");
+			throw new TradeException("Failed to Register Trade " + trade.getTradeId() + " - registration out of current candle time stamp range.");
 		
 		setClose(trade.getMaker().getQuote());
 		if(getLow().compareTo(getClose()) > 0)setLow(getClose());
 		if(getHigh().compareTo(getClose()) < 0)setHigh(getClose());
 		setAssetVolume(getAssetVolume().add(trade.getTransactedAssetVolume()));
 		setQuoteVolume(getQuoteVolume().add(trade.getMaker().getQuote().multiply(new BigDecimal(trade.getTransactedAssetVolume()))));
+		
+		if(executedTrades == null)executedTrades = new ArrayList<SpotTrade>();
+		executedTrades.add(trade);
 	}
 	
 	/**
@@ -152,7 +158,7 @@ public class SpotCandlestick implements Serializable{
 		return mapper.readValue(jStr.toString(), SpotCandlestick.class);
 	}
 	
-	static Optional<String> toJSONstr(Asset a) throws JsonProcessingException{
+	static Optional<String> toJSONstr(SpotCandlestick a) throws JsonProcessingException{
 		ObjectMapper mapper = new ObjectMapper();
 		return Optional.ofNullable(mapper.writeValueAsString(a));
 	}
