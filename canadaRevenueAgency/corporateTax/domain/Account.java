@@ -19,15 +19,15 @@ import lombok.Setter;
  * Domain Object representing a balance sheet account.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 16.0.1
  */
 @Entity
 public class Account implements Serializable{
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
-	private static final long serialVersionUID = 2757503295247617984L;
+	private static final long serialVersionUID = 2757503295247617986L;
 
 	public static enum AccountType {
 		ASSET_MISC, 
@@ -57,6 +57,7 @@ public class Account implements Serializable{
 		CONTRA_ASSET_ACCUMULATED_DEPRECIATION_PLANT,
 		CONTRA_ASSET_ACCUMULATED_DEPRECIATION_EQUIPMENT,
 		CONTRA_ASSET_ACCUMULATED_DEPRECIATION_VEHICLES,
+		CONTRA_ASSET_ALLOWANCE_DOUBTFUL_ACCOUNTS,
 		
 		LIABILITY_MISC, 
 		LIABILITY_ACCOUNTS_PAYABLE,
@@ -71,6 +72,7 @@ public class Account implements Serializable{
 		LIABILITY_UNEARNED_REVENUE_GOODS,
 		LIABILITY_UNEARNED_REVENUE_SERVICES,
 		LIABILITY_UNEARNED_REVENUE_MISC,
+		LIABILITY_REFUNDS,
 		
 		SHARE_EQUITY_MISC,
 		SHARE_EQUITY_MISC_EXPENSE,
@@ -81,6 +83,7 @@ public class Account implements Serializable{
 		SHARE_EQUITY_COMMON_SHARES_D,
 		SHARE_EQUITY_COMMON_SHARES_E,
 		SHARE_EQUITY_COST_OF_GOODS_SOLD,
+		SHARE_EQUITY_BANK_SERVICES_EXPENSE,
 		SHARE_EQUITY_INTEREST_EXPENSE,
 		SHARE_EQUITY_INTEREST_REVENUE,
 		SHARE_EQUITY_ADVERTISING_EXPENSE,
@@ -106,7 +109,8 @@ public class Account implements Serializable{
 		SHARE_EQUITY_SALES_REVENUE,
 		SHARE_EQUITY_SPOILAGE_EXPENSE,
 		SHARE_EQUITY_OPERATING_EXPENSE,
-		SHARE_EQUITY_REPAIRS_EXPENSE
+		SHARE_EQUITY_REPAIRS_EXPENSE,
+		SHARE_EQUITY_BAD_DEVTS_EXPENSE
 	};
 	
 	private @Getter @Setter @GeneratedValue @Id long accountId;
