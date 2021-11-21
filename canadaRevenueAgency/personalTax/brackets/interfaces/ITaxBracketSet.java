@@ -1,4 +1,4 @@
-package com.dz_fs_dev.finance.canadaRevenueAgency.personalTax.brackets.interfaces;
+package com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets;
 
 import java.math.BigDecimal;
 
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * @since 16.0.1
  * @version 0.0.2
  */
-public interface TaxBracketSet{
+public interface ITaxBracketSet{
 	/**
 	 * Calculates the applicable taxes given an income for this set of Tax
 	 * Brackets.
@@ -43,5 +43,5 @@ public interface TaxBracketSet{
 	 * @return The difference in the effective tax rate given an income.
 	 */
 	public BigDecimal compareEffectiveTaxRate(BigDecimal income, 
-			TaxBracketSet otherTaxBracket);
+			ITaxBracketSet otherTaxBracket);
 }
