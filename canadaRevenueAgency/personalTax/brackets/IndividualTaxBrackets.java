@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.dz_fs_dev.finance.canadaRevenueAgency.personalTax.brackets.interfaces.TaxBracketSet;
+import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets.ITaxBracketSet;
 
 /**
  * Represents historical income tax brackets for individuals in Canada for the Provinces. Rates are
@@ -22,16 +22,18 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.personalTax.brackets.interfaces
  * 	<ul>
  * 		<li>Newfoundland and Labrador</li>
  * 		<li>Prince Edward Island</li>
+ * 		<li>Nova Scotia</li>
+ * 		<li>New Brunswick</li>
  * 	</ul>
  * </ul>
  * 
  * @see <a href="https://laws-lois.justice.gc.ca/eng/acts/I-3.3/index.html">
  *  	Income Tax Act (R.S.C., 1985, c.1 (5th Supp.))</a>.
  * @author DZ_FSDev
- * @since 16.0.1
- * @version 0.0.2
+ * @since 17.0.1
+ * @version 0.0.3
  */
-public enum IndividualTaxBrackets implements TaxBracketSet{
+public enum IndividualTaxBrackets implements ITaxBracketSet{
 	/** Canadian Federal Income Tax Rates: 2021 */
 	FEDERAL2021(new TaxBracket[] {
 			new TaxBracket(new BigDecimal("0.15"), BigDecimal.ZERO, new BigDecimal(49020)),
@@ -55,6 +57,24 @@ public enum IndividualTaxBrackets implements TaxBracketSet{
 			new TaxBracket(new BigDecimal("0.098"), BigDecimal.ZERO, new BigDecimal(31984)),
 			new TaxBracket(new BigDecimal("0.138"), new BigDecimal(38081), new BigDecimal(63969)),
 			new TaxBracket(new BigDecimal("0.167"), new BigDecimal(63969), null)
+	}),
+	
+	/** Nova Scotia Provincial Income Tax Rates: 2021 */
+	NS2021(new TaxBracket[] {
+			new TaxBracket(new BigDecimal("0.0879"), BigDecimal.ZERO, new BigDecimal(29590)),
+			new TaxBracket(new BigDecimal("0.1495"), new BigDecimal(29590), new BigDecimal(59180)),
+			new TaxBracket(new BigDecimal("0.1667"), new BigDecimal(59180), new BigDecimal(93000)),
+			new TaxBracket(new BigDecimal("0.175"), new BigDecimal(93000), new BigDecimal(150000)),
+			new TaxBracket(new BigDecimal("0.21"), new BigDecimal(150000), null)
+	}),
+	
+	/** New Brunswick Provincial Income Tax Rates: 2021 */
+	NB2021(new TaxBracket[] {
+			new TaxBracket(new BigDecimal("0.0968"), BigDecimal.ZERO, new BigDecimal(43835)),
+			new TaxBracket(new BigDecimal("0.1482"), new BigDecimal(43835), new BigDecimal(87670)),
+			new TaxBracket(new BigDecimal("0.1652"), new BigDecimal(87670), new BigDecimal(142533)),
+			new TaxBracket(new BigDecimal("0.1784"), new BigDecimal(142533), new BigDecimal(162383)),
+			new TaxBracket(new BigDecimal("0.203"), new BigDecimal(162383), null)
 	});
 	
 	private final List<TaxBracket> TAX_BRACKETS;
@@ -87,19 +107,19 @@ public enum IndividualTaxBrackets implements TaxBracketSet{
 	}
 	
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.1
 	 */
 	@Override
 	public BigDecimal calculateEffectiveTaxRate(BigDecimal income, int precision) {
 		// TODO
-		return income;
+		return null;
 	}
 	
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.1
 	 */
 	@Override
-	public BigDecimal compareEffectiveTaxRate(BigDecimal income, TaxBracketSet otherTaxBracket) {
+	public BigDecimal compareEffectiveTaxRate(BigDecimal income, ITaxBracketSet otherTaxBracket) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -114,6 +134,5 @@ public enum IndividualTaxBrackets implements TaxBracketSet{
 	public String toString() {
 		//TODO
 		return null;
-		
 	}
 }
