@@ -24,6 +24,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  * 		<li>Prince Edward Island</li>
  * 		<li>Nova Scotia</li>
  * 		<li>New Brunswick</li>
+ * 		<li>Ontario</li>
  * 	</ul>
  * </ul>
  * 
@@ -31,7 +32,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  *  	Income Tax Act (R.S.C., 1985, c.1 (5th Supp.))</a>.
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.3
+ * @version 0.0.4
  */
 public enum IndividualTaxBrackets implements ITaxBracketSet{
 	/** Canadian Federal Income Tax Rates: 2021 */
@@ -75,6 +76,15 @@ public enum IndividualTaxBrackets implements ITaxBracketSet{
 			new TaxBracket(new BigDecimal("0.1652"), new BigDecimal(87670), new BigDecimal(142533)),
 			new TaxBracket(new BigDecimal("0.1784"), new BigDecimal(142533), new BigDecimal(162383)),
 			new TaxBracket(new BigDecimal("0.203"), new BigDecimal(162383), null)
+	}),
+	
+	/** Ontario Provincial Income Tax Rates: 2021 */
+	ON2021(new TaxBracket[] {
+			new TaxBracket(new BigDecimal("0.0505"), BigDecimal.ZERO, new BigDecimal(45142)),
+			new TaxBracket(new BigDecimal("0.0915"), new BigDecimal(45142), new BigDecimal(90287)),
+			new TaxBracket(new BigDecimal("0.1116"), new BigDecimal(90287), new BigDecimal(150000)),
+			new TaxBracket(new BigDecimal("0.1216"), new BigDecimal(150000), new BigDecimal(220000)),
+			new TaxBracket(new BigDecimal("0.1316"), new BigDecimal(220000), null)
 	});
 	
 	private final List<TaxBracket> TAX_BRACKETS;
