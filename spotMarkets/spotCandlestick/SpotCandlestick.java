@@ -1,12 +1,10 @@
-package com.dz_fs_dev.finance.spotMarkets.domain;
+package com.dz_fs_dev.finance.spotMarkets.spotCandlestick;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,11 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.dz_fs_dev.finance.futuresMarkets.exception.TradeException;
+import com.dz_fs_dev.finance.spotMarkets.domain.SpotTrade;
 import com.dz_fs_dev.finance.spotMarkets.exception.CandleClosedException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +33,7 @@ public class SpotCandlestick implements Serializable{
 	 */
 	private static final long serialVersionUID = 1484395380636823816L;
 
-	private @Getter @Setter @Id @GeneratedValue long id;
+	private @Getter @Setter @Id @GeneratedValue Long id;
 	
 	private @Getter @Setter BigDecimal askOpen;
 	private @Getter @Setter BigDecimal bidOpen;
@@ -48,7 +44,7 @@ public class SpotCandlestick implements Serializable{
 	private @Getter @Setter BigDecimal low;
 	private @Getter @Setter BigDecimal close;
 	private @Getter @Setter BigDecimal quoteVolume;
-	private @Getter @Setter BigInteger assetVolume;
+	private @Getter @Setter BigDecimal assetVolume;
 
 	private @Getter @Setter Long openTimeStamp;
 	private @Getter @Setter Long closeTimeStamp;
