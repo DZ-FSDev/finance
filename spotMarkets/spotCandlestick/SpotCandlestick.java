@@ -2,7 +2,6 @@ package com.dz_fs_dev.finance.spotMarkets.spotCandlestick;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.ElementCollection;
@@ -13,8 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.dz_fs_dev.finance.futuresMarkets.exception.TradeException;
-import com.dz_fs_dev.finance.spotMarkets.domain.SpotTrade;
 import com.dz_fs_dev.finance.spotMarkets.exception.CandleClosedException;
+import com.dz_fs_dev.finance.spotMarkets.spotTrade.SpotTrade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,14 +23,14 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Entity
 public class SpotCandlestick implements Serializable{
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
-	private static final long serialVersionUID = 1484395380636823816L;
+	private static final long serialVersionUID = 3699032142603754246L;
 
 	private @Getter @Setter @Id @GeneratedValue Long id;
 	
@@ -78,7 +77,7 @@ public class SpotCandlestick implements Serializable{
 	 * 
 	 * @param trade The Spot Trade to be registered to the candle.
 	 * @throws TradeException Exception when trade registration was unsuccessful.
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
 	public void registerTrade(SpotTrade trade) throws TradeException {
 		if(trade.getTransactTime() > openTimeStamp && closeTimeStamp != 0 && trade.getTransactTime() < closeTimeStamp)
@@ -88,7 +87,7 @@ public class SpotCandlestick implements Serializable{
 		if(getLow().compareTo(getAskClose()) > 0)setLow(getAskClose());
 		if(getHigh().compareTo(getAskClose()) < 0)setHigh(getAskClose());
 		setAssetVolume(getAssetVolume().add(trade.getTransactedAssetVolume()));
-		setQuoteVolume(getQuoteVolume().add(trade.getMaker().getQuote().multiply(new BigDecimal(trade.getTransactedAssetVolume()))));
+		setQuoteVolume(getQuoteVolume().add(trade.getMaker().getQuote().multiply(trade.getTransactedAssetVolume())));
 		
 		if(executedTrades == null)executedTrades = new ArrayList<SpotTrade>();
 		executedTrades.add(trade);
@@ -106,7 +105,7 @@ public class SpotCandlestick implements Serializable{
 	}
 	
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
 	@Override
 	public int hashCode() {
@@ -117,18 +116,20 @@ public class SpotCandlestick implements Serializable{
 		result = prime * result + ((assetVolume == null) ? 0 : assetVolume.hashCode());
 		result = prime * result + ((bidClose == null) ? 0 : bidClose.hashCode());
 		result = prime * result + ((bidOpen == null) ? 0 : bidOpen.hashCode());
+		result = prime * result + ((close == null) ? 0 : close.hashCode());
 		result = prime * result + ((closeTimeStamp == null) ? 0 : closeTimeStamp.hashCode());
 		result = prime * result + ((executedTrades == null) ? 0 : executedTrades.hashCode());
 		result = prime * result + ((high == null) ? 0 : high.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((low == null) ? 0 : low.hashCode());
-		result = prime * result + ((quoteVolume == null) ? 0 : quoteVolume.hashCode());
+		result = prime * result + ((open == null) ? 0 : open.hashCode());
 		result = prime * result + ((openTimeStamp == null) ? 0 : openTimeStamp.hashCode());
+		result = prime * result + ((quoteVolume == null) ? 0 : quoteVolume.hashCode());
 		return result;
 	}
 
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -162,6 +163,11 @@ public class SpotCandlestick implements Serializable{
 				return false;
 		} else if (!bidOpen.equals(other.bidOpen))
 			return false;
+		if (close == null) {
+			if (other.close != null)
+				return false;
+		} else if (!close.equals(other.close))
+			return false;
 		if (closeTimeStamp == null) {
 			if (other.closeTimeStamp != null)
 				return false;
@@ -177,22 +183,30 @@ public class SpotCandlestick implements Serializable{
 				return false;
 		} else if (!high.equals(other.high))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (low == null) {
 			if (other.low != null)
 				return false;
 		} else if (!low.equals(other.low))
 			return false;
-		if (quoteVolume == null) {
-			if (other.quoteVolume != null)
+		if (open == null) {
+			if (other.open != null)
 				return false;
-		} else if (!quoteVolume.equals(other.quoteVolume))
+		} else if (!open.equals(other.open))
 			return false;
 		if (openTimeStamp == null) {
 			if (other.openTimeStamp != null)
 				return false;
 		} else if (!openTimeStamp.equals(other.openTimeStamp))
+			return false;
+		if (quoteVolume == null) {
+			if (other.quoteVolume != null)
+				return false;
+		} else if (!quoteVolume.equals(other.quoteVolume))
 			return false;
 		return true;
 	}
