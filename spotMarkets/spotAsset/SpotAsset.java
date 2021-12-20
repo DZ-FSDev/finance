@@ -1,4 +1,4 @@
-package com.dz_fs_dev.finance.spotMarkets.domain;
+package com.dz_fs_dev.finance.spotMarkets.spotAsset;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @version 0.0.1
- * @since 16.0.1
+ * @since 17.0.1
  */
 @Entity
 public class SpotAsset implements Serializable{
