@@ -1,19 +1,15 @@
-package com.dz_fs_dev.finance.spotMarkets.repository;
+package com.dz_fs_dev.finance.spotMarkets.spotCandlestick;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import com.dz_fs_dev.finance.spotMarkets.domain.SpotCandlestick;
 
 /**
  * Persistence layer for Spot Candlestick entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.1
  */
 public interface SpotCandlestickRepository extends JpaRepository<SpotCandlestick, Long>{
@@ -24,4 +20,7 @@ public interface SpotCandlestickRepository extends JpaRepository<SpotCandlestick
 
 	Optional<SpotCandlestick> findByOpenTimeStampBetween(Long begin, Long end);
 	Optional<SpotCandlestick> findByCloseTimeStampBetween(Long begin, Long end);
+	
+	<T> T findByOpenTimeStampBetween(Long begin, Long end, Class<T> type);
+	<T> T findByCloseTimeStampBetween(Long begin, Long end, Class<T> type);
 }
