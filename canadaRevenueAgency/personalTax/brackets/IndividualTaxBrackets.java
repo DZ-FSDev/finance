@@ -26,6 +26,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  * 		<li>New Brunswick</li>
  * 		<li>Ontario</li>
  * 		<li>Manitoba</li>
+ * 		<li>Saskatchewan</li>
  * 	</ul>
  * </ul>
  * 
@@ -33,7 +34,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  *  	Income Tax Act (R.S.C., 1985, c.1 (5th Supp.))</a>.
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.5
+ * @version 0.0.6
  */
 public enum IndividualTaxBrackets implements ITaxBracketSet{
 	/** Canadian Federal Income Tax Rates: 2021 */
@@ -93,6 +94,13 @@ public enum IndividualTaxBrackets implements ITaxBracketSet{
 			new TaxBracket(new BigDecimal("0.108"), BigDecimal.ZERO, new BigDecimal(33723)),
 			new TaxBracket(new BigDecimal("0.1275"), new BigDecimal(33723), new BigDecimal(72885)),
 			new TaxBracket(new BigDecimal("0.174"), new BigDecimal(72885), null)
+	}),
+	
+	/** Saskatchewan Provincial Income Tax Rates: 2021 */
+	SK2021(new TaxBracket[] {
+			new TaxBracket(new BigDecimal("0.105"), BigDecimal.ZERO, new BigDecimal(45677)),
+			new TaxBracket(new BigDecimal("0.125"), new BigDecimal(45677), new BigDecimal(130506)),
+			new TaxBracket(new BigDecimal("0.145"), new BigDecimal(130506), null)
 	});
 	
 	private final List<TaxBracket> TAX_BRACKETS;
