@@ -1,3 +1,23 @@
+/*  Original Licensing Copyright
+ * 
+ *  The user of this interface should implement logic to identify from an order
+ *  book the next best long and short as well as execution logic for matched
+ *  orders.
+ *  Copyright (C) 2021  DZ-FSDev
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package com.dz_fs_dev.finance.markets.interfaces.strategies;
 
 import java.util.Collection;
@@ -27,10 +47,10 @@ public interface IExchangeOrderMatchingStrategy {
 	 * Returns the next short order to be matched.
 	 * 
 	 * @param shorts The collection of orders representing the short order book.
-	 * @return The next long order to be matched.
+	 * @return The next short order to be matched.
 	 * @since 0.0.2
 	 */
-	public int indexOfNextShort(Collection<IOrder> shorts);
+	public IOrder indexOfNextShort(Collection<IOrder> shorts);
 	
 	/**
 	 * Executes and returns a trade given a long and short order. 
