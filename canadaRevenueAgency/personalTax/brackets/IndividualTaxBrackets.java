@@ -1,3 +1,21 @@
+/*  Original Licensing Copyright
+ * 
+ *  Historical individual income tax brackets for Canadian Provinces.
+ *  Copyright (C) 2021  DZ-FSDev
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package com.dz_fs_dev.finance.canadaRevenueAgency.personalTax.brackets;
 
 import java.math.BigDecimal;
@@ -8,8 +26,9 @@ import java.util.List;
 import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets.ITaxBracketSet;
 
 /**
- * Represents historical income tax brackets for individuals in Canada for the Provinces. Rates are
- * laid out by the <a href="https://www.canada.ca/en/revenue-agency.html">Canada Revenue Agency</a>
+ * Represents historical income tax brackets for individuals in Canada for the
+ * Provinces. Rates are laid out by the
+ * <a href="https://www.canada.ca/en/revenue-agency.html">Canada Revenue Agency</a>
  * and updated annually.
  * <p>The following tax years are supported:
  * <ul>
@@ -27,6 +46,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  * 		<li>Ontario</li>
  * 		<li>Manitoba</li>
  * 		<li>Saskatchewan</li>
+ * 		<li>Alberta</li>
  * 	</ul>
  * </ul>
  * 
@@ -34,7 +54,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  *  	Income Tax Act (R.S.C., 1985, c.1 (5th Supp.))</a>.
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.6
+ * @version 0.0.7
  */
 public enum IndividualTaxBrackets implements ITaxBracketSet{
 	/** Canadian Federal Income Tax Rates: 2021 */
@@ -101,6 +121,15 @@ public enum IndividualTaxBrackets implements ITaxBracketSet{
 			new TaxBracket(new BigDecimal("0.105"), BigDecimal.ZERO, new BigDecimal(45677)),
 			new TaxBracket(new BigDecimal("0.125"), new BigDecimal(45677), new BigDecimal(130506)),
 			new TaxBracket(new BigDecimal("0.145"), new BigDecimal(130506), null)
+	}),
+	
+	/** Alberta Provincial Income Tax Rates: 2021 */
+	AB2021(new TaxBracket[] {
+			new TaxBracket(new BigDecimal("0.1"), BigDecimal.ZERO, new BigDecimal(131220)),
+			new TaxBracket(new BigDecimal("0.12"), new BigDecimal(131220), new BigDecimal(157464)),
+			new TaxBracket(new BigDecimal("0.13"), new BigDecimal(157464), new BigDecimal(209952)),
+			new TaxBracket(new BigDecimal("0.14"), new BigDecimal(209952), new BigDecimal(314928)),
+			new TaxBracket(new BigDecimal("0.15"), new BigDecimal(314928), null)
 	});
 	
 	private final List<TaxBracket> TAX_BRACKETS;
