@@ -1,6 +1,6 @@
 /*  Original Licensing Copyright
  * 
- *  Finance Spot Market Spring Boot Application.
+ *  Represents an Asset in liquid pool markets.
  *  Copyright (C) 2022  DZ-FSDev
  *  
  *  This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolCandlestick;
+package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import java.io.Serializable;
 import java.math.BigInteger;
