@@ -1,7 +1,24 @@
-package com.dz_fs_dev.finance.liquidPoolMarkets.domain;
+/*  Original Licensing Copyright
+ * 
+ *  Finance Spot Market Spring Boot Application.
+ *  Copyright (C) 2022  DZ-FSDev
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolCandlestick;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
@@ -13,10 +30,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Domain Object representing an Asset in liquid pool markets.
+ * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.1
+ * @version 0.0.2
  * @since 17.0.1
  */
 @Entity
@@ -31,7 +48,6 @@ public class LiquidPoolAsset implements Serializable{
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String symbol;
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String name;
 	
-	private @Getter @Setter @Column(nullable = false) BigDecimal lotSize;
 	private @Getter @Setter @Column(nullable = false) BigInteger units;
 	
 	/**
@@ -39,24 +55,17 @@ public class LiquidPoolAsset implements Serializable{
 	 */
 	public LiquidPoolAsset() {}
 
-	/**
-	 * @since 0.0.1
-	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final int prime = 67011;
 		int result = 1;
 		result = prime * result + (int) (assetId ^ (assetId >>> 32));
-		result = prime * result + ((lotSize == null) ? 0 : lotSize.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
 		result = prime * result + ((units == null) ? 0 : units.hashCode());
 		return result;
 	}
 
-	/**
-	 * @since 0.0.1
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,11 +74,6 @@ public class LiquidPoolAsset implements Serializable{
 			return false;
 		LiquidPoolAsset other = (LiquidPoolAsset) obj;
 		if (assetId != other.assetId)
-			return false;
-		if (lotSize == null) {
-			if (other.lotSize != null)
-				return false;
-		} else if (!lotSize.equals(other.lotSize))
 			return false;
 		if (name == null) {
 			if (other.name != null)
