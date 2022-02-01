@@ -18,15 +18,36 @@
  */
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Persistence layer for Spot Candlestick entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.1
+ * @version 0.0.2
  * @since 17.0.1
  */
 public interface AssetRepository extends JpaRepository<Asset, Long>{
-
+	public Optional<Asset> findByAssetId(Long assetId);
+	
+	public Optional<Asset> findByName(String name);
+	public Optional<Asset> findByNameOrderByName(String name);
+	public Optional<Asset> findByNameLike(String pattern);
+	public Optional<Asset> findByNameEndingWith(String name);
+	public Optional<Asset> findByNameStratingWith(String name);
+	public Optional<Asset> findByNameContainsAllIgnoreCase(String name);
+	
+	public Optional<Asset> findBySymbol(String symbol);
+	public Optional<Asset> findBySymbolOrderBySymbol(String symbol);
+	public Optional<Asset> findBySymbolLike(String pattern);
+	public Optional<Asset> findByNameOrSymbol(String name, String symbol);
+	public Optional<Asset> findByNameContainsOrSymbolContainsAllIgnoreCase(String name, String symbol);
+	
+	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
+	public List<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
+	public List<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
 }
