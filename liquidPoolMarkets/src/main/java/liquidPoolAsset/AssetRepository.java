@@ -28,17 +28,20 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Persistence layer for Spot Candlestick entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.1
  */
 public interface AssetRepository extends JpaRepository<Asset, Long>{
+	/*
+	 *  -- Read --
+	 */
 	public Optional<Asset> findByAssetId(Long assetId);
 	
 	public Optional<Asset> findByName(String name);
 	public Optional<Asset> findByNameOrderByName(String name);
 	public Optional<Asset> findByNameLike(String pattern);
 	public Optional<Asset> findByNameEndingWith(String name);
-	public Optional<Asset> findByNameStratingWith(String name);
+	public Optional<Asset> findByNameStartingWith(String name);
 	public Optional<Asset> findByNameContainsAllIgnoreCase(String name);
 	
 	public Optional<Asset> findBySymbol(String symbol);
@@ -50,4 +53,10 @@ public interface AssetRepository extends JpaRepository<Asset, Long>{
 	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
+	
+	/*
+	 *  -- Delete --
+	 */
+	public long deleteByName(String name);
+	public long deleteBySymbol(String name);
 }
