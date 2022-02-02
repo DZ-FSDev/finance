@@ -30,25 +30,59 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
     /// </summary>
     public class Asset
     {
+        private long assetID; 
+        private string symbol;
+        private string name;
+        private decimal units;
+
         /// <summary>
         /// Gets and sets the Primary Key of this asset.
         /// </summary>
-        public long AssetID { get; set; }
+        public long AssetID
+        {
+            get { return this.assetID; }
+            set
+            {
+                this.assetID = value;
+            }
+        }
         
         /// <summary>
         /// Gets and sets the name of this asset.
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return this.name; }
+            set
+            {
+                this.name = value;
+            }
+        }
         
         /// <summary>
         /// Gets and sets the symbol of this asset.
         /// </summary>
-        public string Symbol { get; set; }
+        public string Symbol
+        {
+            get { return this.symbol; }
+            
+            set
+            {
+                this.symbol = value;
+            }
+        }
         
         /// <summary>
         /// Gets and sets the available units of this asset.
         /// </summary>
-        public decimal Units { get; set; }
+        public decimal Units
+        {
+            get { return this.units; }
+            set
+            {
+                this.units = value;
+            }
+        }
 
         /// <summary>
         /// Default constructor to initialize an asset.
@@ -58,16 +92,24 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="assetID"></param>
-        /// <param name="name"></param>
-        /// <param name="symbol"></param>
-        /// <param name="units"></param>
+        /// <param name="assetID">
+        /// 
+        /// </param>
+        /// <param name="name">
+        /// 
+        /// </param>
+        /// <param name="symbol">
+        /// 
+        /// </param>
+        /// <param name="units">
+        /// 
+        /// </param>
         public Asset(long assetID, string name, string symbol, decimal units)
         {
-            AssetID = assetID;
-            Name = name;
-            Symbol = symbol;
-            Units = units;
+            this.AssetID = assetID;
+            this.Name = name;
+            this.Symbol = symbol;
+            this.Units = units;
         }
     }
 }
