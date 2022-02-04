@@ -72,9 +72,33 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
         [TestMethod]
         [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Ctor2_Initialize()
+        public void Constructor2_NegativeAssetID_Exception()
         {
-            Assert.Fail();
+            // Arrange
+
+            // Act
+            PrivateObject target = new PrivateObject(new Asset(10, "Copper", "Cu1", 5.5M));
+
+            // Assert
+            long expected = 10;
+            long actual = (long)target.GetField("assetID");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CConstructor2_AssetID_Initialize()
+        {
+            // Arrange
+
+            // Act
+            PrivateObject target = new PrivateObject(new Asset(10, "Copper", "Cu1", 5.5M));
+
+            // Assert
+            long expected = 10;
+            long actual = (long)target.GetField("assetID");
+            Assert.AreEqual(expected, actual);
         }
     }
 }
