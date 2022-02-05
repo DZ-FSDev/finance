@@ -19,6 +19,7 @@
 package com.dz_fs_dev.finance.canadaRevenueAgency.personalTax.brackets;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +28,7 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
 
 /**
  * Represents historical income tax brackets for individuals in Canada for the
- * Provinces. Rates are laid out by the
+ * Provinces and Territories. Rates are laid out by the
  * <a href="https://www.canada.ca/en/revenue-agency.html">Canada Revenue Agency</a>
  * and updated annually.
  * <p>The following tax years are supported:
@@ -48,15 +49,19 @@ import com.dz_fs_dev.finance.canadaRevenueAgency.interfaces.personalTax.brackets
  * 		<li>Saskatchewan</li>
  * 		<li>Alberta</li>
  * 	</ul>
+ * 	<li>Territorial</li>
+ * 	<ul>
+ * 		
+ * 	</ul>
  * </ul>
  * 
  * @see <a href="https://laws-lois.justice.gc.ca/eng/acts/I-3.3/index.html">
  *  	Income Tax Act (R.S.C., 1985, c.1 (5th Supp.))</a>.
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.7
+ * @version 0.0.8
  */
-public enum IndividualTaxBrackets implements ITaxBracketSet{
+public enum IndividualTaxBrackets2021 implements ITaxBracketSet{
 	/** Canadian Federal Income Tax Rates: 2021 */
 	FEDERAL2021(new TaxBracket[] {
 			new TaxBracket(new BigDecimal("0.15"), BigDecimal.ZERO, new BigDecimal(49020)),
@@ -139,7 +144,7 @@ public enum IndividualTaxBrackets implements ITaxBracketSet{
 	 * 
 	 * @param taxBrackets The set of tax brackets.
 	 */
-	private IndividualTaxBrackets(TaxBracket[] taxBrackets) {
+	private IndividualTaxBrackets2021(TaxBracket[] taxBrackets) {
 		this.TAX_BRACKETS = Collections.unmodifiableList(Arrays.asList(taxBrackets));
 	}
 
@@ -162,21 +167,22 @@ public enum IndividualTaxBrackets implements ITaxBracketSet{
 	}
 	
 	/**
-	 * @since 0.0.1
+	 * @since 0.0.7
 	 */
 	@Override
 	public BigDecimal calculateEffectiveTaxRate(BigDecimal income, int precision) {
-		// TODO
-		return null;
+		MathContext mc = new MathContext(precision);
+		return calculateTax(income).divide(income, mc);
 	}
 	
 	/**
-	 * @since 0.0.1
+	 * @since 0.0.7
 	 */
 	@Override
-	public BigDecimal compareEffectiveTaxRate(BigDecimal income, ITaxBracketSet otherTaxBracket) {
-		// TODO Auto-generated method stub
-		return null;
+	public BigDecimal compareEffectiveTaxRate(
+			BigDecimal income, int precision, ITaxBracketSet otherTaxBracket) {
+		return calculateEffectiveTaxRate(income, precision)
+				.subtract(otherTaxBracket.calculateEffectiveTaxRate(income, precision));
 	}
 	
 	/**
