@@ -30,20 +30,25 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
     /// </summary>
     public class Asset
     {
-        private long assetID; 
-        private string symbol;
-        private string name;
-        private decimal units;
+        private long _assetID; 
+        private string _symbol;
+        private string _name;
+        private decimal _units;
 
         /// <summary>
         /// Gets and sets the Primary Key of this asset.
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when AssetID is set to less than 0.
+        /// </exception>
         public long AssetID
         {
-            get { return this.assetID; }
+            get { return _assetID; }
             set
             {
-                this.assetID = value;
+                if(value < 1)
+                    throw new ArgumentOutOfRangeException("AssetID cannot be less than 1.");
+                _assetID = value;
             }
         }
         
@@ -52,10 +57,10 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         /// </summary>
         public string Name
         {
-            get { return this.name; }
+            get { return _name; }
             set
             {
-                this.name = value;
+                _name = value;
             }
         }
         
@@ -64,23 +69,28 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         /// </summary>
         public string Symbol
         {
-            get { return this.symbol; }
+            get { return _symbol; }
             
             set
             {
-                this.symbol = value;
+                _symbol = value;
             }
         }
         
         /// <summary>
         /// Gets and sets the available units of this asset.
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when units is set to less than 0.
+        /// </exception>
         public decimal Units
         {
-            get { return this.units; }
+            get { return _units; }
             set
             {
-                this.units = value;
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("Units cannot be less than 1.");
+                _units = value;
             }
         }
 
@@ -90,26 +100,31 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         public Asset() { }
 
         /// <summary>
-        /// 
+        /// Initializes a new Asset instance which is referenced in a
+        /// liquid pool market.
         /// </summary>
         /// <param name="assetID">
-        /// 
+        /// The primary key of the new Asset.
         /// </param>
         /// <param name="name">
-        /// 
+        /// The name of the new Asset.
         /// </param>
         /// <param name="symbol">
-        /// 
+        /// The symbol of the new Asset.
         /// </param>
         /// <param name="units">
-        /// 
+        /// The units of the new Asset.
         /// </param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when <paramref name="assetID"/> is less than 1;
+        /// or when <paramref name="units"/> is less than 0.
+        /// </exception>
         public Asset(long assetID, string name, string symbol, decimal units)
         {
-            this.AssetID = assetID;
-            this.Name = name;
-            this.Symbol = symbol;
-            this.Units = units;
+            AssetID = assetID;
+            Name = name;
+            Symbol = symbol;
+            Units = units;
         }
     }
 }
