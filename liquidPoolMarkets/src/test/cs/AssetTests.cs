@@ -5,100 +5,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
 {
     [TestClass]
     public class AssetTests
     {
-        [TestMethod]
+        [DataTestMethod]
         [TestCategory("Asset()")]
-        public void Constructor1_AssetID_DefaultInitialize()
+        // Arrange
+        [DataRow("", "_name")]
+        [DataRow("", "_symbol")]
+        [DataRow("0", "_assetID")]
+        [DataRow("0", "_units")]
+        public void Constructor1_Initialize(
+            string expectedString, string field)
         {
-            // Arrange
-
             // Act
-            PrivateObject target = new PrivateObject(new Asset());
+            PrivateObject target = new PrivateObject(
+                new Asset());
 
             // Assert
-            long expected = 0;
-            long actual = (long)target.GetField("assetID");
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        [TestCategory("Asset()")]
-        public void Constructor1_Name_DefaultInitialize()
-        {
-            // Arrange
-
-            // Act
-            PrivateObject target = new PrivateObject(new Asset());
-
-            // Assert
-            string actual = (string)target.GetField("name");
-            Assert.IsNull(actual);
-        }
-
-        [TestMethod]
-        [TestCategory("Asset()")]
-        public void Constructor1_Symbol_DefaultInitialize()
-        {
-            // Arrange
-
-            // Act
-            PrivateObject target = new PrivateObject(new Asset());
-
-            // Assert
-            string actual = (string)target.GetField("symbol");
-            Assert.IsNull(actual);
-        }
-
-        [TestMethod]
-        [TestCategory("Asset()")]
-        public void Constructor1_Units_DefaultInitialize()
-        {
-            // Arrange
-
-            // Act
-            PrivateObject target = new PrivateObject(new Asset());
-
-            // Assert
-            decimal expected = 0;
-            decimal actual = (decimal)target.GetField("units");
-            Assert.AreEqual(expected, actual);
+            var actual = target.GetField(field);
+            var expected = actual == null ?
+                null : TypeDescriptor.GetConverter(actual).ConvertFrom(expectedString);
+            Assert.AreEqual(expected, actual, $"Asset() did not initialize {field} correctly.");
         }
 
         [TestMethod]
         [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Constructor2_NegativeAssetID_Exception()
+        // Arrange
+        [DataRow(20L, "Copper", "Cu", "55.5", "_name", "Copper")]
+        [DataRow(20L, "Copper", "Cu", "55.5", "_symbol", "Cu")]
+        [DataRow(20L, "Copper", "Cu", "55.5", "_assetID", 20L)]
+        [DataRow(20L, "Copper", "Cu", "55.5", "_units", "55.5")]
+        public void Constructor2_Initialize(
+            long assetID, string name, string symbol, string units, string field, object expectedObject)
         {
-            // Arrange
-
             // Act
-            PrivateObject target = new PrivateObject(new Asset(10, "Copper", "Cu1", 5.5M));
+            PrivateObject target = new PrivateObject(
+                new Asset(assetID, name, symbol, Decimal.Parse(units)));
 
             // Assert
-            long expected = 10;
-            long actual = (long)target.GetField("assetID");
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CConstructor2_AssetID_Initialize()
-        {
-            // Arrange
-
-            // Act
-            PrivateObject target = new PrivateObject(new Asset(10, "Copper", "Cu1", 5.5M));
-
-            // Assert
-            long expected = 10;
-            long actual = (long)target.GetField("assetID");
-            Assert.AreEqual(expected, actual);
+            var actual = target.GetField(field);
+            var expected = actual == null ? null :
+                actual.GetType() == expectedObject.GetType() ? expectedObject :
+                TypeDescriptor.GetConverter(actual).ConvertFrom(expectedObject);
+            Assert.AreEqual(expected, actual,
+                $"Asset(long assetID, string name, string symbol, decimal units) did not initialize {field} correctly.");
         }
     }
 }
