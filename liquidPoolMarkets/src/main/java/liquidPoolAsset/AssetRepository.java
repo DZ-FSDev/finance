@@ -1,6 +1,6 @@
 /*  Original Licensing Copyright
  * 
- *  Persistence layer for Spot Candlestick entities.
+ *  Persistence layer for Liquid Asset entities.
  *  Copyright (C) 2022  DZ-FSDev
  *  
  *  This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Persistence layer for Spot Candlestick entities.
+ * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
  * @version 0.0.3
@@ -44,12 +44,13 @@ public interface AssetRepository extends JpaRepository<Asset, Long>{
 	public Optional<Asset> findByNameStartingWith(String name);
 	public Optional<Asset> findByNameContainsAllIgnoreCase(String name);
 	
-	public Optional<Asset> findBySymbol(String symbol);
-	public Optional<Asset> findBySymbolOrderBySymbol(String symbol);
-	public Optional<Asset> findBySymbolLike(String pattern);
 	public Optional<Asset> findByNameOrSymbol(String name, String symbol);
 	public Optional<Asset> findByNameContainsOrSymbolContainsAllIgnoreCase(String name, String symbol);
 	
+	public Optional<Asset> findBySymbol(String symbol);
+	public Optional<Asset> findBySymbolOrderBySymbol(String symbol);
+	public Optional<Asset> findBySymbolLike(String pattern);
+
 	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
