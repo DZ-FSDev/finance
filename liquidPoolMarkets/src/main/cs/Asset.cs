@@ -39,7 +39,7 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         /// Gets and sets the Primary Key of this asset.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when AssetID is set to less than 0.
+        /// Thrown when AssetID is set to less than 1.
         /// </exception>
         public long AssetID
         {
@@ -60,6 +60,8 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
             get { return _name; }
             set
             {
+                value = value?.Trim() ?? throw new ArgumentNullException("value", "Name cannot be null.");
+                if (value.Length == 0) throw new ArgumentException("Name cannot be empty.", "value");
                 _name = value;
             }
         }
@@ -67,12 +69,21 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         /// <summary>
         /// Gets and sets the symbol of this asset.
         /// </summary>
+        /// <exception cref="ArgumentNullException">
+        /// 
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// 
+        /// </exception>
         public string Symbol
         {
             get { return _symbol; }
             
             set
             {
+                value = value?.Trim() ?? throw new ArgumentNullException("value", "Symbol cannot be null.");
+                if (value.Length == 0) throw new ArgumentException("Symbol cannot be empty.","value");
+
                 _symbol = value;
             }
         }
