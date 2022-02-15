@@ -56,6 +56,10 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
         [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
         // Arrange
         [DataRow(0, "Copper", "Cu", "55.5", "System.ArgumentOutOfRangeException", "when assetID less than 1")]
+        [DataRow(20L, "", "Cu", "55.5", "System.ArgumentException", "when name blank")]
+        [DataRow(20L, null, "Cu", "55.5", "System.ArgumentNullException", "when name is null")]
+        [DataRow(20L, "Copper", "", "55.5", "System.ArgumentException", "when symbol blank")]
+        [DataRow(20L, "Copper", null, "55.5", "System.ArgumentNullException", "when symbol is null")]
         public void Constructor2_Exception(
             long assetID, string name, string symbol, string units, string expectedExceptionString, string message)
         {
