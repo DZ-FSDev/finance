@@ -1,10 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using COM.DZ_FSDev.Finance.LiquidPoolMarkets;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
@@ -54,6 +50,22 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
                 TypeDescriptor.GetConverter(actual).ConvertFrom(expectedObject);
             Assert.AreEqual(expected, actual,
                 $"Asset(long assetID, string name, string symbol, decimal units) did not initialize {field} correctly.");
+        }
+
+        [TestMethod]
+        [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
+        // Arrange
+        [DataRow(0, "Copper", "Cu", "55.5", "System.ArgumentOutOfRangeException", "when assetID less than 1")]
+        public void Constructor2_Exception(
+            long assetID, string name, string symbol, string units, string expectedExceptionString, string message)
+        {
+            // Arrange
+            Func<Asset> ctor = () => new Asset(assetID, name, symbol, decimal.Parse(units));
+
+            // Act & Assert
+            typeof(Assert).GetMethod("ThrowsException", new Type[] { ctor.GetType(), typeof(string) })
+                .MakeGenericMethod(Type.GetType(expectedExceptionString))
+                .Invoke(null,new object[] {ctor, message});
         }
     }
 }
