@@ -89,7 +89,7 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("Units cannot be less than 1.");
+                    throw new ArgumentOutOfRangeException("Units cannot be less than or equal to 0.");
                 _units = value;
             }
         }
@@ -117,7 +117,7 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets
         /// </param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown when <paramref name="assetID"/> is less than 1;
-        /// or when <paramref name="units"/> is less than 0.
+        /// or when <paramref name="units"/> is less than or equal to 0.
         /// </exception>
         public Asset(long assetID, string name, string symbol, decimal units)
         {
