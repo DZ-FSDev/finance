@@ -10,6 +10,7 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
     {
         [DataTestMethod]
         [TestCategory("Asset()")]
+        [TestCategory("Initialize")]
         // Arrange
         [DataRow("", "_name")]
         [DataRow("", "_symbol")]
@@ -31,6 +32,7 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
 
         [TestMethod]
         [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
+        [TestCategory("Initialize")]
         // Arrange
         [DataRow(20L, "Copper", "Cu", "55.5", "_name", "Copper")]
         [DataRow(20L, "Copper", "Cu", "55.5", "_symbol", "Cu")]
@@ -54,6 +56,7 @@ namespace COM.DZ_FSDev.Finance.LiquidPoolMarkets.Tests
 
         [TestMethod]
         [TestCategory("Asset(long assetID, string name, string symbol, decimal units)")]
+        [TestCategory("Exceptions")]
         // Arrange
         [DataRow(0, "Copper", "Cu", "55.5", "System.ArgumentOutOfRangeException", "when assetID less than 1")]
         [DataRow(20L, "", "Cu", "55.5", "System.ArgumentException", "when name blank")]
