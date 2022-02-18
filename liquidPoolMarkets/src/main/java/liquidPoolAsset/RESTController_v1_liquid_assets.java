@@ -13,18 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.3
  */
 @RestController
 @RequestMapping("/v1/liquid/assets")
 public class RESTController_v1_liquid_assets {
 	@Autowired
 	IAssetService assetSvc;
-	
-	@GetMapping
-	public String get() {
-		return "HI";
-	}
 	
 	@GetMapping(value = "/list")
 	public List<Asset> getAllAssets(){
