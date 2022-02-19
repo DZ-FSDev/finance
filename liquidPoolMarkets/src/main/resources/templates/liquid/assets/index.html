@@ -9,13 +9,9 @@
 </head>
 <body>
 	<h1>Liquid Assets Listing</h1>
-    <aside>
-        <h2>Ipsum</h2>
-        <p>ipsum lorem leo quis</p>
-        <h2>Lorem</h2>
-        <p>ipsum lorem lacina</p>
-    </aside>
-    <main>
+
+    <div id="crudPanel" class="smokedGlass">
+    	<section class="coffeeBorder">
     	<table>
     		<thead>
     			<th>assetId</th>
@@ -33,27 +29,26 @@
     			</tr>
     		</tbody>
     	</table>
-    	<form action="/liquid/assets/create" method="post">
-    		<fieldset>
+    	<form class="smokedGlass" action="/liquid/assets/create" method="post">
+    		<fieldset class="coffeeBorder">
     			<legend>Create</legend>
 	    		<label for="symbol_crt">symbol</label><input name="symbol" id="symbol_crt" />
 	    		<label for="name_crt">name</label><input name="name" id="name_crt" />
 	    		<label for="units_crt">units</label><input name="units" id="units_crt" />
-	    		<input type="reset" />
-				<input type="submit" />
+	    		<input type="reset" /><input type="submit" />
     		</fieldset>
     	</form>
-    	<form action="/liquid/assets/update" method="post">
-    		<fieldset>
+    	<form class="smokedGlass" action="/liquid/assets/update" method="post">
+    		<fieldset class="coffeeBorder">
     			<legend>Update</legend>
-    			<fieldset>
+    			<fieldset class="coffeeBorder">
     				<legend>From</legend>
 		    		<label for="assetId_updFr">assetId</label><input name="assetId" id="assetId_updFr" />
 		    		<label for="symbol_updFr">symbol</label><input name="symbol" id="symbol_updFr" />
 		    		<label for="name_updFr">name</label><input name="name" id="name_updFr" />
 		    		<label for="units_updFr">units</label><input name="units" id="units_updFr" />
 		    	</fieldset>
-				<fieldset>
+				<fieldset class="coffeeBorder">
     				<legend>To</legend>
 		    		<label for="symbol_updTo">symbol</label><input name="symbol" id="symbol_updTo" />
 		    		<label for="name_updTo">name</label><input name="name" id="name_updTo" />
@@ -63,8 +58,8 @@
 	    		</fieldset>
     		</fieldset>
     	</form>
-    	<form action="/liquid/assets/delete" method="post">
-    		<fieldset>
+    	<form class="smokedGlass" action="/liquid/assets/delete" method="post">
+    		<fieldset class="coffeeBorder">
     			<legend>Delete</legend>
     			<label for="assetId_del">assetId</label><input name="assetId" id="assetId_del" />
 	    		<label for="symbol_del">symbol</label><input name="symbol" id="symbol_del" />
@@ -74,6 +69,7 @@
 				<input type="submit" />
     		</fieldset>
     	</form>
-    </main>
+    	</section>
+    </div>
 </body>
 </html>
