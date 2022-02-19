@@ -20,3 +20,8 @@ table{
  	
  	overflow: hidden;
 }
+
+td, th{
+    position: relative;
+	border: 1px solid black;
+}
