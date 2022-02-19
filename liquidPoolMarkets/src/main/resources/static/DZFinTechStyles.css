@@ -1,49 +1,105 @@
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 }
 
-body{
+body {
 	background-color: black;
 	color: coral;
 }
 
-#breadcrumbs li+li::before{
-    content: "\00BB";
-    margin-right: 5px;
-}
-
-table{
-	width:100%;
+h1{
 	text-align: center;
+}
+
+#breadcrumbs li+li::before {
+	content: "\00BB";
+	margin-right: 5px;
+}
+
+#crudPanel {
+	width: 95%;
+	border-radius: 20px;
+	padding: 15px;
+	margin: auto;
+}
+
+#crudPanel section {
+	padding: 10px;
+}
+
+/************** TABLES **************/
+table {
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+
+td, th {
+	position: relative;
+}
+
+td:hover::before {
+	background-color: #FA03;
+	content: '';
+	height: 100%;
+	left: -5000px;
+	position: absolute;
+	top: 0;
+	width: 10000px;
+	z-index: -2;
+}
+
+td:hover::after {
+	background-color: #FA03;
+	content: '';
+	height: 10000px;
+	left: 0;
+	position: absolute;
+	top: -5000px;
+	width: 100%;
+	z-index: -1;
+}
+
+td:first-child, th:first-child {
+	border-bottom-left-radius: 50px;
+	border-top-left-radius: 50px;
+}
+
+td:last-child, th:last-child {
+	border-bottom-right-radius: 50px;
+	border-top-right-radius: 50px;
+}
+
+td, th {
+	background-image: linear-gradient(10deg, #FA03, #D801);
+}
+
+/************** FORMS **************/
+form {
+	border-radius: 20px;
+	padding: 10px;
+	margin: 10px; width : 90%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+form fieldset {
+	margin-top: 10px;
+	padding: 10px;
+}
+
+/************** FANCIFY **************/
+.smokedGlass {
 	background-color: #FA01;
- 	
- 	overflow: hidden;
+	box-shadow: 3px 3px #D803;
+	text-shadow: 3px 3px #D801;
+	backdrop-filter: blur(2.6px);
+	-webkit-backdrop-filter: blur(2.6px);
 }
 
-td, th{
-    position: relative;
-	border: 1px solid black;
-}
-
-td:hover::before { 
-    background-color: #FA03;
-    content: '';  
-    height: 100%;
-    left: -5000px;
-    position: absolute;  
-    top: 0;
-    width: 10000px;   
-    z-index: -2;        
-}
-
-td:hover::after { 
-    background-color: #FA03;
-    content: '';  
-    height: 10000px;    
-    left: 0;
-    position: absolute;  
-    top: -5000px;
-    width: 100%;
-    z-index: -1;        
+.coffeeBorder {
+	border: 2px solid;
+	border-image: linear-gradient(#FA08, transparent) 1;
 }
