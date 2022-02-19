@@ -17,9 +17,12 @@
     </aside>
     <main>
     	<table>
-    		<caption>Liquid Assets Listing</caption>
     		<thead>
-    			<th></tr>
+    			<th>assetId</th>
+    			<th>symbol</th>
+    			<th>name</th>
+    			<th>units</th>
+    			</tr>
     		</thead>
     		<tbody>
     			<tr th:each="asset,iter : ${assets}">
