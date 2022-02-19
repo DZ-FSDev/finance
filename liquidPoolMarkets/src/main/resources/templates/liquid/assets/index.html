@@ -36,11 +36,31 @@
     	<form action="/liquid/assets/create" method="post">
     		<fieldset>
     			<legend>Create</legend>
-	    		<label for="assetId">symbol</label><input name="symbol" id="symbol" />
-	    		<label for="assetId">name</label><input name="name" id="name" />
-	    		<label for="assetId">units</label><input name="units" id="units" />
+	    		<label for="symbol_crt">symbol</label><input name="symbol" id="symbol_crt" />
+	    		<label for="name_crt">name</label><input name="name" id="name_crt" />
+	    		<label for="units_crt">units</label><input name="units" id="units_crt" />
 	    		<input type="reset" />
 				<input type="submit" />
+    		</fieldset>
+    	</form>
+    	<form action="/liquid/assets/update" method="post">
+    		<fieldset>
+    			<legend>Update</legend>
+    			<fieldset>
+    				<legend>From</legend>
+		    		<label for="assetId_updFr">assetId</label><input name="assetId" id="assetId_updFr" />
+		    		<label for="symbol_updFr">symbol</label><input name="symbol" id="symbol_updFr" />
+		    		<label for="name_updFr">name</label><input name="name" id="name_updFr" />
+		    		<label for="units_updFr">units</label><input name="units" id="units_updFr" />
+		    	</fieldset>
+				<fieldset>
+    				<legend>To</legend>
+		    		<label for="symbol_updTo">symbol</label><input name="symbol" id="symbol_updTo" />
+		    		<label for="name_updTo">name</label><input name="name" id="name_updTo" />
+		    		<label for="units_updTo">units</label><input name="units" id="units_updTo" />
+		    		<input type="reset" />
+					<input type="submit" />
+	    		</fieldset>
     		</fieldset>
     	</form>
     </main>
