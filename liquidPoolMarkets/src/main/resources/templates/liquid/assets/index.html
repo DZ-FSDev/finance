@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liquid Assets Listing</title>
-    <link rel="stylesheet" type="text/css" href="/DZFinTechStyles.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquid Assets Listing</title>
+<link rel="stylesheet" type="text/css" href="/DZFinTechStyles.css">
 </head>
 <body>
 	<h1>Liquid Assets Listing</h1>
 
-    <div id="crudPanel" class="smokedGlass">
-    	<section class="coffeeBorder">
-    	<table>
-    		<thead>
-    			<th>assetId</th>
-    			<th>symbol</th>
-    			<th>name</th>
-    			<th>units</th>
-    			</tr>
-    		</thead>
-    		<tbody>
-    			<tr th:each="asset,iter : ${assets}">
-    				<td th:text="${asset.assetId}" />
-    				<td th:text="${asset.symbol}" />
-    				<td th:text="${asset.name}" />
-    				<td th:text="${asset.units}" />
-    			</tr>
-    		</tbody>
-    	</table>
-    	<form class="smokedGlass" action="/liquid/assets/create" method="post">
-    		<fieldset class="coffeeBorder">
-    			<legend>Create</legend>
-	    		<label for="symbol_crt">symbol</label><input name="symbol" id="symbol_crt" />
-	    		<label for="name_crt">name</label><input name="name" id="name_crt" />
-	    		<label for="units_crt">units</label><input name="units" id="units_crt" />
-	    		<input type="reset" /><input type="submit" />
-    		</fieldset>
-    	</form>
-    	<form class="smokedGlass" action="/liquid/assets/update" method="post">
-    		<fieldset class="coffeeBorder">
-    			<legend>Update</legend>
-    			<fieldset class="coffeeBorder">
-    				<legend>From</legend>
-		    		<label for="assetId_updFr">assetId</label><input name="assetId" id="assetId_updFr" />
-		    		<label for="symbol_updFr">symbol</label><input name="symbol" id="symbol_updFr" />
-		    		<label for="name_updFr">name</label><input name="name" id="name_updFr" />
-		    		<label for="units_updFr">units</label><input name="units" id="units_updFr" />
-		    	</fieldset>
+	<div id="crudPanel" class="smokedGlass">
+		<section class="coffeeBorder">
+			<table>
+				<thead>
+					<th>assetId</th>
+					<th>symbol</th>
+					<th>name</th>
+					<th>units</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="asset,iter : ${assets}">
+						<td th:text="${asset.assetId}" />
+						<td th:text="${asset.symbol}" />
+						<td th:text="${asset.name}" />
+						<td th:text="${asset.units}" />
+					</tr>
+				</tbody>
+			</table>
+			<form class="smokedGlass" action="/liquid/assets/create"
+				method="post">
 				<fieldset class="coffeeBorder">
-    				<legend>To</legend>
-		    		<label for="symbol_updTo">symbol</label><input name="symbol" id="symbol_updTo" />
-		    		<label for="name_updTo">name</label><input name="name" id="name_updTo" />
-		    		<label for="units_updTo">units</label><input name="units" id="units_updTo" />
-		    		<input type="reset" />
-					<input type="submit" />
-	    		</fieldset>
-    		</fieldset>
-    	</form>
-    	<form class="smokedGlass" action="/liquid/assets/delete" method="post">
-    		<fieldset class="coffeeBorder">
-    			<legend>Delete</legend>
-    			<label for="assetId_del">assetId</label><input name="assetId" id="assetId_del" />
-	    		<label for="symbol_del">symbol</label><input name="symbol" id="symbol_del" />
-	    		<label for="name_del">name</label><input name="name" id="name_del" />
-	    		<label for="units_del">units</label><input name="units" id="units_del" />
-	    		<input type="reset" />
-				<input type="submit" />
-    		</fieldset>
-    	</form>
-    	</section>
-    </div>
+					<legend>Create</legend>
+					<label for="symbol_crt">symbol<input name="symbol"
+						id="symbol_crt" /></label> <label for="name_crt">name<input
+						name="name" id="name_crt" /></label> <label for="units_crt">units<input
+						name="units" id="units_crt" /></label>
+					<div class="buttons">
+						<input type="reset" /><input type="submit" />
+					</div>
+				</fieldset>
+			</form>
+			<form class="smokedGlass" action="/liquid/assets/update"
+				method="post">
+				<fieldset class="coffeeBorder">
+					<legend>Update</legend>
+					<fieldset class="coffeeBorder">
+						<legend>From</legend>
+						<label for="assetId_updFr">assetId<input name="assetId"
+							id="assetId_updFr" /></label> <label for="symbol_updFr">symbol<input
+							name="symbol" id="symbol_updFr" /></label> <label for="name_updFr">name<input
+							name="name" id="name_updFr" /></label> <label for="units_updFr">units<input
+							name="units" id="units_updFr" /></label>
+					</fieldset>
+					<fieldset class="coffeeBorder">
+						<legend>To</legend>
+						<label for="symbol_updTo">symbol<input name="symbol"
+							id="symbol_updTo" /></label> <label for="name_updTo">name<input
+							name="name" id="name_updTo" /></label> <label for="units_updTo">units<input
+							name="units" id="units_updTo" /></label>
+						<div class="buttons">
+							<input type="reset" /><input type="submit" />
+						</div>
+					</fieldset>
+				</fieldset>
+			</form>
+			<form class="smokedGlass" action="/liquid/assets/delete"
+				method="post">
+				<fieldset class="coffeeBorder">
+					<legend>Delete</legend>
+					<label for="assetId_del">assetId<input name="assetId"
+						id="assetId_del" /></label> <label for="symbol_del">symbol<input
+						name="symbol" id="symbol_del" /></label> <label for="name_del">name<input
+						name="name" id="name_del" /></label> <label for="units_del">units<input
+						name="units" id="units_del" /></label>
+					<div class="buttons">
+						<input type="reset" /><input type="submit" />
+					</div>
+				</fieldset>
+			</form>
+		</section>
+	</div>
 </body>
 </html>
