@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liquid Assets Listing</title>
+    <link rel="stylesheet" type="text/css" href="../DZFinTechStyles.css">
 </head>
 <body>
 	<h1>Liquid Assets Listing</h1>
@@ -17,6 +18,17 @@
     <main>
     	<table>
     		<caption>Liquid Assets Listing</caption>
+    		<thead>
+    			<th></tr>
+    		</thead>
+    		<tbody>
+    			<tr th:each="asset,iter : ${assets}">
+    				<td th:text="${asset.assetId}" />
+    				<td th:text="${asset.symbol}" />
+    				<td th:text="${asset.name}" />
+    				<td th:text="${asset.units}" />
+    			</tr>
+    		</tbody>
     	</table>
     </main>
 </body>
