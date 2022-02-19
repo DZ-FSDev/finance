@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Controller
 @RequestMapping("/liquid/assets")
@@ -26,5 +26,12 @@ public class WEBController_liquid_assets {
 		model.addAttribute("assets", assetSvc.getAllAssets());
 		
 		return "/liquid/assets/index";
+	}
+	
+	@PostMapping("/create")
+	public String createAsset(Asset asset, Model model) {
+		assetSvc.add(asset);
+				
+		return get(model);
 	}
 }
