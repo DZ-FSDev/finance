@@ -1,3 +1,10 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	background-color: black;
+	color: coral;
+}
+
 #breadcrumbs li+li::before{
     content: "\00BB";
     margin-right: 5px;
