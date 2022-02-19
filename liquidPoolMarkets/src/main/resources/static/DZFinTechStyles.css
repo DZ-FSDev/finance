@@ -12,3 +12,11 @@ body{
     content: "\00BB";
     margin-right: 5px;
 }
+
+table{
+	width:100%;
+	text-align: center;
+	background-color: #FA01;
+ 	
+ 	overflow: hidden;
+}
