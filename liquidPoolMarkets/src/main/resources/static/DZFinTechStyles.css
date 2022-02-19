@@ -8,7 +8,7 @@ body {
 	color: coral;
 }
 
-h1{
+h1 {
 	text-align: center;
 }
 
@@ -39,6 +39,20 @@ td, th {
 	position: relative;
 }
 
+td:first-child, th:first-child {
+	border-bottom-left-radius: 50px;
+	border-top-left-radius: 50px;
+}
+
+td:last-child, th:last-child {
+	border-bottom-right-radius: 50px;
+	border-top-right-radius: 50px;
+}
+
+td, th {
+	background-image: linear-gradient(10deg, #FA03, #D801);
+}
+
 td:hover::before {
 	background-color: #FA03;
 	content: '';
@@ -61,25 +75,12 @@ td:hover::after {
 	z-index: -1;
 }
 
-td:first-child, th:first-child {
-	border-bottom-left-radius: 50px;
-	border-top-left-radius: 50px;
-}
-
-td:last-child, th:last-child {
-	border-bottom-right-radius: 50px;
-	border-top-right-radius: 50px;
-}
-
-td, th {
-	background-image: linear-gradient(10deg, #FA03, #D801);
-}
-
 /************** FORMS **************/
 form {
 	border-radius: 20px;
 	padding: 10px;
-	margin: 10px; width : 90%;
+	margin: 10px;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
 	width: 90%;
@@ -88,6 +89,49 @@ form {
 form fieldset {
 	margin-top: 10px;
 	padding: 10px;
+}
+
+input, label {
+	color: #000;
+	background-color: transparent;
+	background-image: linear-gradient(#FA08, #FA03);
+	text-align: center;
+	transition: all 0.2s;
+	padding: 0.2em 0em;
+	margin-left: 1em;
+	border-radius: 2em;
+	border: 5px transparent solid;
+}
+
+input:hover {
+	background-color: #FA0;
+	border: white 5px solid;
+}
+
+input[type="submit"], input[type="reset"] {
+	padding: 0.8em 1em;
+}
+
+label {
+	display: inline-block
+}
+
+input[type="submit"], input[type="reset"] {
+	margin-top: 1em;
+	width: 39%;
+	padding: 0.8em 1em;
+}
+
+form fieldset label {
+	width: 19%;
+}
+
+form fieldset label input {
+	width: 57%;
+}
+
+#buttons {
+	width: 50%;
 }
 
 /************** FANCIFY **************/
