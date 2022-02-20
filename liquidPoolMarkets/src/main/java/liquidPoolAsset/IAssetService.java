@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.1
  */
 @Service
@@ -28,8 +28,18 @@ public interface IAssetService {
 	 * returning true if successful.
 	 * 
 	 * @param asset The asset to be added.
-	 * @return True if successful.
+	 * @return True if the addition was successful.
 	 * @since 0.0.2
 	 */
 	boolean add(Asset asset);
+
+	/**
+	 * Removes a specific asset from those to be tracked by the liquid pool
+	 * exchange; returning true if successful.
+	 * 
+	 * @param asset The specified asset to be removed.
+	 * @return True if the removal was successful.
+	 * @since 0.0.3
+	 */
+	boolean remove(Asset asset);
 }
