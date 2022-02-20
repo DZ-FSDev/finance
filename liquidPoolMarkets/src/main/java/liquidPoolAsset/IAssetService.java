@@ -1,7 +1,6 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
-import java.util.Set;
-
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,19 +8,28 @@ import org.springframework.stereotype.Service;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.1
+ * @version 0.0.2
  * @since 17.0.1
  */
 @Service
 public interface IAssetService {
 	/**
-	 * Returns the set containing all assets tracked by this liquid pool
+	 * Returns the List containing all assets tracked by this liquid pool
 	 * exchange.
 	 * 
 	 * @return The set containing all assets tracked by this liquid pool
-	 * exchange.
+	 *         exchange.
 	 * @since 0.0.1
 	 */
-	Set<Asset> getAllAssets();
-	
+	List<Asset> getAllAssets();
+
+	/**
+	 * Adds a specific asset to be tracked by the liquid pool exchange;
+	 * returning true if successful.
+	 * 
+	 * @param asset The asset to be added.
+	 * @return True if successful.
+	 * @since 0.0.2
+	 */
+	boolean add(Asset asset);
 }
