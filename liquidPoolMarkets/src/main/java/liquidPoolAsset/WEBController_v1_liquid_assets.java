@@ -3,7 +3,10 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Controller
 @RequestMapping("/liquid/assets")
@@ -25,10 +28,12 @@ public class WEBController_liquid_assets {
 	 * 
 	 * @param model
 	 * @return
+	 * @since 0.0.3
 	 */
 	@GetMapping
 	public String get(Model model) {
 		model.addAttribute("assets", assetSvc.getAllAssets());
+		model.addAttribute("updDTO", new AssetUpdateDTO());
 		
 		return "/liquid/assets/index";
 	}
@@ -38,6 +43,7 @@ public class WEBController_liquid_assets {
 	 * @param asset
 	 * @param model
 	 * @return
+	 * @since 0.0.4
 	 */
 	@PostMapping("/create")
 	public String createAsset(Asset asset, Model model) {
@@ -51,10 +57,25 @@ public class WEBController_liquid_assets {
 	 * @param asset
 	 * @param model
 	 * @return
+	 * @since 0.0.5
 	 */
 	@PostMapping("/delete")
 	public String deleteAsset(Asset asset, Model model) {
 		assetSvc.remove(asset);
+				
+		return get(model);
+	}
+	
+	/**
+	 * 
+	 * @param asset
+	 * @param model
+	 * @return
+	 * @since 0.0.6
+	 */
+	@PostMapping("/update")//
+	public String updateAsset(@ModelAttribute("updDTO") AssetUpdateDTO updDTO, Model model) {
+		assetSvc.update(updDTO.from, updDTO.to);
 				
 		return get(model);
 	}
