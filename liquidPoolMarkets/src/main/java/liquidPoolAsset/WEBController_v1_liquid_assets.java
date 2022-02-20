@@ -3,6 +3,7 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * liquid/assets WEB Service Controller.
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.6
+ * @version 0.0.7
  */
 @Controller
 @RequestMapping("/liquid/assets")
@@ -43,13 +45,13 @@ public class WEBController_liquid_assets {
 	 * @param asset
 	 * @param model
 	 * @return
-	 * @since 0.0.4
+	 * @since 0.0.7
 	 */
 	@PostMapping("/create")
-	public String createAsset(Asset asset, Model model) {
+	public ModelAndView createAsset(Asset asset, ModelMap model) {
 		assetSvc.add(asset);
 				
-		return get(model);
+		return new ModelAndView("redirect:/liquid/assets", model);
 	}
 	
 	/**
@@ -57,26 +59,26 @@ public class WEBController_liquid_assets {
 	 * @param asset
 	 * @param model
 	 * @return
-	 * @since 0.0.5
+	 * @since 0.0.7
 	 */
 	@PostMapping("/delete")
-	public String deleteAsset(Asset asset, Model model) {
+	public ModelAndView deleteAsset(Asset asset, ModelMap model) {
 		assetSvc.remove(asset);
 				
-		return get(model);
+		return new ModelAndView("redirect:/liquid/assets", model);
 	}
 	
 	/**
 	 * 
-	 * @param asset
+	 * @param updDTO
 	 * @param model
 	 * @return
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
 	@PostMapping("/update")//
-	public String updateAsset(@ModelAttribute("updDTO") AssetUpdateDTO updDTO, Model model) {
+	public ModelAndView updateAsset(@ModelAttribute("updDTO") AssetUpdateDTO updDTO, ModelMap model) {
 		assetSvc.update(updDTO.from, updDTO.to);
 				
-		return get(model);
+		return new ModelAndView("redirect:/liquid/assets", model);
 	}
 }
