@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.3
+ * @version 0.0.4
  * @since 17.0.1
  */
 @Service
@@ -42,4 +42,16 @@ public interface IAssetService {
 	 * @since 0.0.3
 	 */
 	boolean remove(Asset asset);
+	
+	/**
+	 * Updates a specific asset tracked by the liquid pool exchange; returning
+	 * true if successful.
+	 * 
+	 * @param from The state which serves as an example to select the record
+	 *             for updating.
+	 * @param to The state the Asset should be updated to.
+	 * @return True if the update was successful.
+	 * @since 0.0.4
+	 */
+	boolean update(Asset from, Asset to);
 }
