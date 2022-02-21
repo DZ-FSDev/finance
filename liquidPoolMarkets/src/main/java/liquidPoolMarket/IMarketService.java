@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * with an liquid pool market service.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.1
  */
 @Service
@@ -32,4 +32,14 @@ public interface IMarketService {
 	 * @since 0.0.2
 	 */
 	boolean add(Market market);
+	
+	/**
+	 * Removes a specific market from those to be tracked by the liquid pool
+	 * exchange; returning true if successful.
+	 * 
+	 * @param asset The specified market to be removed.
+	 * @return True if the removal was successful.
+	 * @since 0.0.3
+	 */
+	boolean remove(Market market);
 }
