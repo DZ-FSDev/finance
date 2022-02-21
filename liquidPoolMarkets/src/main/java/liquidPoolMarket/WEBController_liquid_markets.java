@@ -15,11 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.7
+ * @version 0.0.1
  */
 @Controller
 @RequestMapping("/liquid/markets")
 public class WEBController_liquid_markets {
 	@Autowired
-	IAssetService assetSvc;
+	IMarketService marketSvc;
 }
