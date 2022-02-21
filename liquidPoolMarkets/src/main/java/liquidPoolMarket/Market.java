@@ -19,12 +19,10 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
 
@@ -35,7 +33,7 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.1
+ * @version 0.0.2
  * @since 17.0.1
  */
 @Entity
@@ -49,11 +47,22 @@ public class Market implements Serializable{
 	
 	private @Getter @Setter String ticker;
 	
-	private @Getter @Setter Asset leftAsset;
-	private @Getter @Setter Asset rightAsset;
+	private @Getter @Setter @ManyToOne Asset leftAsset;
+	private @Getter @Setter @ManyToOne Asset rightAsset;
 	
 	/**
 	 * Default constructor for Liquid Pool Market.
 	 */
 	public Market() {}
+
+	/**
+	 * @since 0.0.2
+	 */
+	@Override
+	public String toString() {
+		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", leftAsset=" + leftAsset.getName() + ", rightAsset="
+				+ rightAsset.getName() + "]";
+	}
+	
+	
 }
