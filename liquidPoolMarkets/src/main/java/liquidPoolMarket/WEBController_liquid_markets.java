@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Controller
 @RequestMapping("/liquid/markets")
@@ -35,5 +35,19 @@ public class WEBController_liquid_markets {
 		model.addAttribute("updDTO", new MarketUpdateDTO());
 		
 		return "/liquid/markets/index";
+	}
+	
+	/**
+	 * 
+	 * @param market
+	 * @param model
+	 * @return
+	 * @since 0.0.3
+	 */
+	@PostMapping("/create")
+	public ModelAndView createMarket(Market market, ModelMap model) {
+		marketSvc.add(market);
+				
+		return new ModelAndView("redirect:/liquid/markets", model);
 	}
 }
