@@ -15,11 +15,25 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Controller
 @RequestMapping("/liquid/markets")
 public class WEBController_liquid_markets {
 	@Autowired
 	IMarketService marketSvc;
+	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 * @since 0.0.2
+	 */
+	@GetMapping
+	public String get(Model model) {
+		model.addAttribute("markets", marketSvc.getAllAssets());
+		model.addAttribute("updDTO", new MarketUpdateDTO());
+		
+		return "/liquid/markets/index";
+	}
 }
