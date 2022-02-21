@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Liquid Assets Listing</title>
-<link rel="stylesheet" type="text/css" href="/DZFinTechStyles.css">
+<link rel="stylesheet" type="text/css" href="/DZLiquidFinTechStyles.css">
+<link rel="stylesheet" type="text/css" href="/DZCoffeeForms.css">
 </head>
 <body>
 	<h1>Liquid Assets Listing</h1>
@@ -29,9 +30,9 @@
 					</tr>
 				</tbody>
 			</table>
-			<form class="smokedGlass" action="/liquid/assets/create"
+			<form class="smokedGlass coffee" action="/liquid/assets/create"
 				method="post">
-				<fieldset class="coffeeBorder">
+				<fieldset>
 					<legend>Create</legend>
 					<label for="symbol_crt">symbol<input name="symbol"
 						id="symbol_crt" /></label> <label for="name_crt">name<input
@@ -42,33 +43,33 @@
 					</div>
 				</fieldset>
 			</form>
-			<form class="smokedGlass" action="/liquid/assets/update"
+			<form class="smokedGlass coffee" action="/liquid/assets/update"
 				method="post">
-				<fieldset class="coffeeBorder">
+				<fieldset>
 					<legend>Update</legend>
-					<fieldset class="coffeeBorder">
+					<fieldset>
 						<legend>From</legend>
-						<label for="assetId_updFr">assetId<input name="assetId"
+						<label for="assetId_updFr">assetId<input th:field="${updDTO.from.assetId}"
 							id="assetId_updFr" /></label> <label for="symbol_updFr">symbol<input
-							name="symbol" id="symbol_updFr" /></label> <label for="name_updFr">name<input
-							name="name" id="name_updFr" /></label> <label for="units_updFr">units<input
-							name="units" id="units_updFr" /></label>
+							th:field="${updDTO.from.symbol}" id="symbol_updFr" /></label> <label for="name_updFr">name<input
+							th:field="${updDTO.from.name}" id="name_updFr" /></label> <label for="units_updFr">units<input
+							th:field="${updDTO.from.units}" id="units_updFr" /></label>
 					</fieldset>
-					<fieldset class="coffeeBorder">
+					<fieldset>
 						<legend>To</legend>
-						<label for="symbol_updTo">symbol<input name="symbol"
+						<label for="symbol_updTo">symbol<input th:field="${updDTO.to.symbol}"
 							id="symbol_updTo" /></label> <label for="name_updTo">name<input
-							name="name" id="name_updTo" /></label> <label for="units_updTo">units<input
-							name="units" id="units_updTo" /></label>
+							th:field="${updDTO.to.name}" id="name_updTo" /></label> <label for="units_updTo">units<input
+							th:field="${updDTO.to.units}" id="units_updTo" /></label>
 						<div class="buttons">
 							<input type="reset" /><input type="submit" />
 						</div>
 					</fieldset>
 				</fieldset>
 			</form>
-			<form class="smokedGlass" action="/liquid/assets/delete"
+			<form class="smokedGlass coffee" action="/liquid/assets/delete"
 				method="post">
-				<fieldset class="coffeeBorder">
+				<fieldset>
 					<legend>Delete</legend>
 					<label for="assetId_del">assetId<input name="assetId"
 						id="assetId_del" /></label> <label for="symbol_del">symbol<input
