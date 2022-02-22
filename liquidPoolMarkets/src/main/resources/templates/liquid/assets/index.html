@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Liquid Assets Listing</title>
-<link rel="stylesheet" type="text/css" href="/DZLiquidAssetFinTechStyles.css">
+<link rel="stylesheet" type="text/css"
+	href="/DZLiquidAssetFinTechStyles.css">
 <link rel="stylesheet" type="text/css" href="/DZCoffeeForms.css">
 <link rel="stylesheet" type="text/css" href="/DZCoffeeTables.css">
 </head>
@@ -17,17 +18,23 @@
 			<table class="coffee">
 				<thead>
 					<th>assetId</th>
+					<th>assetClass</th>
 					<th>symbol</th>
 					<th>name</th>
 					<th>units</th>
+					<th>lastPrice</th>
+					<th>marketCap</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="asset,iter : ${assets}">
 						<td th:text="${asset.assetId}" />
+						<td th:text="${asset.assetClass}" />
 						<td th:text="${asset.symbol}" />
 						<td th:text="${asset.name}" />
 						<td th:text="${asset.units}" />
+						<td th:text="${asset.lastPrice}" />
+						<td th:text="${asset.marketCap}" />
 					</tr>
 				</tbody>
 			</table>
@@ -35,10 +42,14 @@
 				method="post">
 				<fieldset>
 					<legend>Create</legend>
-					<label for="symbol_crt">symbol<input name="symbol"
-						id="symbol_crt" /></label> <label for="name_crt">name<input
+					<label for="assetClass_crt">assetClass<select
+						name="assetClass" id="assetClass_crt"><option
+								th:each="assetClass : ${assetClasses}" th:value="${assetClass}"
+								th:text="${assetClass}"></option></select></label> <label for="symbol_crt">symbol<input
+						name="symbol" id="symbol_crt" /></label> <label for="name_crt">name<input
 						name="name" id="name_crt" /></label> <label for="units_crt">units<input
-						name="units" id="units_crt" /></label>
+						name="units" id="units_crt" /></label> <label for="lastPrice_crt">lastPrice<input
+						name="lastPrice" id="lastPrice_crt" /></label>
 					<div class="buttons">
 						<input type="reset" /><input type="submit" />
 					</div>
@@ -50,18 +61,19 @@
 					<legend>Update</legend>
 					<fieldset>
 						<legend>From</legend>
-						<label for="assetId_updFr">assetId<input th:field="${updDTO.from.assetId}"
-							id="assetId_updFr" /></label> <label for="symbol_updFr">symbol<input
-							th:field="${updDTO.from.symbol}" id="symbol_updFr" /></label> <label for="name_updFr">name<input
-							th:field="${updDTO.from.name}" id="name_updFr" /></label> <label for="units_updFr">units<input
-							th:field="${updDTO.from.units}" id="units_updFr" /></label>
+						<label for="assetId_updFr">assetId<input
+							th:field="${updDTO.from.assetId}" id="assetId_updFr" /></label> <label
+							for="symbol_updFr">symbol<input
+							th:field="${updDTO.from.symbol}" id="symbol_updFr" /></label> <label
+							for="name_updFr">name<input
+							th:field="${updDTO.from.name}" id="name_updFr" /></label>
 					</fieldset>
 					<fieldset>
 						<legend>To</legend>
-						<label for="symbol_updTo">symbol<input th:field="${updDTO.to.symbol}"
-							id="symbol_updTo" /></label> <label for="name_updTo">name<input
-							th:field="${updDTO.to.name}" id="name_updTo" /></label> <label for="units_updTo">units<input
-							th:field="${updDTO.to.units}" id="units_updTo" /></label>
+						<label for="units_updTo">units<input
+							th:field="${updDTO.to.units}" id="units_updTo" /></label> <label
+							for="lastPrice_updTo">lastPrice<input
+							th:field="${updDTO.to.lastPrice}" id="lastPrice_updTo" /></label>
 						<div class="buttons">
 							<input type="reset" /><input type="submit" />
 						</div>
@@ -75,8 +87,7 @@
 					<label for="assetId_del">assetId<input name="assetId"
 						id="assetId_del" /></label> <label for="symbol_del">symbol<input
 						name="symbol" id="symbol_del" /></label> <label for="name_del">name<input
-						name="name" id="name_del" /></label> <label for="units_del">units<input
-						name="units" id="units_del" /></label>
+						name="name" id="name_del" /></label>
 					<div class="buttons">
 						<input type="reset" /><input type="submit" />
 					</div>
