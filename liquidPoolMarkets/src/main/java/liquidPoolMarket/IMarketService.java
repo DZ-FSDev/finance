@@ -1,14 +1,37 @@
+/*  Original Licensing Copyright
+ * 
+ *  Interface for various actions associated with a liquid pool market.
+ *  Copyright (C) 2022  DZ-FSDev
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 /**
  * The user of this interface should implement the various actions associated
- * with an liquid pool market service.
+ * with a liquid pool market service.
  * 
  * @author DZ-FSDev
- * @version 0.0.4
+ * @version 0.0.5
  * @since 17.0.1
  */
 @Service
@@ -22,7 +45,7 @@ public interface IMarketService {
 	 * @since 0.0.1
 	 */
 	List<Market> getAllMarkets();
-
+	
 	/**
 	 * Adds a specific market to be tracked by the liquid pool exchange;
 	 * returning true if successful.
@@ -32,7 +55,7 @@ public interface IMarketService {
 	 * @since 0.0.2
 	 */
 	boolean add(Market market);
-	
+
 	/**
 	 * Removes a specific market from those to be tracked by the liquid pool
 	 * exchange; returning true if successful.
@@ -55,4 +78,13 @@ public interface IMarketService {
 	 */
 	@Transactional
 	boolean update(Market from, Market to);
+	
+	/**
+	 * Returns a list of markets which matches a given example market.
+	 * 
+	 * @param example The example market to be matched against.
+	 * @return A list of markets which matches a given example market.
+	 * @since 0.0.5
+	 */
+	List<Market> findByExample(Example<Market> example);
 }
