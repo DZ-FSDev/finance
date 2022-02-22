@@ -28,7 +28,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.3
+ * @version 0.0.5
  * @since 17.0.1
  */
 public interface AssetRepository extends JpaRepository<Asset, Long>{
@@ -51,9 +51,15 @@ public interface AssetRepository extends JpaRepository<Asset, Long>{
 	public Optional<Asset> findBySymbolOrderBySymbol(String symbol);
 	public Optional<Asset> findBySymbolLike(String pattern);
 
+	public List<Asset> findAllByAssetClass(AssetClass assetClass);
+	
 	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
+	
+	public List<Asset> findFirst3ByMarketCapLessThan(BigInteger marketCap);
+	public List<Asset> findFirst3ByMarketCapGreaterThan(BigInteger marketCap);
+	public List<Asset> findFirst3ByMarketCapBetween(BigInteger marketCapLow, BigInteger marketCapHigh);
 	
 	/*
 	 *  -- Delete --
