@@ -33,7 +33,7 @@ import lombok.Setter;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.1
  */
 @Entity
@@ -43,17 +43,15 @@ public class LiquidPoolAsset implements Serializable{
 	 */
 	private static final long serialVersionUID = -5977040732236444217L;
 
-	private @Getter @Setter @GeneratedValue @Id long assetId;
+	private @Getter @Setter @GeneratedValue @Id Long assetId;
 	
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String symbol;
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String name;
 	
 	private @Getter @Setter @Column(nullable = false) BigInteger units;
-	
-	/**
-	 * Default constructor for LiquidPoolAsset.
-	 */
-	public LiquidPoolAsset() {}
+	private @Getter @Setter @Column(nullable = false) BigDecimal lastPrice;
+	private @Getter @Setter @Formula("units * last_price") BigDecimal marketCap;
+	private @Getter @Setter @Column(nullable = false) @Enumerated(EnumType.STRING) AssetClass assetClass;
 
 	@Override
 	public int hashCode() {
