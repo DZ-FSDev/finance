@@ -3,4 +3,4 @@
 <p>This project is mixed-source. Please contact for demonstrations.</p>
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/96850361/154851338-fc98a551-2c3f-4aa8-be7d-76027637fd1d.png)
+![image](https://user-images.githubusercontent.com/85122787/155168902-a57ca4c1-34d6-4f86-9abc-4b2e07b60b49.png)
