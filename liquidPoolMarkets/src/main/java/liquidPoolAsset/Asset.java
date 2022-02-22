@@ -19,12 +19,16 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.hibernate.annotations.Formula;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,45 +37,69 @@ import lombok.Setter;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.3
+ * @version 0.0.4
  * @since 17.0.1
  */
 @Entity
-public class LiquidPoolAsset implements Serializable{
+public class Asset implements Serializable{
 	/**
-	 * @since 0.0.1
+	 * @since 0.0.4
 	 */
-	private static final long serialVersionUID = -5977040732236444217L;
+	private static final long serialVersionUID = -4743895968738605161L;
 
 	private @Getter @Setter @GeneratedValue @Id Long assetId;
-	
+
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String symbol;
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String name;
-	
+
 	private @Getter @Setter @Column(nullable = false) BigInteger units;
 	private @Getter @Setter @Column(nullable = false) BigDecimal lastPrice;
 	private @Getter @Setter @Formula("units * last_price") BigDecimal marketCap;
 	private @Getter @Setter @Column(nullable = false) @Enumerated(EnumType.STRING) AssetClass assetClass;
 
+	/**
+	 * @since 0.0.4
+	 */
 	@Override
 	public int hashCode() {
-		final int prime = 67011;
+		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (assetId ^ (assetId >>> 32));
+		result = prime * result + ((assetClass == null) ? 0 : assetClass.hashCode());
+		result = prime * result + ((assetId == null) ? 0 : assetId.hashCode());
+		result = prime * result + ((lastPrice == null) ? 0 : lastPrice.hashCode());
+		result = prime * result + ((marketCap == null) ? 0 : marketCap.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
 		result = prime * result + ((units == null) ? 0 : units.hashCode());
 		return result;
 	}
 
+	/**
+	 * @since 0.0.4
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof LiquidPoolAsset))
+		if (!(obj instanceof Asset))
 			return false;
-		LiquidPoolAsset other = (LiquidPoolAsset) obj;
-		if (assetId != other.assetId)
+		Asset other = (Asset) obj;
+		if (assetClass != other.assetClass)
+			return false;
+		if (assetId == null) {
+			if (other.assetId != null)
+				return false;
+		} else if (!assetId.equals(other.assetId))
+			return false;
+		if (lastPrice == null) {
+			if (other.lastPrice != null)
+				return false;
+		} else if (!lastPrice.equals(other.lastPrice))
+			return false;
+		if (marketCap == null) {
+			if (other.marketCap != null)
+				return false;
+		} else if (!marketCap.equals(other.marketCap))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -89,5 +117,14 @@ public class LiquidPoolAsset implements Serializable{
 		} else if (!units.equals(other.units))
 			return false;
 		return true;
+	}
+
+	/**
+	 * @since 0.0.4
+	 */
+	@Override
+	public String toString() {
+		return "Asset [assetId=" + assetId + ", symbol=" + symbol + ", name=" + name + ", units=" + units
+				+ ", lastPrice=" + lastPrice + ", marketCap=" + marketCap + ", assetClass=" + assetClass + "]";
 	}
 }
