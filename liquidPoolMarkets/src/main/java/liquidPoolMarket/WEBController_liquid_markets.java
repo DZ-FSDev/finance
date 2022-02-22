@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Controller
 @RequestMapping("/liquid/markets")
@@ -79,4 +79,17 @@ public class WEBController_liquid_markets {
 		return new ModelAndView("redirect:/liquid/markets", model);
 	}
 	*/
+	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 * @since 0.0.6
+	 */
+	@GetMapping("/priceMatrix")
+	public String getPriceMatrix(Model model) {
+		MarketPriceMatrixDTO priceMatrix = new MarketPriceMatrixDTO();
+		
+		return "/liquid/markets/priceMatrix";
+	}
 }
