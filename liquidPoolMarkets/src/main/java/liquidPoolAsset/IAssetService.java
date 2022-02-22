@@ -1,6 +1,10 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,7 +12,7 @@ import org.springframework.stereotype.Service;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.4
+ * @version 0.0.5
  * @since 17.0.1
  */
 @Service
@@ -53,5 +57,15 @@ public interface IAssetService {
 	 * @return True if the update was successful.
 	 * @since 0.0.4
 	 */
+	@Transactional
 	boolean update(Asset from, Asset to);
+	
+	/**
+	 * Returns a list of assets which matches a given example asset.
+	 * 
+	 * @param example The example asset to be matched against.
+	 * @return A list of assets which matches a given example asset.
+	 * @since 0.0.5
+	 */
+	List<Asset> findByExample(Example<Asset> example);
 }
