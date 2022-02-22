@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
  * with a liquid pool market service.
  * 
  * @author DZ-FSDev
- * @version 0.0.5
+ * @version 0.0.6
  * @since 17.0.1
  */
 @Service
@@ -87,4 +87,18 @@ public interface IMarketService {
 	 * @since 0.0.5
 	 */
 	List<Market> findByExample(Example<Market> example);
+	
+	/**
+	 * Returns the price for a given liquid pool market for a given size of
+	 * left asset and fee. Slippage is accounted for.
+	 * 
+	 * @param market The liquid market to assess the price from.
+	 * @param size The units of left asset to be traded; negative sizes
+	 *             indicate a sale of left asset.
+	 * @param fee The fee percentage to be assessed per trade.
+	 * @return The price for a given liquid pool market for a trade size of
+	 *         left asset and fee with slippage accounted for.
+	 * @since 0.0.6
+	 */
+	public BigDecimal price(Market market, BigDecimal size, BigDecimal fee);
 }
