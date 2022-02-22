@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
  * with a liquid pool market service.
  * 
  * @author DZ-FSDev
- * @version 0.0.6
+ * @version 0.0.7
  * @since 17.0.1
  */
 @Service
@@ -101,4 +101,16 @@ public interface IMarketService {
 	 * @since 0.0.6
 	 */
 	public BigDecimal price(Market market, BigDecimal size, BigDecimal fee);
+
+	/**
+	 * Returns the price for a given liquid pool market for a given trade fee.
+	 * 
+	 * @param market The liquid market to assess the price from.
+	 * @param fee The fee percentage to be assessed per trade.
+	 * @return The price for a given liquid pool market for a given trade fee.
+	 * @since 0.0.7
+	 */
+	public default BigDecimal price(Market market, BigDecimal fee) {
+		return price(market, BigDecimal.ZERO, fee);
+	}
 }
