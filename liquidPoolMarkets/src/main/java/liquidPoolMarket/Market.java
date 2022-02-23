@@ -37,15 +37,15 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.4
+ * @version 0.0.5
  * @since 17.0.1
  */
 @Entity
 public class Market implements Serializable{
 	/**
-	 * @since 0.0.1
+	 * @since 0.0.5
 	 */
-	private static final long serialVersionUID = 5586298732449963244L;
+	private static final long serialVersionUID = -7379579094660653100L;
 
 	private @Getter @Setter @GeneratedValue @Id long marketId;
 	
@@ -72,6 +72,36 @@ public class Market implements Serializable{
 		result = prime * result + ((ticker == null) ? 0 : ticker.hashCode());
 		return result;
 	}
+
+	/**
+	 * @since 0.0.5
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Market))
+			return false;
+		Market other = (Market) obj;
+		if (leftAsset == null) {
+			if (other.leftAsset != null)
+				return false;
+		} else if (!leftAsset.equals(other.leftAsset))
+			return false;
+		if (marketId != other.marketId)
+			return false;
+		if (rightAsset == null) {
+			if (other.rightAsset != null)
+				return false;
+		} else if (!rightAsset.equals(other.rightAsset))
+			return false;
+		if (ticker == null) {
+			if (other.ticker != null)
+				return false;
+		} else if (!ticker.equals(other.ticker))
+			return false;
+		return true;
+	}
 	
 	/**
 	 * @since 0.0.2
@@ -81,6 +111,4 @@ public class Market implements Serializable{
 		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", leftAsset=" + leftAsset.getName() + ", rightAsset="
 				+ rightAsset.getName() + "]";
 	}
-	
-	
 }
