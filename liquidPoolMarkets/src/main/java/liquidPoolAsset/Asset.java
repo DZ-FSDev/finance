@@ -30,6 +30,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.Formula;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,15 +39,16 @@ import lombok.Setter;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.4
+ * @version 0.0.5
  * @since 17.0.1
  */
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Asset implements Serializable{
 	/**
-	 * @since 0.0.4
+	 * @since 0.0.5
 	 */
-	private static final long serialVersionUID = -4743895968738605161L;
+	private static final long serialVersionUID = 3905359730407435980L;
 
 	private @Getter @Setter @GeneratedValue @Id Long assetId;
 
