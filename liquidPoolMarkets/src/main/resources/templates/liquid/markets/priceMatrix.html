@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquid Markets Price Matrix</title>
+<link rel="stylesheet" type="text/css" href="/DZLiquidMarketFinTechStyles.css">
+<link rel="stylesheet" type="text/css" href="/DZRelishForms.css">
+<link rel="stylesheet" type="text/css" href="/DZRelishTables.css">
+</head>
+<body>
+	<h1>Liquid Markets Price Matrix</h1>
+
+	<div id="crudPanel" class="smokedGlass">
+		<section class="relishBorder">
+			<table class="relish">
+				<thead>
+					<th>...</th>
+					<th th:each="currency : ${matrix.currencies}" th:text="${currency.name} + '<br>' + ${currency.units}"></th>
+				</thead>
+				<tbody>
+					<tr th:each="asset : ${matrix.assets}">
+						<td th:text="${asset.name}" />
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</div>
+</body>
+</html>
