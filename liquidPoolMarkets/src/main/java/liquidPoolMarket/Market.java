@@ -37,7 +37,7 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.3
+ * @version 0.0.4
  * @since 17.0.1
  */
 @Entity
@@ -59,6 +59,20 @@ public class Market implements Serializable{
 	 */
 	public Market() {}
 
+	/**
+	 * @since 0.0.4
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((leftAsset == null) ? 0 : leftAsset.hashCode());
+		result = prime * result + (int) (marketId ^ (marketId >>> 32));
+		result = prime * result + ((rightAsset == null) ? 0 : rightAsset.hashCode());
+		result = prime * result + ((ticker == null) ? 0 : ticker.hashCode());
+		return result;
+	}
+	
 	/**
 	 * @since 0.0.2
 	 */
