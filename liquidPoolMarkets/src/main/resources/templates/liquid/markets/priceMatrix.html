@@ -17,11 +17,15 @@
 			<table class="relish">
 				<thead>
 					<th>...</th>
-					<th th:each="currency : ${matrix.currencies}" th:text="${currency.name} + '<br>' + ${currency.units}"></th>
+					<th th:each="currency : ${matrix.currencies}">
+						<span th:text="${currency.name}"></span> <br>
+						<span th:text="${currency.units}"></span>
+					</th>
 				</thead>
 				<tbody>
-					<tr th:each="asset : ${matrix.assets}">
-						<td th:text="${asset.name}" />
+					<tr th:each="index : ${#numbers.sequence(0, #arrays.length(matrix.prices) - 1)}">
+						<td th:text="${matrix.assets[index].name}" />
+						<td th:each="price : ${matrix.prices[index]}" th:text="${price}"></td>
 					</tr>
 				</tbody>
 			</table>
