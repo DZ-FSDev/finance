@@ -29,6 +29,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,13 +38,14 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.5
+ * @version 0.0.6
  * @since 17.0.1
  */
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Market implements Serializable{
 	/**
-	 * @since 0.0.5
+	 * @since 0.0.6
 	 */
 	private static final long serialVersionUID = -7379579094660653100L;
 
