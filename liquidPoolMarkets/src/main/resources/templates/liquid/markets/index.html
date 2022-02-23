@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquid Markets Listing</title>
+<link rel="stylesheet" type="text/css" href="/DZLiquidMarketFinTechStyles.css">
+<link rel="stylesheet" type="text/css" href="/DZRelishForms.css">
+<link rel="stylesheet" type="text/css" href="/DZRelishTables.css">
+</head>
+<body>
+	<h1>Liquid Markets Listing</h1>
+
+	<div id="crudPanel" class="smokedGlass">
+		<section class="relishBorder">
+			<table class="relish">
+				<thead>
+					<th>marketId</th>
+					<th>ticker</th>
+					<th>leftAsset</th>
+					<th>rightAsset</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="market,iter : ${markets}">
+						<td th:text="${market.marketId}" />
+						<td th:text="${market.ticker}" />
+						<td th:text="${market.leftAsset.name}" />
+						<td th:text="${market.rightAsset.name}" />
+					</tr>
+				</tbody>
+			</table>
+			<form class="smokedGlass relish" action="/liquid/markets/create"
+				method="post">
+				<fieldset>
+					<legend>Create</legend>
+					<label for="ticker_crt">ticker<input name="ticker"
+						id="ticker_crt" /></label> <label for="leftAsset_crt">leftAsset<input
+						name="leftAsset.name" id="leftAsset_crt" /></label> <label
+						for="rightAsset_crt">rightAsset<input
+						name="rightAsset.name" id="rightAsset_crt" /></label>
+					<div class="buttons">
+						<input type="reset" /><input type="submit" />
+					</div>
+				</fieldset>
+			</form>
+			<form class="smokedGlass relish" action="/liquid/markets/delete"
+				method="post">
+				<fieldset>
+					<legend>Delete</legend>
+					<label for="marketId_del">marketId<input name="marketId"
+						id="marketId_del" /></label> <label for="ticker_del">ticker<input
+						name="ticker" id="ticker_del" /></label> <label for="leftAsset_del">left
+						asset<input name="leftAsset.name" id="leftAsset_del" />
+					</label> <label for="rightAsset_del">right asset<input
+						name="rightAsset.name" id="rightAsset_del" /></label>
+					<div class="buttons">
+						<input type="reset" /><input type="submit" />
+					</div>
+				</fieldset>
+			</form>
+		</section>
+	</div>
+</body>
+</html>
