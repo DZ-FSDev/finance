@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.5
+ * @version 0.0.6
  * @since 17.0.1
  */
 @Service
@@ -68,4 +68,16 @@ public interface IAssetService {
 	 * @since 0.0.5
 	 */
 	List<Asset> findByExample(Example<Asset> example);
+	
+	/**
+	 * Returns a list of assets which belong to an asset class; a compatible
+	 * projection type is to be supplied.
+	 * 
+	 * @param <T> The type for results to be projected with.
+	 * @param assetClass The asset class the results must be a part of.
+	 * @param type 
+	 * @return A list of assets which belong to an asset class.
+	 * @since 0.0.6
+	 */
+	<T> List<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
 }
