@@ -74,6 +74,12 @@ public class Position implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
+	/**
+	 * @since 0.0.2
+	 */
+	@Override
+	public String toString() {
+		return "Position [positionId=" + positionId + ", account=" + account + ", costBasis=" + costBasis + "]";
+	}
 }
