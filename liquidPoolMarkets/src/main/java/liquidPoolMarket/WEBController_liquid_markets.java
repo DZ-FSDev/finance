@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.7
+ * @version 0.0.8
  */
 @Controller
 @RequestMapping("/liquid/markets")
@@ -101,4 +101,16 @@ public class WEBController_liquid_markets {
 
 		return "/liquid/markets/priceMatrix";
 	}
-}
+
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 * @since 0.0.8
+	 */
+	@GetMapping("/chart/{ticker}")
+	public String getChart(@PathVariable String ticker, Model model) {
+		model.addAttribute("ticker", ticker);
+
+		return "/liquid/markets/chart";
+	}
