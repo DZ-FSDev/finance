@@ -253,23 +253,32 @@
 		d3.select("button").on("click", reset);
 
 		update();
+		const sleep = ms => new Promise(r => setTimeout(r, ms));
+		var interval = setInterval(update, 100);
 		
 		function update(){
 			d3.csv('/liquid/markets/chartcsv/[[${ticker}]]', function(error, data) {
 				var accessor = candlestick.accessor(), indicatorPreRoll = 0; // Don't show where indicators don't have data
-	
+
+				try{
 				data = data.map(function(d) {
-					return {
-						date : parseDate(d.Date),
-						open : +d.Open,
-						high : +d.High,
-						low : +d.Low,
-						close : +d.Close,
-						volume : +d.Volume
-					};
-				}).sort(function(a, b) {
-					return d3.ascending(accessor.d(a), accessor.d(b));
-				});
+						return {
+							date : parseDate(d.Date),
+							open : +d.Open,
+							high : +d.High,
+							low : +d.Low,
+							close : +d.Close,
+							volume : +d.Volume
+						};
+					}).sort(function(a, b) {
+						return d3.ascending(accessor.d(a), accessor.d(b));
+					});
+				}catch(err){
+					clearInterval(interval);
+					interval = setInterval(update, 2000);
+					throw err;
+					return;
+				}
 	
 				x.domain(techan.scale.plot.time(data).domain());
 				y.domain(techan.scale.plot.ohlc(data.slice(indicatorPreRoll))
@@ -310,9 +319,9 @@
 	
 				draw();
 			});
+			clearInterval(interval);
+			interval = setInterval(update, 100);
 		}
-		
-		setInterval(update, 100);
 
 		function reset() {
 			zoom.scale(1);
