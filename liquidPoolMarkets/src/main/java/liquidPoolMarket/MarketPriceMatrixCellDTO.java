@@ -3,18 +3,21 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 import lombok.Getter;
 
 /**
+ * Represents a cell in the Price Matrix.
  * 
  * @author DZ-FSDev
- * @since 17.0.1
+ * @since 17.0.2
  * @version 0.0.1
  */
 public class MarketPriceMatrixCellDTO {
 	private @Getter String ticker;
 
 	/**
-	 * @param ticker
+	 * Initializes a new instance of a cell in the Price Matrix.
+	 * 
+	 * @param ticker The ticker this cell represents.
 	 */
-	public MarketMatrixCellDTO(String ticker) {
+	public MarketPriceMatrixCellDTO(String ticker) {
 		this.ticker = ticker;
 	}
 
@@ -22,6 +25,4 @@ public class MarketPriceMatrixCellDTO {
 	public String toString() {
 		return "MarketMatrixCellDTO [ticker=" + ticker + "]";
 	}
-	
-	
 }
