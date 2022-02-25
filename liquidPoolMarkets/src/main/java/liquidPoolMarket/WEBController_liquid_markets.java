@@ -23,8 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
  * liquid/markets WEB Service Controller.
  * 
  * @author DZ_FSDev
- * @since 17.0.1
- * @version 0.0.8
+ * @since 17.0.2
+ * @version 0.0.9
  */
 @Controller
 @RequestMapping("/liquid/markets")
@@ -114,3 +114,23 @@ public class WEBController_liquid_markets {
 
 		return "/liquid/markets/chart";
 	}
+
+	/**
+	 * 
+	 * @param ticker
+	 * @param response
+	 * @since 0.0.9
+	 */
+	@GetMapping(value = "/chartcsv/{ticker}")
+	@ResponseBody
+	public void getChartCSV(@PathVariable String ticker, HttpServletResponse response){
+		response.setContentType("text/csv");
+		try (Writer writer = new OutputStreamWriter(response.getOutputStream(), StandardCharsets.UTF_8)) {
+			writer.write(marketSvc.getChart());
+			writer.flush();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
