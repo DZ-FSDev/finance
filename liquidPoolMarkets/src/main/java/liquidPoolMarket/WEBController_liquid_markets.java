@@ -1,13 +1,22 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -15,14 +24,14 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.6
+ * @version 0.0.7
  */
 @Controller
 @RequestMapping("/liquid/markets")
 public class WEBController_liquid_markets {
 	@Autowired
 	IMarketService marketSvc;
-	
+
 	/**
 	 * 
 	 * @param model
@@ -33,10 +42,10 @@ public class WEBController_liquid_markets {
 	public String get(Model model) {
 		model.addAttribute("markets", marketSvc.getAllMarkets());
 		model.addAttribute("updDTO", new MarketUpdateDTO());
-		
+
 		return "/liquid/markets/index";
 	}
-	
+
 	/**
 	 * 
 	 * @param market
@@ -47,10 +56,10 @@ public class WEBController_liquid_markets {
 	@PostMapping("/create")
 	public ModelAndView createMarket(Market market, ModelMap model) {
 		marketSvc.add(market);
-				
+
 		return new ModelAndView("redirect:/liquid/markets", model);
 	}
-	
+
 	/**
 	 * 
 	 * @param market
@@ -61,35 +70,35 @@ public class WEBController_liquid_markets {
 	@PostMapping("/delete")
 	public ModelAndView deleteMarket(Market market, ModelMap model) {
 		marketSvc.remove(market);
-				
+
 		return new ModelAndView("redirect:/liquid/markets", model);
 	}
-	
+
 	/*
 	 * 
 	 * @param updDTO
 	 * @param model
 	 * @return
 	 * @since 0.0.5
-	 
+
 	@PostMapping("/update")
 	public ModelAndView updateAsset(@ModelAttribute("updDTO") MarketUpdateDTO updDTO, ModelMap model) {
 		marketSvc.update(updDTO.from, updDTO.to);
-				
+
 		return new ModelAndView("redirect:/liquid/markets", model);
 	}
-	*/
-	
+	 */
+
 	/**
 	 * 
 	 * @param model
 	 * @return
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
 	@GetMapping("/priceMatrix")
 	public String getPriceMatrix(Model model) {
-		MarketPriceMatrixDTO priceMatrix = new MarketPriceMatrixDTO();
-		
+		model.addAttribute("matrix", MarketPriceMatrixDTO.cachedInstance);
+
 		return "/liquid/markets/priceMatrix";
 	}
 }
