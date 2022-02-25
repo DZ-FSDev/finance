@@ -48,9 +48,9 @@ import lombok.Setter;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Market implements Serializable{
 	/**
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
-	private static final long serialVersionUID = -7379579094660653100L;
+	private static final long serialVersionUID = 3359029732873907792L;
 
 	private @Getter @Setter @GeneratedValue @Id long marketId;
 	
@@ -67,12 +67,13 @@ public class Market implements Serializable{
 	public Market() {}
 
 	/**
-	 * @since 0.0.4
+	 * @since 0.0.7
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((candlesticks == null) ? 0 : candlesticks.hashCode());
 		result = prime * result + ((leftAsset == null) ? 0 : leftAsset.hashCode());
 		result = prime * result + (int) (marketId ^ (marketId >>> 32));
 		result = prime * result + ((rightAsset == null) ? 0 : rightAsset.hashCode());
@@ -81,7 +82,7 @@ public class Market implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.5
+	 * @since 0.0.7
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -90,6 +91,11 @@ public class Market implements Serializable{
 		if (!(obj instanceof Market))
 			return false;
 		Market other = (Market) obj;
+		if (candlesticks == null) {
+			if (other.candlesticks != null)
+				return false;
+		} else if (!candlesticks.equals(other.candlesticks))
+			return false;
 		if (leftAsset == null) {
 			if (other.leftAsset != null)
 				return false;
@@ -111,11 +117,11 @@ public class Market implements Serializable{
 	}
 	
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.7
 	 */
 	@Override
 	public String toString() {
-		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", leftAsset=" + leftAsset.getName() + ", rightAsset="
-				+ rightAsset.getName() + "]";
+		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", candlesticks=" + candlesticks + ", leftAsset="
+				+ leftAsset + ", rightAsset=" + rightAsset + "]";
 	}
 }
