@@ -51,9 +51,10 @@ public class WEBController_liquid_markets {
 	IMarketService marketSvc;
 
 	/**
-	 * Base endpoint for accessing the admin index page for markets.
+	 * Base endpoint for accessing the admin index page for liquid pool
+	 * markets.
 	 * 
-	 * @param model The models to be passed to the template engine.
+	 * @param model The model to be passed to the template engine.
 	 * @return The path to the index template.
 	 * @since 0.0.5
 	 */
@@ -66,10 +67,12 @@ public class WEBController_liquid_markets {
 	}
 
 	/**
+	 * POST endpoint for liquid pool market creation web requests.
 	 * 
-	 * @param market
-	 * @param model
-	 * @return
+	 * @param market The market to be created.
+	 * @param model The model to be passed to the template engine.
+	 * @return A model and view containing a redirect to the admin index page
+	 *         for liquid pool markets.
 	 * @since 0.0.3
 	 */
 	@PostMapping("/create")
