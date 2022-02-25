@@ -51,9 +51,10 @@ public class WEBController_liquid_markets {
 	IMarketService marketSvc;
 
 	/**
+	 * Base endpoint for accessing the admin index page for markets.
 	 * 
-	 * @param model
-	 * @return
+	 * @param model The models to be passed to the template engine.
+	 * @return The path to the index template.
 	 * @since 0.0.5
 	 */
 	@GetMapping
