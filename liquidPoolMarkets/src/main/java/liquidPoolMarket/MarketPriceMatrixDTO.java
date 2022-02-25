@@ -7,10 +7,9 @@ import java.util.List;
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.AssetUnitDTO;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
- * Represents a matrix of prices that exist in the current market.
+ * Represents a matrix of prices that exist in the current liquid pool market.
  * 
  * @author DZ_FSDev
  * @since 17.0.1
@@ -19,14 +18,16 @@ import lombok.Setter;
 public class MarketPriceMatrixDTO {
 	static MarketPriceMatrixDTO cachedInstance;
 	
-	private @Getter @Setter long timestamp;
+	private @Getter long timestamp;
 	
-	private @Getter @Setter List<AssetUnitDTO> currencies;
-	private @Getter @Setter List<AssetUnitDTO> assets;
+	private @Getter List<AssetUnitDTO> currencies;
+	private @Getter List<AssetUnitDTO> assets;
 	
-	private @Getter @Setter BigDecimal[][] prices;
+	private @Getter BigDecimal[][] prices;
 
 	/**
+	 * Initializes a new instance of a matrix of prices that exist in the current liquid pool market.
+	 * 
 	 * @param currencies
 	 * @param assets
 	 * @param prices
