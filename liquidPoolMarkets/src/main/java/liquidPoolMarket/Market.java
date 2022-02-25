@@ -19,6 +19,7 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,8 +28,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
+import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolCandlestick.Candlestick;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -38,7 +41,7 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.6
+ * @version 0.0.7
  * @since 17.0.1
  */
 @Entity
@@ -52,6 +55,8 @@ public class Market implements Serializable{
 	private @Getter @Setter @GeneratedValue @Id long marketId;
 	
 	private @Getter @Setter @Column(unique = true, nullable = false, updatable = false) String ticker;
+	
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks;
 	
 	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset leftAsset;
 	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset rightAsset;
