@@ -41,8 +41,8 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.7
- * @since 17.0.1
+ * @version 0.0.8
+ * @since 17.0.2
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -56,7 +56,13 @@ public class Market implements Serializable{
 	
 	private @Getter @Setter @Column(unique = true, nullable = false, updatable = false) String ticker;
 	
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks1m;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks5m;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks15m;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks30m;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks60m;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks120m;
+	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks240m;
 	
 	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset leftAsset;
 	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset rightAsset;
