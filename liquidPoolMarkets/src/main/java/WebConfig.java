@@ -24,7 +24,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.awt.image.BufferedImage;
 
@@ -37,6 +42,7 @@ import java.awt.image.BufferedImage;
  */
 @Configuration
 @EnableAsync
+@EnableScheduling
 @ComponentScan(basePackages = { "com.dz_fs_dev.finance.liquidPoolMarkets" })
 public class WebConfig implements WebMvcConfigurer {
 	// TODO Converter not detected.
@@ -44,4 +50,13 @@ public class WebConfig implements WebMvcConfigurer {
 	public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
 	    return new BufferedImageHttpMessageConverter();
 	}
+	
+    @Bean
+    public ObjectMapper getJacksonObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return objectMapper;
+    }
 }
