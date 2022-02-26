@@ -19,7 +19,7 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Entity
 public class Position implements Serializable{
@@ -43,7 +43,7 @@ public class Position implements Serializable{
 	/**
 	 * {@inheritDoc}
 	 * <p>Ignores transient fields.</p>
-	 * @since 0.0.3
+	 * @since 0.0.5
 	 */
 	@Override
 	public int hashCode() {
@@ -60,7 +60,9 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.2
+	 * {@inheritDoc}
+	 * <p>Ignores transient fields.</p>
+	 * @since 0.0.5
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -74,6 +76,11 @@ public class Position implements Serializable{
 				return false;
 		} else if (!account.equals(other.account))
 			return false;
+		if (basisCurrency == null) {
+			if (other.basisCurrency != null)
+				return false;
+		} else if (!basisCurrency.equals(other.basisCurrency))
+			return false;
 		if (costBasis == null) {
 			if (other.costBasis != null)
 				return false;
@@ -83,6 +90,21 @@ public class Position implements Serializable{
 			if (other.positionId != null)
 				return false;
 		} else if (!positionId.equals(other.positionId))
+			return false;
+		if (realizedPNL == null) {
+			if (other.realizedPNL != null)
+				return false;
+		} else if (!realizedPNL.equals(other.realizedPNL))
+			return false;
+		if (units == null) {
+			if (other.units != null)
+				return false;
+		} else if (!units.equals(other.units))
+			return false;
+		if (cumulativeUnits == null) {
+			if (other.cumulativeUnits != null)
+				return false;
+		} else if (!cumulativeUnits.equals(other.cumulativeUnits))
 			return false;
 		return true;
 	}
