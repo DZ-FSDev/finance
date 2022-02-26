@@ -42,15 +42,15 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.9
+ * @version 0.0.10
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Market implements Serializable{
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.10
 	 */
-	private static final long serialVersionUID = 3359029732873907792L;
+	private static final long serialVersionUID = -4314368212634384965L;
 
 	private @Getter @Setter @GeneratedValue @Id long marketId;
 	
@@ -73,7 +73,7 @@ public class Market implements Serializable{
 	public Market() {}
 
 	/**
-	 * @since 0.0.9
+	 * @since 0.0.10
 	 */
 	@Override
 	public int hashCode() {
@@ -94,7 +94,7 @@ public class Market implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.9
+	 * @since 0.0.10
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -159,11 +159,14 @@ public class Market implements Serializable{
 	}
 	
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.10
 	 */
 	@Override
 	public String toString() {
-		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", candlesticks=" + candlesticks + ", leftAsset="
-				+ leftAsset + ", rightAsset=" + rightAsset + "]";
+		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", candlesticks1m=" + candlesticks1m
+				+ ", candlesticks5m=" + candlesticks5m + ", candlesticks15m=" + candlesticks15m + ", candlesticks30m="
+				+ candlesticks30m + ", candlesticks60m=" + candlesticks60m + ", candlesticks120m=" + candlesticks120m
+				+ ", candlesticks240m=" + candlesticks240m + ", leftAsset=" + leftAsset + ", rightAsset=" + rightAsset
+				+ "]";
 	}
 }
