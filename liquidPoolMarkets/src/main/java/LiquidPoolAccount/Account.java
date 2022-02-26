@@ -20,8 +20,8 @@ import lombok.Setter;
  * Represents an Account in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @since 17.0.2
- * @version 0.0.5
+ * @since 17.0.1
+ * @version 0.0.6
  */
 @Entity
 public class Account implements Serializable{
@@ -32,7 +32,7 @@ public class Account implements Serializable{
 
 	private @Getter @Setter @Id @GeneratedValue Long id;
 	
-	private @Getter @Setter @Id @GeneratedValue String name;
+	private @Getter @Setter String name;
 	
 	private @Getter @Setter @OneToMany(fetch = FetchType.LAZY) List<Position> positions;
 	
