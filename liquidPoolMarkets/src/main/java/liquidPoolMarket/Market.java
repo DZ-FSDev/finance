@@ -41,8 +41,8 @@ import lombok.Setter;
  * Represents a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.8
  * @since 17.0.2
+ * @version 0.0.9
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -73,13 +73,19 @@ public class Market implements Serializable{
 	public Market() {}
 
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.9
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((candlesticks == null) ? 0 : candlesticks.hashCode());
+		result = prime * result + ((candlesticks120m == null) ? 0 : candlesticks120m.hashCode());
+		result = prime * result + ((candlesticks15m == null) ? 0 : candlesticks15m.hashCode());
+		result = prime * result + ((candlesticks1m == null) ? 0 : candlesticks1m.hashCode());
+		result = prime * result + ((candlesticks240m == null) ? 0 : candlesticks240m.hashCode());
+		result = prime * result + ((candlesticks30m == null) ? 0 : candlesticks30m.hashCode());
+		result = prime * result + ((candlesticks5m == null) ? 0 : candlesticks5m.hashCode());
+		result = prime * result + ((candlesticks60m == null) ? 0 : candlesticks60m.hashCode());
 		result = prime * result + ((leftAsset == null) ? 0 : leftAsset.hashCode());
 		result = prime * result + (int) (marketId ^ (marketId >>> 32));
 		result = prime * result + ((rightAsset == null) ? 0 : rightAsset.hashCode());
@@ -88,7 +94,7 @@ public class Market implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.9
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -97,10 +103,40 @@ public class Market implements Serializable{
 		if (!(obj instanceof Market))
 			return false;
 		Market other = (Market) obj;
-		if (candlesticks == null) {
-			if (other.candlesticks != null)
+		if (candlesticks120m == null) {
+			if (other.candlesticks120m != null)
 				return false;
-		} else if (!candlesticks.equals(other.candlesticks))
+		} else if (!candlesticks120m.equals(other.candlesticks120m))
+			return false;
+		if (candlesticks15m == null) {
+			if (other.candlesticks15m != null)
+				return false;
+		} else if (!candlesticks15m.equals(other.candlesticks15m))
+			return false;
+		if (candlesticks1m == null) {
+			if (other.candlesticks1m != null)
+				return false;
+		} else if (!candlesticks1m.equals(other.candlesticks1m))
+			return false;
+		if (candlesticks240m == null) {
+			if (other.candlesticks240m != null)
+				return false;
+		} else if (!candlesticks240m.equals(other.candlesticks240m))
+			return false;
+		if (candlesticks30m == null) {
+			if (other.candlesticks30m != null)
+				return false;
+		} else if (!candlesticks30m.equals(other.candlesticks30m))
+			return false;
+		if (candlesticks5m == null) {
+			if (other.candlesticks5m != null)
+				return false;
+		} else if (!candlesticks5m.equals(other.candlesticks5m))
+			return false;
+		if (candlesticks60m == null) {
+			if (other.candlesticks60m != null)
+				return false;
+		} else if (!candlesticks60m.equals(other.candlesticks60m))
 			return false;
 		if (leftAsset == null) {
 			if (other.leftAsset != null)
