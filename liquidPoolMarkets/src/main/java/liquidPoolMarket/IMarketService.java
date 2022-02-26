@@ -31,8 +31,8 @@ import org.springframework.stereotype.Service;
  * with a liquid pool market service.
  * 
  * @author DZ-FSDev
- * @version 0.0.8
- * @since 17.0.1
+ * @since 17.0.2
+ * @version 0.0.10
  */
 @Service
 public interface IMarketService {
@@ -124,4 +124,15 @@ public interface IMarketService {
 	public default BigDecimal price(Market market) {
 		return price(market, BigDecimal.ZERO);
 	}
+	
+	/**
+	 * Returns a chart in CSV format for a given ticker which maps to a liquid
+	 * pool market tracked. The CSV shall contain a header defining the column
+	 * data. The columns shall contain ohlcv-ts data.
+	 * 
+	 * @param ticker The ticker to generate the CSV chart data for.
+	 * @return The CSV formatted ohlcv-ts data for a given ticker.
+	 * @since 0.0.9
+	 */
+	public String getChartCSV(String ticker);
 }
