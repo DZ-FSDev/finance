@@ -18,8 +18,8 @@ import lombok.Setter;
  * Represents a liquid pool position.
  * 
  * @author DZ-FSDev
- * @since 17.0.1
- * @version 0.0.3
+ * @since 17.0.2
+ * @version 0.0.4
  */
 @Entity
 public class Position implements Serializable{
@@ -41,15 +41,21 @@ public class Position implements Serializable{
 	private @Getter @Setter @ManyToOne(optional = false) Asset basisCurrency;
 
 	/**
-	 * @since 0.0.2
+	 * {@inheritDoc}
+	 * <p>Ignores transient fields.</p>
+	 * @since 0.0.3
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ((basisCurrency == null) ? 0 : basisCurrency.hashCode());
 		result = prime * result + ((costBasis == null) ? 0 : costBasis.hashCode());
 		result = prime * result + ((positionId == null) ? 0 : positionId.hashCode());
+		result = prime * result + ((realizedPNL == null) ? 0 : realizedPNL.hashCode());
+		result = prime * result + ((cumulativeUnits == null) ? 0 : cumulativeUnits.hashCode());
+		result = prime * result + ((units == null) ? 0 : units.hashCode());
 		return result;
 	}
 
