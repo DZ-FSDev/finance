@@ -2,14 +2,18 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolPosition;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAccount.Account;
+import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,22 +23,22 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Entity
 public class Position implements Serializable{
 	/**
-	 * @since 0.0.1
+	 * @since 0.0.6
 	 */
-	private static final long serialVersionUID = -1046468471511570027L;
-	
+	private static final long serialVersionUID = -7795355499381670674L;
+
 	private @Getter @Setter @GeneratedValue @Id Long positionId;
-	
+
 	private @Getter @Setter @JsonIgnore @ManyToOne(fetch = FetchType.LAZY, optional = false) Account account;
-	
+
 	private @Getter @Setter BigInteger cumulativeUnits;
 	private @Getter @Setter BigInteger units;
-	
+
 	private @Getter @Setter BigDecimal costBasis;
 	private @Getter @Setter @Transient BigDecimal unrealizedPNL;
 	private @Getter @Setter BigDecimal realizedPNL;
@@ -43,7 +47,7 @@ public class Position implements Serializable{
 	/**
 	 * {@inheritDoc}
 	 * <p>Ignores transient fields.</p>
-	 * @since 0.0.5
+	 * @since 0.0.6
 	 */
 	@Override
 	public int hashCode() {
@@ -62,7 +66,7 @@ public class Position implements Serializable{
 	/**
 	 * {@inheritDoc}
 	 * <p>Ignores transient fields.</p>
-	 * @since 0.0.5
+	 * @since 0.0.6
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -110,10 +114,12 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.2
+	 * @since 0.0.6
 	 */
 	@Override
 	public String toString() {
-		return "Position [positionId=" + positionId + ", account=" + account + ", costBasis=" + costBasis + "]";
+		return "Position [positionId=" + positionId + ", account=" + account + ", units=" + units + ", cumulativeUnits=" + cumulativeUnits + ", costBasis="
+				+ costBasis + ", unrealizedPNL=" + unrealizedPNL + ", realizedPNL=" + realizedPNL + ", basisCurrency="
+				+ basisCurrency + "]";
 	}
 }
