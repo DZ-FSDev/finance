@@ -19,7 +19,7 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Entity
 public class Position implements Serializable{
@@ -30,9 +30,15 @@ public class Position implements Serializable{
 	
 	private @Getter @Setter @GeneratedValue @Id Long positionId;
 	
-	private @Getter @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false) Account account;
+	private @Getter @Setter @JsonIgnore @ManyToOne(fetch = FetchType.LAZY, optional = false) Account account;
+	
+	private @Getter @Setter BigInteger cumulativeUnits;
+	private @Getter @Setter BigInteger units;
 	
 	private @Getter @Setter BigDecimal costBasis;
+	private @Getter @Setter @Transient BigDecimal unrealizedPNL;
+	private @Getter @Setter BigDecimal realizedPNL;
+	private @Getter @Setter @ManyToOne(optional = false) Asset basisCurrency;
 
 	/**
 	 * @since 0.0.2
