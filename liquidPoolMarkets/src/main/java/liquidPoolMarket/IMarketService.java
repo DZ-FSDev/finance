@@ -135,4 +135,16 @@ public interface IMarketService {
 	 * @since 0.0.9
 	 */
 	public String getChartCSV(String ticker);
+	
+	/**
+	 * Closes expired candles. The implementation should not require explicit
+	 * invokation and should be annotated for periodic scheduling. For example:
+	 * <p><i>@Scheduled(initialDelay, fixedDelay)</i>
+	 * <p>Or if it makes more sense to have cron-based candle closure.</p>
+	 * <i>@Scheduled(cron = "${cron.expression}")</i>
+	 * <p>Optionally, can also be annotated to run asynchronously.
+	 * 
+	 * @since 0.0.10
+	 */
+	public void closeCandles();
 }
