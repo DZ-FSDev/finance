@@ -1,133 +1,139 @@
-/*  Original Licensing Copyright
- * 
- *  Represents a liquid pool market.
- *  Copyright (C) 2022  DZ-FSDev
- *  
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
+package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolCandlestick;
 
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
-import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolCandlestick.Candlestick;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket.Market;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Represents a liquid pool market.
+ * Represents a candlestick in a liquid pool market.
  * 
  * @author DZ-FSDev
- * @version 0.0.8
- * @since 17.0.2
+ * @since 17.0.1
+ * @version 0.0.2
  */
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Market implements Serializable{
+public class Candlestick implements Serializable{
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.2
 	 */
-	private static final long serialVersionUID = 3359029732873907792L;
+	private static final long serialVersionUID = 4803287014577636182L;
 
-	private @Getter @Setter @GeneratedValue @Id long marketId;
+	private @Getter @Setter @Id @GeneratedValue Long candlestickId;
 	
-	private @Getter @Setter @Column(unique = true, nullable = false, updatable = false) String ticker;
+	private @Getter @Setter Long openTimestamp;
+	private @Getter @Setter Long closeTimestamp;
 	
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks1m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks5m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks15m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks30m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks60m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks120m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks240m;
+	private @Getter @Setter BigDecimal open;
+	private @Getter @Setter BigDecimal close;
+	private @Getter @Setter BigDecimal high;
+	private @Getter @Setter BigDecimal low;
 	
-	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset leftAsset;
-	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset rightAsset;
+	private @Getter @Setter BigDecimal assetVolume;
+	private @Getter @Setter BigDecimal quoteVolume;
 	
-	/**
-	 * Default constructor for Liquid Pool Market.
-	 */
-	public Market() {}
+	private @Getter @Setter @JsonIgnore @ManyToOne(fetch = FetchType.LAZY, optional = false) Market market;
 
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.2
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((candlesticks == null) ? 0 : candlesticks.hashCode());
-		result = prime * result + ((leftAsset == null) ? 0 : leftAsset.hashCode());
-		result = prime * result + (int) (marketId ^ (marketId >>> 32));
-		result = prime * result + ((rightAsset == null) ? 0 : rightAsset.hashCode());
-		result = prime * result + ((ticker == null) ? 0 : ticker.hashCode());
+		result = prime * result + ((assetVolume == null) ? 0 : assetVolume.hashCode());
+		result = prime * result + ((candlestickId == null) ? 0 : candlestickId.hashCode());
+		result = prime * result + ((close == null) ? 0 : close.hashCode());
+		result = prime * result + ((closeTimestamp == null) ? 0 : closeTimestamp.hashCode());
+		result = prime * result + ((high == null) ? 0 : high.hashCode());
+		result = prime * result + ((low == null) ? 0 : low.hashCode());
+		result = prime * result + ((market == null) ? 0 : market.hashCode());
+		result = prime * result + ((open == null) ? 0 : open.hashCode());
+		result = prime * result + ((openTimestamp == null) ? 0 : openTimestamp.hashCode());
+		result = prime * result + ((quoteVolume == null) ? 0 : quoteVolume.hashCode());
 		return result;
 	}
 
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.2
 	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof Market))
+		if (!(obj instanceof Candlestick))
 			return false;
-		Market other = (Market) obj;
-		if (candlesticks == null) {
-			if (other.candlesticks != null)
+		Candlestick other = (Candlestick) obj;
+		if (assetVolume == null) {
+			if (other.assetVolume != null)
 				return false;
-		} else if (!candlesticks.equals(other.candlesticks))
+		} else if (!assetVolume.equals(other.assetVolume))
 			return false;
-		if (leftAsset == null) {
-			if (other.leftAsset != null)
+		if (candlestickId == null) {
+			if (other.candlestickId != null)
 				return false;
-		} else if (!leftAsset.equals(other.leftAsset))
+		} else if (!candlestickId.equals(other.candlestickId))
 			return false;
-		if (marketId != other.marketId)
-			return false;
-		if (rightAsset == null) {
-			if (other.rightAsset != null)
+		if (close == null) {
+			if (other.close != null)
 				return false;
-		} else if (!rightAsset.equals(other.rightAsset))
+		} else if (!close.equals(other.close))
 			return false;
-		if (ticker == null) {
-			if (other.ticker != null)
+		if (closeTimestamp == null) {
+			if (other.closeTimestamp != null)
 				return false;
-		} else if (!ticker.equals(other.ticker))
+		} else if (!closeTimestamp.equals(other.closeTimestamp))
+			return false;
+		if (high == null) {
+			if (other.high != null)
+				return false;
+		} else if (!high.equals(other.high))
+			return false;
+		if (low == null) {
+			if (other.low != null)
+				return false;
+		} else if (!low.equals(other.low))
+			return false;
+		if (market == null) {
+			if (other.market != null)
+				return false;
+		} else if (!market.equals(other.market))
+			return false;
+		if (open == null) {
+			if (other.open != null)
+				return false;
+		} else if (!open.equals(other.open))
+			return false;
+		if (openTimestamp == null) {
+			if (other.openTimestamp != null)
+				return false;
+		} else if (!openTimestamp.equals(other.openTimestamp))
+			return false;
+		if (quoteVolume == null) {
+			if (other.quoteVolume != null)
+				return false;
+		} else if (!quoteVolume.equals(other.quoteVolume))
 			return false;
 		return true;
 	}
 	
 	/**
-	 * @since 0.0.7
+	 * @since 0.0.2
 	 */
 	@Override
 	public String toString() {
-		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", candlesticks=" + candlesticks + ", leftAsset="
-				+ leftAsset + ", rightAsset=" + rightAsset + "]";
-	}
+		return "Candlestick [candlestickId=" + candlestickId + ", openTimestamp=" + openTimestamp + ", closeTimestamp="
+				+ closeTimestamp + ", open=" + open + ", close=" + close + ", high=" + high + ", low=" + low
+				+ ", assetVolume=" + assetVolume + ", quoteVolume=" + quoteVolume + ", market=" + market + "]";
+	}	
 }
