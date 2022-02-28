@@ -21,10 +21,10 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Entity
-public class Order implements Serializable{
+public class LiquidOrder implements Serializable{
 	/**
 	 * @since 0.0.3
 	 */
