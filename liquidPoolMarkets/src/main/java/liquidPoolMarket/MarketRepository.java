@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
 
@@ -11,14 +12,13 @@ import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
  * Persistence layer for Liquid Market entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.3
- * @since 17.0.1
+ * @since 17.0.2
+ * @version 0.0.4
  */
 public interface MarketRepository extends JpaRepository<Market, Long>{
 	/*
 	 *  -- Read --
 	 */
-	public Optional<Market> findByMarketId(Long marketId);
 	public Optional<Market> findByTicker(String ticker);
 	public Optional<Market> findByLeftAsset(Asset asset);
 	public Optional<Market> findByRightAssetOrderByTicker(Asset asset);
@@ -27,9 +27,12 @@ public interface MarketRepository extends JpaRepository<Market, Long>{
 	
 	public <T> List<T> findAllByOrderByTicker(Class<T> type);
 	
+	@Query("select id from Market")
+	List<Long> getAllIds();
+	
 	/*
-	public List<Asset> findFirst3OrderByVolume(BigInteger units);
-	public List<Asset> findFirst3OrderByPrice(BigInteger units);
+	public List<Market> findFirst3OrderByVolume(BigInteger units);
+	public List<Market> findFirst3OrderByPrice(BigInteger units);
 	*/
 	
 	/*
