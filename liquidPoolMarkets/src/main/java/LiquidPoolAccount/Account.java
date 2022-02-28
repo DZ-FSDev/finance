@@ -27,9 +27,9 @@ import lombok.Setter;
 @Entity
 public class Account implements Serializable{
 	/**
-	 * @since 0.0.1
+	 * @since 0.0.8
 	 */
-	private static final long serialVersionUID = 8539911094908576689L;
+	private static final long serialVersionUID = 5297782569320841422L;
 
 	private @Getter @Setter @Id @GeneratedValue Long id;
 	
@@ -100,4 +100,15 @@ public class Account implements Serializable{
 			return false;
 		return true;
 	}
+
+	/**
+	 * @since 0.0.8
+	 */
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", name=" + name + ", positions=" + positions + ", orders=" + orders
+				+ ", unrealizedPNL=" + unrealizedPNL + ", realizedPNL=" + realizedPNL + "]";
+	}
+	
+	
 }
