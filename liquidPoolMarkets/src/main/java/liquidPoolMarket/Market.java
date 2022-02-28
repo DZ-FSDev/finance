@@ -42,17 +42,17 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.10
+ * @version 0.0.11
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Market implements Serializable{
 	/**
-	 * @since 0.0.10
+	 * @since 0.0.11
 	 */
-	private static final long serialVersionUID = -4314368212634384965L;
+	private static final long serialVersionUID = 1344067127333623576L;
 
-	private @Getter @Setter @GeneratedValue @Id long marketId;
+	private @Getter @Setter @GeneratedValue @Id long id;
 	
 	private @Getter @Setter @Column(unique = true, nullable = false, updatable = false) String ticker;
 	
@@ -73,7 +73,7 @@ public class Market implements Serializable{
 	public Market() {}
 
 	/**
-	 * @since 0.0.10
+	 * @since 0.0.11
 	 */
 	@Override
 	public int hashCode() {
@@ -87,14 +87,14 @@ public class Market implements Serializable{
 		result = prime * result + ((candlesticks5m == null) ? 0 : candlesticks5m.hashCode());
 		result = prime * result + ((candlesticks60m == null) ? 0 : candlesticks60m.hashCode());
 		result = prime * result + ((leftAsset == null) ? 0 : leftAsset.hashCode());
-		result = prime * result + (int) (marketId ^ (marketId >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((rightAsset == null) ? 0 : rightAsset.hashCode());
 		result = prime * result + ((ticker == null) ? 0 : ticker.hashCode());
 		return result;
 	}
 
 	/**
-	 * @since 0.0.10
+	 * @since 0.0.11
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -143,7 +143,7 @@ public class Market implements Serializable{
 				return false;
 		} else if (!leftAsset.equals(other.leftAsset))
 			return false;
-		if (marketId != other.marketId)
+		if (id != other.id)
 			return false;
 		if (rightAsset == null) {
 			if (other.rightAsset != null)
@@ -159,11 +159,11 @@ public class Market implements Serializable{
 	}
 	
 	/**
-	 * @since 0.0.10
+	 * @since 0.0.11
 	 */
 	@Override
 	public String toString() {
-		return "Market [marketId=" + marketId + ", ticker=" + ticker + ", candlesticks1m=" + candlesticks1m
+		return "Market [id=" + id + ", ticker=" + ticker + ", candlesticks1m=" + candlesticks1m
 				+ ", candlesticks5m=" + candlesticks5m + ", candlesticks15m=" + candlesticks15m + ", candlesticks30m="
 				+ candlesticks30m + ", candlesticks60m=" + candlesticks60m + ", candlesticks120m=" + candlesticks120m
 				+ ", candlesticks240m=" + candlesticks240m + ", leftAsset=" + leftAsset + ", rightAsset=" + rightAsset
