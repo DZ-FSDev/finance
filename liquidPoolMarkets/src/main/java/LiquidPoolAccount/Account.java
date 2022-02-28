@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolOrder.LiquidOrder;
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolPosition.Position;
 
 import lombok.Getter;
@@ -21,7 +22,7 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.6
+ * @version 0.0.7
  */
 @Entity
 public class Account implements Serializable{
@@ -34,7 +35,9 @@ public class Account implements Serializable{
 	
 	private @Getter @Setter String name;
 	
-	private @Getter @Setter @OneToMany(fetch = FetchType.LAZY) List<Position> positions;
+	private @Getter @Setter @OneToMany(fetch = FetchType.LAZY, mappedBy = "account") List<Position> positions;
+
+	private @Getter @Setter @OneToMany(fetch = FetchType.LAZY, mappedBy = "account") List<LiquidOrder> orders;
 	
 	private @Getter @Setter @Transient BigDecimal unrealizedPNL;
 	private @Getter @Setter BigDecimal realizedPNL;
