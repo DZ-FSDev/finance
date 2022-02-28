@@ -21,7 +21,6 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +41,7 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.11
+ * @version 0.0.12
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -56,16 +55,16 @@ public class Market implements Serializable{
 	
 	private @Getter @Setter @Column(unique = true, nullable = false, updatable = false) String ticker;
 	
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks1m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks5m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks15m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks30m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks60m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks120m;
-	private @Getter @Setter @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) List<Candlestick> candlesticks240m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks1m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks5m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks15m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks30m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks60m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks120m;
+	private @Getter @Setter @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY) List<Candlestick> candlesticks240m;
 	
-	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset leftAsset;
-	private @Getter @Setter @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = false) Asset rightAsset;
+	private @Getter @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false) Asset leftAsset;
+	private @Getter @Setter @ManyToOne(fetch = FetchType.LAZY, optional = false) Asset rightAsset;
 	
 	/**
 	 * Default constructor for Liquid Pool Market.
