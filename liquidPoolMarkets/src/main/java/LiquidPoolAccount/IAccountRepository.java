@@ -13,7 +13,7 @@ import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolPosition.Position;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.5
  */
 public interface IAccountRepository extends JpaRepository<Account, Long> {
 	/*
@@ -25,7 +25,10 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
 	
 	public List<LiquidOrder> findOrdersByName(String name);
 	
-	public <T> List<T> findFirst3ByOrderByRealizedPNL();
+	public <T> List<T> findFirst3ByOrderByRealizedPNL(Class<T> type);
+	public <T> List<T> findFirst5ByOrderByRealizedPNL(Class<T> type);
+	public <T> List<T> findFirst10ByOrderByRealizedPNL(Class<T> type);
+	public <T> List<T> findFirst100ByOrderByRealizedPNL(Class<T> type);
 	
 	/*
 	 *  -- Delete --
