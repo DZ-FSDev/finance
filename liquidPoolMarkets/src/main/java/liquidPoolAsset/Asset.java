@@ -39,8 +39,8 @@ import lombok.Setter;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.5
- * @since 17.0.1
+ * @version 0.0.6
+ * @since 17.0.2
  */
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -50,7 +50,7 @@ public class Asset implements Serializable{
 	 */
 	private static final long serialVersionUID = 3905359730407435980L;
 
-	private @Getter @Setter @GeneratedValue @Id Long assetId;
+	private @Getter @Setter @GeneratedValue @Id Long id;
 
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String symbol;
 	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String name;
@@ -61,14 +61,14 @@ public class Asset implements Serializable{
 	private @Getter @Setter @Column(nullable = false) @Enumerated(EnumType.STRING) AssetClass assetClass;
 
 	/**
-	 * @since 0.0.4
+	 * @since 0.0.6
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((assetClass == null) ? 0 : assetClass.hashCode());
-		result = prime * result + ((assetId == null) ? 0 : assetId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastPrice == null) ? 0 : lastPrice.hashCode());
 		result = prime * result + ((marketCap == null) ? 0 : marketCap.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -78,7 +78,7 @@ public class Asset implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.4
+	 * @since 0.0.6
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -89,10 +89,10 @@ public class Asset implements Serializable{
 		Asset other = (Asset) obj;
 		if (assetClass != other.assetClass)
 			return false;
-		if (assetId == null) {
-			if (other.assetId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!assetId.equals(other.assetId))
+		} else if (!id.equals(other.id))
 			return false;
 		if (lastPrice == null) {
 			if (other.lastPrice != null)
@@ -123,11 +123,11 @@ public class Asset implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.4
+	 * @since 0.0.6
 	 */
 	@Override
 	public String toString() {
-		return "Asset [assetId=" + assetId + ", symbol=" + symbol + ", name=" + name + ", units=" + units
+		return "Asset [id=" + id + ", symbol=" + symbol + ", name=" + name + ", units=" + units
 				+ ", lastPrice=" + lastPrice + ", marketCap=" + marketCap + ", assetClass=" + assetClass + "]";
 	}
 }
