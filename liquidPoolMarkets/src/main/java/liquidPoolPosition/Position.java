@@ -23,14 +23,14 @@ import lombok.Setter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.6
+ * @version 0.0.7
  */
 @Entity
 public class Position implements Serializable{
 	/**
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
-	private static final long serialVersionUID = -7795355499381670674L;
+	private static final long serialVersionUID = 7946385449636885730L;
 
 	private @Getter @Setter @GeneratedValue @Id Long positionId;
 
@@ -39,7 +39,7 @@ public class Position implements Serializable{
 	private @Getter @Setter BigInteger cumulativeUnits;
 	private @Getter @Setter BigInteger units;
 
-	private @Getter @Setter BigDecimal costBasis;
+	private @Getter @Setter BigInteger costBasis;
 	private @Getter @Setter @Transient BigDecimal unrealizedPNL;
 	private @Getter @Setter BigDecimal realizedPNL;
 	private @Getter @Setter @ManyToOne(optional = false) Asset basisCurrency;
@@ -47,7 +47,7 @@ public class Position implements Serializable{
 	/**
 	 * {@inheritDoc}
 	 * <p>Ignores transient fields.</p>
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
 	@Override
 	public int hashCode() {
@@ -66,7 +66,7 @@ public class Position implements Serializable{
 	/**
 	 * {@inheritDoc}
 	 * <p>Ignores transient fields.</p>
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -114,7 +114,7 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * @since 0.0.6
+	 * @since 0.0.7
 	 */
 	@Override
 	public String toString() {
