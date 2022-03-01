@@ -25,6 +25,7 @@ import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -37,12 +38,13 @@ import java.awt.image.BufferedImage;
  * Finance Liquid Market Spring Boot MVC Configuration.
  * 
  * @author DZ_FSDev
- * @since 17.0.1
- * @version 0.0.1
+ * @since 17.0.2
+ * @version 0.0.3
  */
 @Configuration
 @EnableAsync
 @EnableScheduling
+@EnableWebSecurity
 @ComponentScan(basePackages = { "com.dz_fs_dev.finance.liquidPoolMarkets" })
 public class WebConfig implements WebMvcConfigurer {
 	// TODO Converter not detected.
