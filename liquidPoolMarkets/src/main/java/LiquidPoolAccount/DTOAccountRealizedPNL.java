@@ -20,7 +20,10 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAccount;
 
 import java.math.BigDecimal;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents a class based projection of an {@link Account} linking the
@@ -28,22 +31,14 @@ import lombok.Getter;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.1
+ * @version 0.0.2
  */
-public class AccountRealizedPNLDTO {
-	private @Getter String name;
-	private @Getter BigDecimal realizedPNL;
-	
-	/**
-	 * Initializes an instance of this DTO containing an account name and
-	 * associated realized PNL.
-	 * 
-	 * @param name The name of the account holder.
-	 * @param realizedPNL The current PNL realized by the account.
-	 * @since 0.0.1
-	 */
-	public AccountRealizedPNLDTO(String name, BigDecimal realizedPNL) {
-		this.name = name;
-		this.realizedPNL = realizedPNL;
-	}
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class DTOAccountRealizedPNL implements IAccount {
+	private Long id;
+	private String name;
+	private BigDecimal realizedPNL;
 }
