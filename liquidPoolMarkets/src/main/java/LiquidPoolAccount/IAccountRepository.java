@@ -28,13 +28,13 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.6
+ * @version 0.0.7
  */
 public interface IAccountRepository extends ReactiveCrudRepository<Account, Long> {
 	/*
 	 *  -- Read --
 	 */
-	public Mono<Account> findByName(String name);
+	public <T> Mono<T> findByName(Class<T> type, String firstName, String lastName);
 	
 	public <T> Flux<T> findFirst3ByOrderByRealizedPNL(Class<T> type);
 	public <T> Flux<T> findFirst5ByOrderByRealizedPNL(Class<T> type);
