@@ -20,8 +20,6 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAccount;
 
 import org.springframework.stereotype.Service;
 
-import com.dz_fs_dev.finance.markets.interfaces.IAccount;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -31,10 +29,11 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Service
 public interface IAccountService {
 	<T extends IAccount> Mono<T> findByName(Class<T> type, String firstName, String lastName);
+	<T extends IAccount> Mono<T> findByName(Class<T> type, String name);
 	<T> Flux<T> findTopXByOrderByRealizedPNL(Class<T> type, int x);
 }
