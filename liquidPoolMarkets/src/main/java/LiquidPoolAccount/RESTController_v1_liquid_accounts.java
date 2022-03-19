@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
  * v1/liquid/accounts REST Service Controller.
  * 
  * @author DZ-FSDev
- * @version 17.0.2
- * @since 0.0.1
+ * @since 17.0.2
+ * @version 0.0.3
  */
 @RestController
 @RequestMapping("/v1/liquid/accounts")
@@ -23,10 +23,10 @@ public class RESTController_v1_liquid_accounts {
 	 * 
 	 * @param name
 	 * @return
-	 * @since 0.0.2
+	 * @since 0.0.3
 	 */
 	@GetMapping("/{name}")
 	public Account get(@PathVariable("name") String name) {
-		return accountSvc.findByName(name);
+		return accountSvc.findByName(Account.class, name);
 	}
 }
