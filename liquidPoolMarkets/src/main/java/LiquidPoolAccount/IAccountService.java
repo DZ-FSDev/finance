@@ -31,10 +31,10 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Service
 public interface IAccountService {
-	public <T extends IAccount> Mono<T> findByName(Class<T> type, String name);
-	public <T> Flux<T> findTopXByOrderByRealizedPNL(Class<T> type, int x);
+	<T extends IAccount> Mono<T> findByName(Class<T> type, String firstName, String lastName);
+	<T> Flux<T> findTopXByOrderByRealizedPNL(Class<T> type, int x);
 }
