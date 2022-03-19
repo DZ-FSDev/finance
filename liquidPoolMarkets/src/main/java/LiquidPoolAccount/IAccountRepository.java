@@ -28,18 +28,18 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.7
+ * @version 0.0.9
  */
 public interface IAccountRepository extends ReactiveCrudRepository<Account, Long> {
 	/*
 	 *  -- Read --
 	 */
-	public <T> Mono<T> findByName(Class<T> type, String firstName, String lastName);
+	public <T extends IAccount> Mono<T> findByName(Class<T> type, String firstName, String lastName);
 	
-	public <T> Flux<T> findFirst3ByOrderByRealizedPNL(Class<T> type);
-	public <T> Flux<T> findFirst5ByOrderByRealizedPNL(Class<T> type);
-	public <T> Flux<T> findFirst10ByOrderByRealizedPNL(Class<T> type);
-	public <T> Flux<T> findFirst100ByOrderByRealizedPNL(Class<T> type);
+	public <T extends IAccount> Flux<T> findFirst3ByOrderByRealizedPNL(Class<T> type);
+	public <T extends IAccount> Flux<T> findFirst5ByOrderByRealizedPNL(Class<T> type);
+	public <T extends IAccount> Flux<T> findFirst10ByOrderByRealizedPNL(Class<T> type);
+	public <T extends IAccount> Flux<T> findFirst100ByOrderByRealizedPNL(Class<T> type);
 	
 	/*
 	 *  -- Delete --
