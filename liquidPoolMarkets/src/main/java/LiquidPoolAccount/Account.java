@@ -31,8 +31,8 @@ import lombok.NoArgsConstructor;
  * Represents an Account in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @since 17.0.1
- * @version 0.0.9
+ * @since 17.0.2
+ * @version 0.0.10
  */
 @Data
 @Builder
@@ -41,7 +41,8 @@ import lombok.NoArgsConstructor;
 public class Account implements IAccount{
 	private @Id Long id;
 	
-	private String name;
+	private String firstName;
+	private String lastName;
 	private @Transient BigDecimal unrealizedPNL;
 	private BigDecimal realizedPNL;
 }
