@@ -19,16 +19,16 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import java.math.BigInteger;
-import java.util.List;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
  * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.6
+ * @version 0.0.8
  * @since 17.0.2
  */
 public interface AssetRepository extends R2dbcRepository<Asset, Long>{
@@ -49,21 +49,21 @@ public interface AssetRepository extends R2dbcRepository<Asset, Long>{
 	public Mono<Asset> findBySymbolOrderBySymbol(String symbol);
 	public Mono<Asset> findBySymbolLike(String pattern);
 
-	public <T> List<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
+	public <T> Flux<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
 	public <T> Mono<T> findByAssetClass(AssetClass assetClass, Class<T> type);
-	public <T> List<T> findAllBy(Class<T> type);
+	public <T> Flux<T> findAllBy(Class<T> type);
 	
-	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
-	public List<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
-	public List<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
+	public Flux<Asset> findFirst3ByUnitsLessThan(BigInteger units);
+	public Flux<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
+	public Flux<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
 	
-	public List<Asset> findFirst3ByLastPriceLessThan(BigInteger units);
-	public List<Asset> findFirst3ByLastPriceGreaterThan(BigInteger units);
-	public List<Asset> findFirst3ByLastPriceBetween(BigInteger unitsLow, BigInteger unitsHigh);
+	public Flux<Asset> findFirst3ByLastPriceLessThan(BigInteger units);
+	public Flux<Asset> findFirst3ByLastPriceGreaterThan(BigInteger units);
+	public Flux<Asset> findFirst3ByLastPriceBetween(BigInteger unitsLow, BigInteger unitsHigh);
 	
-	public List<Asset> findFirst3ByMarketCapLessThan(BigInteger marketCap);
-	public List<Asset> findFirst3ByMarketCapGreaterThan(BigInteger marketCap);
-	public List<Asset> findFirst3ByMarketCapBetween(BigInteger marketCapLow, BigInteger marketCapHigh);
+	public Flux<Asset> findFirst3ByMarketCapLessThan(BigInteger marketCap);
+	public Flux<Asset> findFirst3ByMarketCapGreaterThan(BigInteger marketCap);
+	public Flux<Asset> findFirst3ByMarketCapBetween(BigInteger marketCapLow, BigInteger marketCapHigh);
 	
 	
 	/*
