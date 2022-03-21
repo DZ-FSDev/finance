@@ -22,112 +22,35 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import org.hibernate.annotations.Formula;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.6
+ * @version 0.0.7
  * @since 17.0.2
  */
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Asset implements Serializable{
-	/**
-	 * @since 0.0.5
-	 */
-	private static final long serialVersionUID = 3905359730407435980L;
+@Data
+@Table
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Asset implements IAsset{
+	private @Id Long id;
 
-	private @Getter @Setter @GeneratedValue @Id Long id;
+	private String symbol;
+	private String name;
 
-	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String symbol;
-	private @Getter @Setter @Column(nullable = false, unique = true, updatable = false) String name;
-
-	private @Getter @Setter @Column(nullable = false) BigInteger units;
-	private @Getter @Setter @Column(nullable = false) BigDecimal lastPrice;
-	private @Getter @Setter @Formula("units * last_price") BigDecimal marketCap;
-	private @Getter @Setter @Column(nullable = false) @Enumerated(EnumType.STRING) AssetClass assetClass;
-
-	/**
-	 * @since 0.0.6
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((assetClass == null) ? 0 : assetClass.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastPrice == null) ? 0 : lastPrice.hashCode());
-		result = prime * result + ((marketCap == null) ? 0 : marketCap.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
-		result = prime * result + ((units == null) ? 0 : units.hashCode());
-		return result;
-	}
-
-	/**
-	 * @since 0.0.6
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Asset))
-			return false;
-		Asset other = (Asset) obj;
-		if (assetClass != other.assetClass)
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (lastPrice == null) {
-			if (other.lastPrice != null)
-				return false;
-		} else if (!lastPrice.equals(other.lastPrice))
-			return false;
-		if (marketCap == null) {
-			if (other.marketCap != null)
-				return false;
-		} else if (!marketCap.equals(other.marketCap))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (symbol == null) {
-			if (other.symbol != null)
-				return false;
-		} else if (!symbol.equals(other.symbol))
-			return false;
-		if (units == null) {
-			if (other.units != null)
-				return false;
-		} else if (!units.equals(other.units))
-			return false;
-		return true;
-	}
-
-	/**
-	 * @since 0.0.6
-	 */
-	@Override
-	public String toString() {
-		return "Asset [id=" + id + ", symbol=" + symbol + ", name=" + name + ", units=" + units
-				+ ", lastPrice=" + lastPrice + ", marketCap=" + marketCap + ", assetClass=" + assetClass + "]";
-	}
+	private BigInteger units;
+	private BigDecimal lastPrice;
+	private AssetClass assetClass;
 }
