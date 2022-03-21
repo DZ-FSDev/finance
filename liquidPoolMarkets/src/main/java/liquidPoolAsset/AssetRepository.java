@@ -20,9 +20,9 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
+
+import reactor.core.publisher.Mono;
 
 /**
  * Persistence layer for Liquid Asset entities.
@@ -35,22 +35,22 @@ public interface AssetRepository extends R2dbcRepository<Asset, Long>{
 	/*
 	 *  -- Read --
 	 */
-	public Optional<Asset> findByName(String name);
-	public Optional<Asset> findByNameOrderByName(String name);
-	public Optional<Asset> findByNameLike(String pattern);
-	public Optional<Asset> findByNameEndingWith(String name);
-	public Optional<Asset> findByNameStartingWith(String name);
-	public Optional<Asset> findByNameContainsAllIgnoreCase(String name);
+	public Mono<Asset> findByName(String name);
+	public Mono<Asset> findByNameOrderByName(String name);
+	public Mono<Asset> findByNameLike(String pattern);
+	public Mono<Asset> findByNameEndingWith(String name);
+	public Mono<Asset> findByNameStartingWith(String name);
+	public Mono<Asset> findByNameContainsAllIgnoreCase(String name);
 	
-	public Optional<Asset> findByNameOrSymbol(String name, String symbol);
-	public Optional<Asset> findByNameContainsOrSymbolContainsAllIgnoreCase(String name, String symbol);
+	public Mono<Asset> findByNameOrSymbol(String name, String symbol);
+	public Mono<Asset> findByNameContainsOrSymbolContainsAllIgnoreCase(String name, String symbol);
 	
-	public Optional<Asset> findBySymbol(String symbol);
-	public Optional<Asset> findBySymbolOrderBySymbol(String symbol);
-	public Optional<Asset> findBySymbolLike(String pattern);
+	public Mono<Asset> findBySymbol(String symbol);
+	public Mono<Asset> findBySymbolOrderBySymbol(String symbol);
+	public Mono<Asset> findBySymbolLike(String pattern);
 
 	public <T> List<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
-	public <T> Optional<T> findByAssetClass(AssetClass assetClass, Class<T> type);
+	public <T> Mono<T> findByAssetClass(AssetClass assetClass, Class<T> type);
 	public <T> List<T> findAllBy(Class<T> type);
 	
 	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
