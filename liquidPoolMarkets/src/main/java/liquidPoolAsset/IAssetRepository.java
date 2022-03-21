@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
  * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.9
+ * @version 0.0.10
  * @since 17.0.2
  */
 public interface IAssetRepository extends R2dbcRepository<Asset, Long>{
@@ -69,7 +69,7 @@ public interface IAssetRepository extends R2dbcRepository<Asset, Long>{
 	/*
 	 *  -- Delete --
 	 */
-	long deleteByName(String name);
-	long deleteBySymbol(String name);
+	Mono<Long> deleteByName(String name);
+	Mono<Long> deleteBySymbol(String name);
 
 }
