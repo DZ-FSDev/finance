@@ -22,21 +22,19 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
 /**
  * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.5
- * @since 17.0.1
+ * @version 0.0.6
+ * @since 17.0.2
  */
-public interface AssetRepository extends JpaRepository<Asset, Long>{
+public interface AssetRepository extends R2dbcRepository<Asset, Long>{
 	/*
 	 *  -- Read --
 	 */
-	public Optional<Asset> findByAssetId(Long assetId);
-	
 	public Optional<Asset> findByName(String name);
 	public Optional<Asset> findByNameOrderByName(String name);
 	public Optional<Asset> findByNameLike(String pattern);
@@ -51,19 +49,27 @@ public interface AssetRepository extends JpaRepository<Asset, Long>{
 	public Optional<Asset> findBySymbolOrderBySymbol(String symbol);
 	public Optional<Asset> findBySymbolLike(String pattern);
 
-	public List<Asset> findAllByAssetClass(AssetClass assetClass);
+	public <T> List<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
+	public <T> Optional<T> findByAssetClass(AssetClass assetClass, Class<T> type);
+	public <T> List<T> findAllBy(Class<T> type);
 	
 	public List<Asset> findFirst3ByUnitsLessThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsGreaterThan(BigInteger units);
 	public List<Asset> findFirst3ByUnitsBetween(BigInteger unitsLow, BigInteger unitsHigh);
 	
+	public List<Asset> findFirst3ByLastPriceLessThan(BigInteger units);
+	public List<Asset> findFirst3ByLastPriceGreaterThan(BigInteger units);
+	public List<Asset> findFirst3ByLastPriceBetween(BigInteger unitsLow, BigInteger unitsHigh);
+	
 	public List<Asset> findFirst3ByMarketCapLessThan(BigInteger marketCap);
 	public List<Asset> findFirst3ByMarketCapGreaterThan(BigInteger marketCap);
 	public List<Asset> findFirst3ByMarketCapBetween(BigInteger marketCapLow, BigInteger marketCapHigh);
+	
 	
 	/*
 	 *  -- Delete --
 	 */
 	public long deleteByName(String name);
 	public long deleteBySymbol(String name);
+
 }
