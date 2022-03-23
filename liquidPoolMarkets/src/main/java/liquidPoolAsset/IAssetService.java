@@ -24,13 +24,14 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * The user of this interface should implement the various actions associated
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.9
+ * @version 0.0.10
  * @since 17.0.2
  */
 @Service
@@ -51,9 +52,9 @@ public interface IAssetService {
 	 * 
 	 * @param asset The asset to be added.
 	 * @return True if the addition was successful.
-	 * @since 0.0.2
+	 * @since 0.0.10
 	 */
-	boolean add(Asset asset);
+	Mono<Boolean> add(Asset asset);
 
 	/**
 	 * Removes a specific asset from those to be tracked by the liquid pool
