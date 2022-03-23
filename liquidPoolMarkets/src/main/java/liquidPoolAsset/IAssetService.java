@@ -12,8 +12,8 @@ import reactor.core.publisher.Flux;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.8
- * @since 17.0.1
+ * @version 0.0.9
+ * @since 17.0.2
  */
 @Service
 public interface IAssetService {
@@ -55,9 +55,8 @@ public interface IAssetService {
 	 *             for updating.
 	 * @param to The state the Asset should be updated to.
 	 * @return True if the update was successful.
-	 * @since 0.0.4
+	 * @since 0.0.9
 	 */
-	@Transactional
 	boolean update(Asset from, Asset to);
 
 	/**
