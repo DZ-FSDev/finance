@@ -2,17 +2,17 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
 
 /**
  * The user of this interface should implement the various actions associated
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.7
+ * @version 0.0.8
  * @since 17.0.1
  */
 @Service
@@ -23,9 +23,9 @@ public interface IAssetService {
 	 * 
 	 * @return The set containing all assets tracked by this liquid pool
 	 *         exchange.
-	 * @since 0.0.1
+	 * @since 0.0.8
 	 */
-	List<Asset> getAllAssets();
+	Flux<Asset> getAllAssets();
 
 	/**
 	 * Adds a specific asset to be tracked by the liquid pool exchange;
@@ -90,5 +90,5 @@ public interface IAssetService {
 	 * @return A list of assets which belong to an asset class.
 	 * @since 0.0.7
 	 */
-	<T> List<T> findAllBy(Class<T> type); 
+	<T> List<T> findAllBy(Class<T> type);
 }
