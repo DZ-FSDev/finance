@@ -40,8 +40,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Market{
-	private @Id long id;
+public class Market implements IMarket{
+	private @Id Long id;
 	
 	private String ticker;
 
