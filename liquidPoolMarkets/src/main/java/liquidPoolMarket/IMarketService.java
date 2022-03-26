@@ -33,7 +33,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.12
+ * @version 0.0.13
  */
 @Service
 public interface IMarketService {
@@ -63,9 +63,9 @@ public interface IMarketService {
 	 * 
 	 * @param asset The specified market to be removed.
 	 * @return True if the removal was successful.
-	 * @since 0.0.3
+	 * @since 0.0.13
 	 */
-	boolean remove(Market market);
+	Mono<Boolean> remove(Market market);
 	
 	/**
 	 * Updates a specific market tracked by the liquid pool exchange; returning
