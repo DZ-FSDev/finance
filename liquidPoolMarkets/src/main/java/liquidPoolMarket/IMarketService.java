@@ -25,6 +25,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * The user of this interface should implement the various actions associated
@@ -32,7 +33,7 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.11
+ * @version 0.0.12
  */
 @Service
 public interface IMarketService {
@@ -52,9 +53,9 @@ public interface IMarketService {
 	 * 
 	 * @param market The market to be added.
 	 * @return True if the addition was successful.
-	 * @since 0.0.2
+	 * @since 0.0.12
 	 */
-	boolean add(Market market);
+	Mono<Boolean> add(Market market);
 
 	/**
 	 * Removes a specific market from those to be tracked by the liquid pool
