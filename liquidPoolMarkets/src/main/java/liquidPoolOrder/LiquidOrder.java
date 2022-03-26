@@ -16,7 +16,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Table
 @Data
@@ -24,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LiquidOrder{
+public class LiquidOrder implements ILiquidOrder{
 	private @Id Long id;
 	
 	private Long timestamp;
