@@ -9,7 +9,7 @@ import org.springframework.data.r2dbc.repository.R2dbcRepository;
  * @since 17.0.2
  * @version 0.0.1
  */
-public interface OrderRepository extends R2dbcRepository<LiquidOrder, Long>{
+public interface IOrderRepository extends R2dbcRepository<LiquidOrder, Long>{
 	/*
 	 *  -- Read --
 	 */
