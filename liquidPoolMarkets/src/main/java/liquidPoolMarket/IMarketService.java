@@ -21,10 +21,10 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
 
 /**
  * The user of this interface should implement the various actions associated
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.10
+ * @version 0.0.11
  */
 @Service
 public interface IMarketService {
@@ -42,9 +42,9 @@ public interface IMarketService {
 	 * 
 	 * @return The set containing all markets tracked by this liquid pool
 	 *         exchange.
-	 * @since 0.0.1
+	 * @since 0.0.11
 	 */
-	List<Market> getAllMarkets();
+	Flux<Market> getAllMarkets();
 	
 	/**
 	 * Adds a specific market to be tracked by the liquid pool exchange;
