@@ -16,7 +16,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Table
 @Data
@@ -38,5 +38,5 @@ public class Candlestick implements ICandlestick{
 	private BigDecimal assetVolume;
 	private BigDecimal quoteVolume;
 	
-	private Long market_id;
+	private Long marketId;
 }
