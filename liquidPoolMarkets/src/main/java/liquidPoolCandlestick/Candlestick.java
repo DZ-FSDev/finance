@@ -16,7 +16,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Table
 @Data
@@ -24,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Candlestick{
+public class Candlestick implements ICandlestick{
 	private @Id Long id;
 	
 	private Long openTS;
