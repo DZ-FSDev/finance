@@ -13,9 +13,9 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.7
+ * @version 0.0.8
  */
-public interface MarketRepository extends R2dbcRepository<Market, Long>{
+public interface IMarketRepository extends R2dbcRepository<Market, Long>{
 	/*
 	 *  -- Read --
 	 */
