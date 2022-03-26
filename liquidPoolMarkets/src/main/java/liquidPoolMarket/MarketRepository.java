@@ -13,19 +13,19 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.6
+ * @version 0.0.7
  */
 public interface MarketRepository extends R2dbcRepository<Market, Long>{
 	/*
 	 *  -- Read --
 	 */
-	public Mono<Market> findByTicker(String ticker);
-	public Mono<Market> findByLeftAsset(Asset asset);
-	public Mono<Market> findByRightAssetOrderByTicker(Asset asset);
-	public Mono<Market> findByTickerLike(String pattern);
-	public Mono<Market> findByTickerContainsAllIgnoreCase(String name);
+	Mono<Market> findByTicker(String ticker);
+	Mono<Market> findByLeftAsset(Asset asset);
+	Mono<Market> findByRightAssetOrderByTicker(Asset asset);
+	Mono<Market> findByTickerLike(String pattern);
+	Mono<Market> findByTickerContainsAllIgnoreCase(String name);
 	
-	public <T> Flux<T> findAllByOrderByTicker(Class<T> type);
+	<T> Flux<T> findAllByOrderByTicker(Class<T> type);
 	
 	@Query("select id from Market")
 	Flux<Long> getAllIds();
