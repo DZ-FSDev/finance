@@ -3,8 +3,7 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
 import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
 
@@ -13,9 +12,9 @@ import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.4
+ * @version 0.0.5
  */
-public interface MarketRepository extends JpaRepository<Market, Long>{
+public interface MarketRepository extends R2dbcRepository<Market, Long>{
 	/*
 	 *  -- Read --
 	 */
@@ -36,7 +35,7 @@ public interface MarketRepository extends JpaRepository<Market, Long>{
 	*/
 	
 	/*
-	 *  -- Update --
+	 *  -- Delete --
 	 */
 	public long deleteByTicker(String ticker);
 }
