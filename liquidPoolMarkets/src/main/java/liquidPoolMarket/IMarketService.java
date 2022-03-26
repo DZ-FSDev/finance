@@ -33,7 +33,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.13
+ * @version 0.0.14
  */
 @Service
 public interface IMarketService {
@@ -75,10 +75,9 @@ public interface IMarketService {
 	 *             for updating.
 	 * @param to The state the market should be updated to.
 	 * @return True if the update was successful.
-	 * @since 0.0.4
+	 * @since 0.0.14
 	 */
-	@Transactional
-	boolean update(Market from, Market to);
+	Mono<Boolean> update(Market from, Market to);
 	
 	/**
 	 * Returns a list of markets which matches a given example market.
