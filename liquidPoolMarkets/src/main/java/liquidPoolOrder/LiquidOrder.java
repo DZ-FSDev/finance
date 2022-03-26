@@ -1,20 +1,15 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolOrder;
 
-import java.io.Serializable;
 import java.math.BigInteger;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAccount.Account;
-import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Represents an Order placed in a liquid pool market.
@@ -23,20 +18,19 @@ import lombok.Setter;
  * @since 17.0.2
  * @version 0.0.4
  */
-@Entity
-public class LiquidOrder implements Serializable{
-	/**
-	 * @since 0.0.3
-	 */
-	private static final long serialVersionUID = -2414199150565231642L;
-
-	private @Getter @Setter @GeneratedValue @Id Long id;
+@Table
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class LiquidOrder{
+	private @Id Long id;
 	
-	private @Getter @Setter Long timestamp;
+	private Long timestamp;
+	private BigInteger units;
+	private BigInteger allowableCostBasis;
 	
-	private @Getter @Setter @ManyToOne(fetch = FetchType.LAZY) Asset asset;
-	private @Getter @Setter BigInteger units;
-	private @Getter @Setter BigInteger allowableCostBasis;
-	
-	private @Getter @Setter @JsonIgnore @ManyToOne(fetch = FetchType.LAZY) Account account;
+	private Long assetId;
+	private Long accountId;
 }
