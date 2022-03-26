@@ -19,8 +19,6 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 
 import java.math.BigDecimal;
-import java.util.List;
-
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +31,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.14
+ * @version 0.0.15
  */
 @Service
 public interface IMarketService {
@@ -84,9 +82,9 @@ public interface IMarketService {
 	 * 
 	 * @param example The example market to be matched against.
 	 * @return A list of markets which matches a given example market.
-	 * @since 0.0.5
+	 * @since 0.0.15
 	 */
-	List<Market> findByExample(Example<Market> example);
+	Flux<Market> findByExample(Example<Market> example);
 	
 	/**
 	 * Returns the price for a given liquid pool market for a given size of
