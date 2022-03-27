@@ -18,7 +18,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.8
+ * @version 0.0.9
  */
 @Table
 @Data
@@ -26,7 +26,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Position{
+public class Position implements IPosition{
 	private @Id Long id;
 
 	private BigInteger cumulativeUnits;
