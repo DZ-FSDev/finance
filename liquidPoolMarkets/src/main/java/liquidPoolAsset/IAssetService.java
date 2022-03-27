@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.10
+ * @version 0.0.11
  * @since 17.0.2
  */
 @Service
@@ -52,9 +52,9 @@ public interface IAssetService {
 	 * 
 	 * @param asset The asset to be added.
 	 * @return True if the addition was successful.
-	 * @since 0.0.10
+	 * @since 0.0.11
 	 */
-	Mono<Boolean> add(Asset asset);
+	Mono<DTOAsset> add(DTOAsset asset);
 
 	/**
 	 * Removes a specific asset from those to be tracked by the liquid pool
