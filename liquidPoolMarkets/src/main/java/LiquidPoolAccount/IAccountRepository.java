@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.10
+ * @version 0.0.11
  */
 public interface IAccountRepository extends ReactiveCrudRepository<Account, Long> {
 	/*
@@ -44,5 +44,5 @@ public interface IAccountRepository extends ReactiveCrudRepository<Account, Long
 	/*
 	 *  -- Delete --
 	 */
-	Mono<Boolean> deleteByName(String name);
+	Mono<Boolean> deleteByFirstNameAndLastName(String firstName, String lastName);
 }
