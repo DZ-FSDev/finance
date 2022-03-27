@@ -9,13 +9,13 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.2
+ * @version 0.0.3
  */
 public interface PositionRepository extends R2dbcRepository<Position, Long>{
 	/*
 	 *  -- Read --
 	 */
-	public <T> Flux<T> findAllBy(Class<T> type);
+	<T> Flux<T> findAllBy(Class<T> type);
 	
 	/*
 	 *  -- Delete --
