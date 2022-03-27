@@ -9,9 +9,9 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.4
  */
-public interface PositionRepository extends R2dbcRepository<Position, Long>{
+public interface IPositionRepository extends R2dbcRepository<Position, Long>{
 	/*
 	 *  -- Read --
 	 */
