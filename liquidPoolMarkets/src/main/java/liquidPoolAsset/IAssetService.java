@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.11
+ * @version 0.0.12
  * @since 17.0.2
  */
 @Service
@@ -42,9 +42,9 @@ public interface IAssetService {
 	 * 
 	 * @return The set containing all assets tracked by this liquid pool
 	 *         exchange.
-	 * @since 0.0.8
+	 * @since 0.0.12
 	 */
-	Flux<Asset> getAllAssets();
+	Flux<DTOAsset> getAllAssets();
 
 	/**
 	 * Adds a specific asset to be tracked by the liquid pool exchange;
