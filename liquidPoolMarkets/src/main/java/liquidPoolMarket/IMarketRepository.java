@@ -3,8 +3,6 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolMarket;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 
-import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.Asset;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -13,15 +11,15 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.8
+ * @version 0.0.9
  */
 public interface IMarketRepository extends R2dbcRepository<Market, Long>{
 	/*
 	 *  -- Read --
 	 */
 	Mono<Market> findByTicker(String ticker);
-	Mono<Market> findByLeftAsset(Asset asset);
-	Mono<Market> findByRightAssetOrderByTicker(Asset asset);
+	Mono<Market> findByLeftAssetId(Long leftAssetId);
+	Mono<Market> findByRightAssetIdOrderByTicker(Long rightAssetId);
 	Mono<Market> findByTickerLike(String pattern);
 	Mono<Market> findByTickerContainsAllIgnoreCase(String name);
 	
