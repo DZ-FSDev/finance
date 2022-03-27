@@ -18,7 +18,6 @@
  */
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -35,7 +34,7 @@ import lombok.ToString;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.7
+ * @version 0.0.8
  * @since 17.0.2
  */
 @Data
