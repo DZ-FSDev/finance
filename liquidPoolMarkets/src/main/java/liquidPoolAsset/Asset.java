@@ -22,8 +22,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,11 +32,10 @@ import lombok.ToString;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.8
+ * @version 0.0.9
  * @since 17.0.2
  */
 @Data
-@Table
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
