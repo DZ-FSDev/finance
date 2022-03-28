@@ -12,7 +12,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Data
 @Builder
@@ -20,6 +20,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class DTOAssetUnit implements IAsset{
+	private Long id;
 	private String name;
 	private String symbol;
 	private String units;
