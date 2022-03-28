@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
  * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.12
+ * @version 0.0.13
  * @since 17.0.2
  */
 public interface IAssetRepository extends R2dbcRepository<DTOAsset, Long>{
@@ -43,8 +43,8 @@ public interface IAssetRepository extends R2dbcRepository<DTOAsset, Long>{
 	<T extends IAsset> Mono<T> findByNameStartingWith(Class<T> type, String name);
 	<T extends IAsset> Mono<T> findByNameContainsAllIgnoreCase(Class<T> type, String name);
 	
-	Mono<Asset> findByNameOrSymbol(String name, String symbol);
-	Mono<Asset> findByNameContainsOrSymbolContainsAllIgnoreCase(String name, String symbol);
+	<T extends IAsset> Mono<T> findByNameOrSymbol(Class<T> type, String name, String symbol);
+	<T extends IAsset> Mono<T> findByNameContainsOrSymbolContainsAllIgnoreCase(Class<T> type, String name, String symbol);
 	
 	Mono<Asset> findBySymbol(String symbol);
 	Mono<Asset> findBySymbolOrderBySymbol(String symbol);
