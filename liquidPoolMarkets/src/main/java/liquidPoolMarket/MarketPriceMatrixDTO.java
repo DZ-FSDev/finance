@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.AssetUnitDTO;
+import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset.DTOAssetUnit;
 
 import lombok.Getter;
 
@@ -31,15 +31,15 @@ import lombok.Getter;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.3
+ * @version 0.0.4
  */
 public class MarketPriceMatrixDTO {
 	static MarketPriceMatrixDTO cachedInstance;
 	
 	private @Getter long timestamp;
 	
-	private @Getter List<AssetUnitDTO> currencies;
-	private @Getter List<AssetUnitDTO> assets;
+	private @Getter List<DTOAssetUnit> currencies;
+	private @Getter List<DTOAssetUnit> assets;
 	
 	private @Getter BigDecimal[][] prices;
 
@@ -50,7 +50,7 @@ public class MarketPriceMatrixDTO {
 	 * @param assets The list of assets priced against the currencies in the price matrix.
 	 * @param prices The 2D array of prices that map between the currencies and assets.
 	 */
-	public MarketPriceMatrixDTO(List<AssetUnitDTO> currencies, List<AssetUnitDTO> assets, BigDecimal[][] prices) {
+	public MarketPriceMatrixDTO(List<DTOAssetUnit> currencies, List<DTOAssetUnit> assets, BigDecimal[][] prices) {
 		this.currencies = currencies;
 		this.assets = assets;
 		this.prices = prices;
