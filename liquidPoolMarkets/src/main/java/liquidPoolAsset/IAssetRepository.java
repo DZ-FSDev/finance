@@ -28,13 +28,14 @@ import reactor.core.publisher.Mono;
  * Persistence layer for Liquid Asset entities.
  * 
  * @author DZ-FSDev
- * @version 0.0.10
+ * @version 0.0.11
  * @since 17.0.2
  */
-public interface IAssetRepository extends R2dbcRepository<Asset, Long>{
+public interface IAssetRepository extends R2dbcRepository<DTOAsset, Long>{
 	/*
 	 *  -- Read --
 	 */
+	<T extends IAsset> Mono<T> findById(Class<T> type, Long id);
 	Mono<Asset> findByName(String name);
 	Mono<Asset> findByNameOrderByName(String name);
 	Mono<Asset> findByNameLike(String pattern);
@@ -61,10 +62,11 @@ public interface IAssetRepository extends R2dbcRepository<Asset, Long>{
 	Flux<Asset> findFirst3ByLastPriceGreaterThan(BigInteger units);
 	Flux<Asset> findFirst3ByLastPriceBetween(BigInteger unitsLow, BigInteger unitsHigh);
 	
+	/*
 	Flux<Asset> findFirst3ByMarketCapLessThan(BigInteger marketCap);
 	Flux<Asset> findFirst3ByMarketCapGreaterThan(BigInteger marketCap);
 	Flux<Asset> findFirst3ByMarketCapBetween(BigInteger marketCapLow, BigInteger marketCapHigh);
-	
+	*/
 	
 	/*
 	 *  -- Delete --
