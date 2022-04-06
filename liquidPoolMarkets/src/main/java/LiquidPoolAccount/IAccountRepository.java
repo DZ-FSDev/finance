@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.13
+ * @version 0.0.14
  */
 public interface IAccountRepository extends ReactiveCrudRepository<DTOAccount, Long> {
 	/*
@@ -36,6 +36,7 @@ public interface IAccountRepository extends ReactiveCrudRepository<DTOAccount, L
 	 */
 	<T extends IAccount> Mono<T> findByFirstNameAndLastName(Class<T> type, String firstName, String lastName);
 	
+	<T extends IAccount> Flux<T> findByFirstNameLike(Class<T> type, String pattern);
 	
 	
 	<T extends IAccount> Flux<T> findFirst3ByOrderByRealizedPNL(Class<T> type);
