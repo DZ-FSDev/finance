@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.16
+ * @version 0.0.17
  */
 public interface IAccountRepository extends ReactiveCrudRepository<DTOAccount, Long> {
 	/*
@@ -39,7 +39,7 @@ public interface IAccountRepository extends ReactiveCrudRepository<DTOAccount, L
 	<T extends IAccount> Flux<T> findByFirstNameLike(Class<T> type, String pattern);
 	<T extends IAccount> Flux<T> findByLastNameLike(Class<T> type, String pattern);
 	<T extends IAccount> Flux<T> findByFirstNameNotLike(Class<T> type, String pattern);
-	
+	<T extends IAccount> Flux<T> findByLastNameNotLike(Class<T> type, String pattern);
 	
 	<T extends IAccount> Flux<T> findFirst3ByOrderByRealizedPNL(Class<T> type);
 	<T extends IAccount> Flux<T> findFirst5ByOrderByRealizedPNL(Class<T> type);
