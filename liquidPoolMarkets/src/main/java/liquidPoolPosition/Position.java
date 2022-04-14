@@ -3,7 +3,6 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolPosition;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.10
+ * @version 0.0.11
  */
 @Data
 @Builder
@@ -24,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Position implements IPosition{
-	private @Id Long id;
+	private Long id;
 
 	private BigInteger cumulativeUnits;
 	private BigInteger units;
