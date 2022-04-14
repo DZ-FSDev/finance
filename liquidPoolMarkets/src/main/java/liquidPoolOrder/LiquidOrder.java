@@ -2,7 +2,6 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolOrder;
 
 import java.math.BigInteger;
 
-import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +13,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.7
+ * @version 0.0.8
  */
 @Data
 @Builder
@@ -22,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class LiquidOrder implements ILiquidOrder{
-	private @Id Long id;
+	private Long id;
 	
 	private Long ts;
 	private BigInteger units;
