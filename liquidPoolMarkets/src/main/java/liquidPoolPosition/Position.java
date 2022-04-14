@@ -5,8 +5,6 @@ import java.math.BigInteger;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.relational.core.mapping.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,9 +16,8 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.9
+ * @version 0.0.10
  */
-@Table
 @Data
 @Builder
 @AllArgsConstructor
