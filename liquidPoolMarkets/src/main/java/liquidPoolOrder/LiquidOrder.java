@@ -3,8 +3,6 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolOrder;
 import java.math.BigInteger;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +14,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.6
+ * @version 0.0.7
  */
 @Data
 @Builder
