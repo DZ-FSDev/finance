@@ -13,7 +13,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.8
+ * @version 0.0.9
  */
 @Data
 @Builder
@@ -27,6 +27,6 @@ public class LiquidOrder implements ILiquidOrder{
 	private BigInteger units;
 	private BigInteger allowableCostBasis;
 	
-	private Long assetId;
+	private Long marketId;
 	private Long accountId;
 }
