@@ -14,7 +14,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Data
 @Table("liquidOrder")
@@ -26,6 +26,8 @@ public class DTOLiquidOrder implements ILiquidOrder{
 	private @Id Long id;
 	
 	private Long ts;
+	private OrderStatus status;
+	
 	private String units;
 	private String allowableCostBasis;
 	
