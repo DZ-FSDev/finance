@@ -30,11 +30,16 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.1
+ * @version 0.0.2
  */
 @RestController
 @RequestMapping("/v1/liquid/candles")
-public class RESTController_v1_liquid_candles {
+public class RESTController_v1_liquid_candles{
 	@Autowired
 	ICandlestickService candleSvc;
+	
+	@GetMapping(value = "/list")
+	public Flux<DTOCandlestick> getByMarketId(Long marketId){
+		return candleSvc.getCandlesticksByMarketId(marketId);
+	}
 }
