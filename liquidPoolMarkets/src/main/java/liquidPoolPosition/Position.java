@@ -15,7 +15,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.11
+ * @version 0.0.12
  */
 @Data
 @Builder
@@ -27,6 +27,7 @@ public class Position implements IPosition{
 
 	private BigInteger cumulativeUnits;
 	private BigInteger units;
+	private BigInteger lockedUnits;
 
 	private BigInteger costBasis;
 	private @Transient BigDecimal unrealizedPNL;
