@@ -9,8 +9,8 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.5
+ * @version 0.0.6
  */
 public interface ICandlestickRepository extends R2dbcRepository<DTOCandlestick, Long>{
-	<T extends ICandlestick> Flux<T> findByMarketId(Class<T> type, Long marketId);
+	<T extends ICandlestick> Flux<T> findByMarketIdOrderByOpenTS(Class<T> type, Long marketId);
 }
