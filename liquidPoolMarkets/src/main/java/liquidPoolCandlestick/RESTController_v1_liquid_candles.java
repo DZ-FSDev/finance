@@ -1,6 +1,6 @@
 /*  Original Licensing Copyright
  * 
- *  v1/liquid/assets REST Service Controller.
+ *  v1/liquid/candles REST Service Controller.
  *  Copyright (C) 2022  DZ-FSDev
  *  
  *  This program is free software: you can redistribute it and/or modify
