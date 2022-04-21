@@ -16,7 +16,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Table("position")
 @Data
@@ -29,6 +29,7 @@ public class DTOPosition implements IPosition{
 
 	private String cumulativeUnits;
 	private String units;
+	private String lockedUnits;
 
 	private String costBasis;
 	private @Transient BigDecimal unrealizedPNL;
