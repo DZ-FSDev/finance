@@ -24,13 +24,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * v1/liquid/candles REST Service Controller.
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.3
  */
 @RestController
 @RequestMapping("/v1/liquid/candles")
@@ -41,5 +42,10 @@ public class RESTController_v1_liquid_candles{
 	@GetMapping(value = "/list")
 	public Flux<DTOCandlestick> getByMarketId(Long marketId){
 		return candleSvc.getCandlesticksByMarketId(marketId);
+	}
+	
+	@GetMapping(value = "/save")
+	public Mono<DTOCandlestick> save(DTOCandlestick candle){
+		return candleSvc.save(candle);
 	}
 }
