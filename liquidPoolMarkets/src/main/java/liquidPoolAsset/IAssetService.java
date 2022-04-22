@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.13
+ * @version 0.0.14
  * @since 17.0.2
  */
 @Service
@@ -109,4 +109,6 @@ public interface IAssetService {
 	 * @since 0.0.13
 	 */
 	<T extends IAsset> List<T> findAllBy(Class<T> type);
+	
+	<T extends IAsset> Flux<T> findById(Class<T> type, Long id);
 }
