@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.5
+ * @version 0.0.6
  */
 public interface IOrderRepository extends R2dbcRepository<DTOLiquidOrder, Long>{
 	/*
@@ -19,6 +19,7 @@ public interface IOrderRepository extends R2dbcRepository<DTOLiquidOrder, Long>{
 	<T extends ILiquidOrder> Flux<T> getOrdersByMarketIdOrderByTs(Class<T> type, Long marketId);
 	
 	<T extends ILiquidOrder> Flux<T> getOrdersByAccountIdAndStatus(Class<T> type, Long accountId, OrderStatus status);
+	<T extends ILiquidOrder> Flux<T> getOrdersByMarketIdAndStatusOrderByTs(Class<T> type, Long marketId, OrderStatus status);
 	/*
 	 *  -- Update --
 	 */
