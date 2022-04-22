@@ -29,10 +29,21 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Service
 public interface IAccountService {
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param type
+	 * @param id
+	 * @return
+	 * @since 0.0.6
+	 */
+	<T extends IAccount> Mono<T> findById(Class<T> type, Long id);
+	
 	/**
 	 * 
 	 * @param <T>
