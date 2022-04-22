@@ -30,7 +30,7 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.3
  */
 @RestController
 @RequestMapping("/v1/liquid/orders")
@@ -38,7 +38,7 @@ public class RESTController_v1_liquid_orders{
 	@Autowired
 	ILiquidOrderService orderSvc;
 	
-	@GetMapping(value = "/list")
+	@GetMapping(value = "/listByMarket")
 	public Flux<DTOLiquidOrder> getByMarketId(Long marketId){
 		return orderSvc.findByMarketId(DTOLiquidOrder.class, marketId);
 	}
