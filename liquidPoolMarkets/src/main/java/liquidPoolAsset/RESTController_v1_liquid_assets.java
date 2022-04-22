@@ -20,6 +20,7 @@ package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,8 @@ import reactor.core.publisher.Mono;
  * v1/liquid/assets REST Service Controller.
  * 
  * @author DZ_FSDev
- * @since 17.0.2
- * @version 0.0.5
+ * @since 17.0.1
+ * @version 0.0.6
  */
 @RestController
 @RequestMapping("/v1/liquid/assets")
@@ -49,5 +50,16 @@ public class RESTController_v1_liquid_assets {
 	@PostMapping(value = "/add")
 	public Mono<DTOAsset> addAsset(@RequestBody DTOAsset asset){
 		return assetSvc.add(asset);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @since 0.0.6
+	 */
+	@PostMapping(value = "/{id}")
+	public Mono<DTOAsset> findById(@PathVariable Long id){
+		return assetSvc.findById(DTOAsset.class, id);
 	}
 }
