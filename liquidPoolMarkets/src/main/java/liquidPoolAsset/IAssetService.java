@@ -29,7 +29,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.22
+ * @version 0.0.23
  * @since 17.0.2
  */
 @Service
@@ -121,9 +121,8 @@ public interface IAssetService {
 	/**
 	 * 
 	 * @param updateTo
-	 * @param id
 	 * @return
-	 * @since 0.0.22
+	 * @since 0.0.23
 	 */
-	Mono<DTOAsset> updateById(DTOAsset updateTo, Long id);
+	Mono<DTOAsset> updateById(DTOAsset updateTo);
 }
