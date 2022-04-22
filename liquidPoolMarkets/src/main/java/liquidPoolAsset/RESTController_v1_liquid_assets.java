@@ -34,7 +34,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.6
+ * @version 0.0.7
  */
 @RestController
 @RequestMapping("/v1/liquid/assets")
@@ -58,7 +58,7 @@ public class RESTController_v1_liquid_assets {
 	 * @return
 	 * @since 0.0.6
 	 */
-	@PostMapping(value = "/{id}")
+	@GetMapping(value = "/{id}")
 	public Mono<DTOAsset> findById(@PathVariable Long id){
 		return assetSvc.findById(DTOAsset.class, id);
 	}
