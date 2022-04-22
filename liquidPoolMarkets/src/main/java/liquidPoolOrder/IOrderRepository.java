@@ -9,9 +9,9 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.4
  */
-public interface IOrderRepository extends R2dbcRepository<LiquidOrder, Long>{
+public interface IOrderRepository extends R2dbcRepository<DTOLiquidOrder, Long>{
 	/*
 	 *  -- Read --
 	 */
