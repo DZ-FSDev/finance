@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.16
+ * @version 0.0.17
  * @since 17.0.2
  */
 @Service
@@ -83,9 +83,9 @@ public interface IAssetService {
 	 * 
 	 * @param example The example asset to be matched against.
 	 * @return A list of assets which matches a given example asset.
-	 * @since 0.0.5
+	 * @since 0.0.17
 	 */
-	List<Asset> findByExample(Example<Asset> example);
+	Flux<Asset> findByExample(Example<Asset> example);
 
 	/**
 	 * Returns a list of assets which belong to an asset class; a compatible
