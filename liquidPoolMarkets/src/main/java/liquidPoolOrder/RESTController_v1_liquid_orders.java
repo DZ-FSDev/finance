@@ -24,13 +24,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * v1/liquid/orders REST Service Controller.
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.4
+ * @version 0.0.5
  */
 @RestController
 @RequestMapping("/v1/liquid/orders")
@@ -38,13 +39,18 @@ public class RESTController_v1_liquid_orders{
 	@Autowired
 	ILiquidOrderService orderSvc;
 	
-	@GetMapping(value = "/listByMarket")
+	@GetMapping("/listByMarket")
 	public Flux<DTOLiquidOrder> getByMarketId(Long marketId){
 		return orderSvc.findByMarketId(DTOLiquidOrder.class, marketId);
 	}
 	
-	@GetMapping(value = "/listByAccount")
+	@GetMapping("/listByAccount")
 	public Flux<DTOLiquidOrder> getByAccountId(Long accountId){
 		return orderSvc.findByAccountId(DTOLiquidOrder.class, accountId);
+	}
+	
+	@GetMapping("/internal/next")
+	public Mono<DTOLiquidOrder> getOrdersByMarketIdAndStatusOrderByTs(Long marketId, OrderStatus status) {
+		return orderSvc.getOrdersByMarketIdAndStatusOrderByTs(DTOLiquidOrder.class, marketId, status);
 	}
 }
