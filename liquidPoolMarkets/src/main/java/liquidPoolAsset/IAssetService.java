@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.15
+ * @version 0.0.16
  * @since 17.0.2
  */
 @Service
@@ -74,9 +74,9 @@ public interface IAssetService {
 	 *             for updating.
 	 * @param to The state the Asset should be updated to.
 	 * @return True if the update was successful.
-	 * @since 0.0.9
+	 * @since 0.0.16
 	 */
-	boolean update(Asset from, Asset to);
+	Mono<Boolean> update(Asset from, Asset to);
 
 	/**
 	 * Returns a list of assets which matches a given example asset.
