@@ -19,4 +19,5 @@ public interface ILiquidOrderService {
 	
 	<T extends ILiquidOrder> Flux<T> getOrdersByAccountIdAndStatus(Class<T> type, Long accountId, OrderStatus status);
 	<T extends ILiquidOrder> Mono<T> getOrdersByMarketIdAndStatusOrderByTs(Class<T> type, Long marketId, OrderStatus status);
+	<T extends ILiquidOrder> Flux<T> findOrdersByMarketIdAndStatusOrderByTs(Class<T> type, Long marketId, OrderStatus status);
 }
