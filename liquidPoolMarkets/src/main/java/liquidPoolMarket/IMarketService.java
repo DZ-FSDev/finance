@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.15
+ * @version 0.0.16
  */
 @Service
 public interface IMarketService {
@@ -41,9 +41,9 @@ public interface IMarketService {
 	 * 
 	 * @return The set containing all markets tracked by this liquid pool
 	 *         exchange.
-	 * @since 0.0.11
+	 * @since 0.0.16
 	 */
-	Flux<Market> getAllMarkets();
+	Flux<DTOMarket> getAllMarkets();
 	
 	/**
 	 * Adds a specific market to be tracked by the liquid pool exchange;
