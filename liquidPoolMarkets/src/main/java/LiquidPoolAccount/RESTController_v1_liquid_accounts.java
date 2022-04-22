@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.5
+ * @version 0.0.6
  */
 @RestController
 @RequestMapping("/v1/liquid/accounts")
@@ -26,10 +26,10 @@ public class RESTController_v1_liquid_accounts {
 	 * 
 	 * @param name
 	 * @return
-	 * @since 0.0.5
+	 * @since 0.0.6
 	 */
 	@GetMapping("/{name}")
-	public Flux<Account> get(@PathVariable("name") String name) {
-		return accountSvc.findByName(Account.class, name);
+	public Flux<DTOAccount> get(@PathVariable("name") String name) {
+		return accountSvc.findByFirstNameLike(DTOAccount.class, name);
 	}
 }
