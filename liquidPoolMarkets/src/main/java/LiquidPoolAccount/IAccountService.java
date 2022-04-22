@@ -33,7 +33,34 @@ import reactor.core.publisher.Mono;
  */
 @Service
 public interface IAccountService {
+	/**
+	 * 
+	 * @param <T>
+	 * @param type
+	 * @param firstName
+	 * @param lastName
+	 * @return
+	 * @since 0.0.2
+	 */
 	<T extends IAccount> Mono<T> findByName(Class<T> type, String firstName, String lastName);
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param type
+	 * @param firstNamePattern
+	 * @return
+	 * @since 0.0.5
+	 */
 	<T extends IAccount> Flux<T> findByFirstNameLike(Class<T> type, String firstNamePattern);
+	
+	/**
+	 * 
+	 * @param <T>
+	 * @param type
+	 * @param x
+	 * @return
+	 * @since 0.0.3
+	 */
 	<T> Flux<T> findTopXByOrderByRealizedPNL(Class<T> type, int x);
 }
