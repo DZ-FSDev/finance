@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.17
+ * @version 0.0.18
  * @since 17.0.2
  */
 @Service
@@ -95,9 +95,9 @@ public interface IAssetService {
 	 * @param assetClass The asset class the results must be a part of.
 	 * @param type 
 	 * @return A list of assets which belong to an asset class.
-	 * @since 0.0.6
+	 * @since 0.0.18
 	 */
-	<T> List<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
+	<T extends IAsset> Flux<T> findAllByAssetClass(AssetClass assetClass, Class<T> type);
 
 	/**
 	 * Returns the list of all assets; a compatible projection type is to be
