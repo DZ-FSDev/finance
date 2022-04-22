@@ -110,5 +110,13 @@ public interface IAssetService {
 	 */
 	<T extends IAsset> List<T> findAllBy(Class<T> type);
 	
+	/**
+	 * 
+	 * @param <T>
+	 * @param type
+	 * @param id
+	 * @return
+	 * @since 0.0.14
+	 */
 	<T extends IAsset> Flux<T> findById(Class<T> type, Long id);
 }
