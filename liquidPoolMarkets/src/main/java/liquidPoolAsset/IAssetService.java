@@ -117,12 +117,4 @@ public interface IAssetService {
 	 * @since 0.0.21
 	 */
 	<T extends IAsset> Mono<T> findById(Class<T> type, Long id);
-
-	/**
-	 * 
-	 * @param updateTo
-	 * @return
-	 * @since 0.0.23
-	 */
-	Mono<DTOAsset> updateById(DTOAsset updateTo);
 }
