@@ -9,13 +9,14 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.2
+ * @version 0.0.3
  */
 public interface ITradeRepository extends R2dbcRepository<DTOTrade, Long>{
 	/*
 	 *  -- Read --
 	 */
 	<T> Flux<T> findAllBy(Class<T> type);
+	<T> Flux<T> findByAccountId(Class<T> type, Long accountId);
 	
 	/*
 	 *  -- Delete --
