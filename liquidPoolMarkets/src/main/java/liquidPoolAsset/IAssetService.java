@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool asset service.
  * 
  * @author DZ-FSDev
- * @version 0.0.14
+ * @version 0.0.15
  * @since 17.0.2
  */
 @Service
@@ -62,9 +62,9 @@ public interface IAssetService {
 	 * 
 	 * @param asset The specified asset to be removed.
 	 * @return True if the removal was successful.
-	 * @since 0.0.3
+	 * @since 0.0.15
 	 */
-	boolean remove(Asset asset);
+	Mono<Boolean> remove(Asset asset);
 
 	/**
 	 * Updates a specific asset tracked by the liquid pool exchange; returning
