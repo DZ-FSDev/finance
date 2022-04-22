@@ -17,7 +17,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Data
 @Builder
@@ -26,4 +26,11 @@ import lombok.ToString;
 @ToString
 public class Trade implements ITrade{
 	private @Id Long id;
+	
+	private Long ts;
+	private BigInteger units;
+	private BigDecimal allowableCostBasis;
+	
+	private Long marketId;
+	private Long accountId;
 }
