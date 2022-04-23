@@ -9,11 +9,12 @@ import lombok.Data;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Data
 @AllArgsConstructor
 public class EntityByAccountIdRequest {
 	Class<?> type;
 	private Long id;
+	private Long id2;
 }
