@@ -16,7 +16,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Table("position")
 @Data
@@ -37,4 +37,5 @@ public class DTOPosition implements IPosition{
 	
 	private Long basisCurrencyId;
 	private Long accountId;
+	private Long assetId;
 }
