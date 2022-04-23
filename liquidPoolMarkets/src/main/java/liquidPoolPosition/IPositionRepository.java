@@ -9,16 +9,16 @@ import reactor.core.publisher.Flux;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.6
+ * @version 0.0.7
  */
 public interface IPositionRepository extends R2dbcRepository<DTOPosition, Long>{
 	/*
 	 *  -- Read --
 	 */
-	<T> Flux<T> findAllBy(Class<T> type);
-	<T> Flux<T> findByAccountId(Class<T> type, Long accountId);
+	<T extends IPosition> Flux<T> findAllBy(Class<T> type);
+	<T extends IPosition> Flux<T> findByAccountId(Class<T> type, Long accountId);
 	
-	<T> Flux<T> findByAccountIdAndAssetId(Class<T> type, Long accountId, Long assetId);
+	<T extends IPosition> Flux<T> findByAccountIdAndAssetId(Class<T> type, Long accountId, Long assetId);
 	/*
 	 *  -- Delete --
 	 */
