@@ -13,15 +13,14 @@ import lombok.ToString;
  * Represents the left Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.1
  * @since 17.0.1
+ * @version 0.0.2
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class DTOAssetLeft implements IAsset{
+public class DTOAssetLeft extends DTOAsset implements IAsset{
 	private @Id Long id;
 
 	private String name;
