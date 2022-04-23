@@ -1,6 +1,5 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolPosition;
 
-import java.math.BigDecimal;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
@@ -16,7 +15,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Table("position")
 @Data
@@ -32,7 +31,7 @@ public class DTOPosition implements IPosition{
 	private String lockedUnits;
 
 	private String costBasis;
-	private @Transient BigDecimal unrealizedPNL;
+	private @Transient String unrealizedPNL;
 	private String realizedPNL;
 	
 	private Long basisCurrencyId;
