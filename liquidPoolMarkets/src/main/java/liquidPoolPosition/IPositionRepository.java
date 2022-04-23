@@ -18,6 +18,7 @@ public interface IPositionRepository extends R2dbcRepository<Position, Long>{
 	<T> Flux<T> findAllBy(Class<T> type);
 	<T> Flux<T> findByAccountId(Class<T> type, Long accountId);
 	
+	<T> Flux<T> findByAccountIdAndAssetId(Class<T> type, Long accountId, Long assetId);
 	/*
 	 *  -- Delete --
 	 */
