@@ -13,7 +13,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.2
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Data
 @Builder
@@ -34,4 +34,23 @@ public class DTOPositionLeft implements IPosition{
 	private Long basisCurrencyId;
 	private Long accountId;
 	private Long assetId;
+	
+	/**
+	 * 
+	 * @return
+	 * @since 0.0.2
+	 */
+	public DTOPosition toDTOPosition() {
+		return DTOPosition.builder()
+				.id(id)
+				.cumulativeUnits(cumulativeUnits)
+				.units(units)
+				.lockedUnits(lockedUnits)
+				.costBasis(costBasis)
+				.realizedPNL(realizedPNL)
+				.basisCurrencyId(basisCurrencyId)
+				.accountId(accountId)
+				.assetId(assetId)
+				.build();
+	}
 }
