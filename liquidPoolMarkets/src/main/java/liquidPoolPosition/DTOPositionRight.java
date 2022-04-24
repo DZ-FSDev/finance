@@ -23,14 +23,18 @@ import lombok.ToString;
 public class DTOPositionRight implements IPosition{
 	private @Id Long id;
 
+	private String cumulativeUnits;
 	private String units;
 	private String lockedUnits;
 
+	private String costBasis;
 	private @Transient String unrealizedPNL;
-
+	private String realizedPNL;
+	
+	private Long basisCurrencyId;
 	private Long accountId;
 	private Long assetId;
-
+	
 	/**
 	 * 
 	 * @return
@@ -39,8 +43,12 @@ public class DTOPositionRight implements IPosition{
 	public DTOPosition toDTOPosition() {
 		return DTOPosition.builder()
 				.id(id)
+				.cumulativeUnits(cumulativeUnits)
 				.units(units)
 				.lockedUnits(lockedUnits)
+				.costBasis(costBasis)
+				.realizedPNL(realizedPNL)
+				.basisCurrencyId(basisCurrencyId)
 				.accountId(accountId)
 				.assetId(assetId)
 				.build();
