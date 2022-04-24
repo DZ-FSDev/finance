@@ -14,17 +14,32 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.2
+ * @version 0.0.4
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class DTOAssetLeft extends DTOAsset implements IAsset{
+public class DTOAssetLeft implements IAsset{
 	private @Id Long id;
 
 	private String name;
 
 	private String units;
 	private AssetClass assetClass;
+	
+	/**
+	 * 
+	 * @return
+	 * @since 0.0.4
+	 */
+	public DTOAsset toDTOAsset() {
+		return DTOAsset.builder()
+				.id(id)
+				.name(name)
+				.units(units)
+				.assetClass(assetClass)
+				.build();
+	}
 }
