@@ -1,8 +1,13 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidAccountExchange;
 
+import java.math.BigInteger;
+
 import org.springframework.stereotype.Service;
 
+import com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolOrder.ILiquidOrder;
+
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * The user of this interface should implement the various actions associated
@@ -14,5 +19,14 @@ import reactor.core.publisher.Flux;
  */
 @Service
 public interface IAccountExchangeService {
-
+	/**
+	 * 
+	 * @param <T>
+	 * @param accountId
+	 * @param marketId
+	 * @param units
+	 * @return
+	 * @since 0.0.1
+	 */
+	<T extends ILiquidOrder> Mono<T> placeOrder(Long accountId, Long marketId, BigInteger units);
 }
