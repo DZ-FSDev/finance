@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
  * 
  * @author DZ_FSDev
  * @since 17.0.1
- * @version 0.0.3
+ * @version 0.0.4
  */
 @RestController
 @RequestMapping("/v1/liquid/candles")
@@ -42,6 +42,11 @@ public class RESTController_v1_liquid_candles{
 	@GetMapping(value = "/list")
 	public Flux<DTOCandlestick> getByMarketId(Long marketId){
 		return candleSvc.getCandlesticksByMarketId(marketId);
+	}
+	
+	@GetMapping(value = "/current")
+	public Mono<DTOCandlestick> getCurrentByMarketId(Long marketId){
+		return candleSvc.getTopByMarketIdOrderByOpenTSDesc(marketId);
 	}
 	
 	@GetMapping(value = "/save")
