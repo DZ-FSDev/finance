@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  * with an liquid pool candlestick service.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.2
  */
 @Service
@@ -18,4 +18,6 @@ public interface ICandlestickService {
 	Flux<DTOCandlestick> getCandlesticksByMarketId(Long marketId);
 	
 	Mono<DTOCandlestick> save(DTOCandlestick candle);
+	
+	Mono<DTOCandlestick> getTopByMarketIdOrderByOpenTSDesc(Long marketId);
 }
