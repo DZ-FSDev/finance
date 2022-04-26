@@ -15,9 +15,27 @@ import reactor.core.publisher.Mono;
  */
 @Service
 public interface ICandlestickService {
+	/**
+	 * 
+	 * @param marketId
+	 * @return
+	 * @since 0.0.1
+	 */
 	Flux<DTOCandlestick> getCandlesticksByMarketId(Long marketId);
 	
+	/**
+	 * 
+	 * @param candle
+	 * @return
+	 * @since 0.0.2
+	 */
 	Mono<DTOCandlestick> save(DTOCandlestick candle);
 	
+	/**
+	 * 
+	 * @param marketId
+	 * @return
+	 * @since 0.0.3
+	 */
 	Mono<DTOCandlestick> getTopByMarketIdOrderByOpenTSDesc(Long marketId);
 }
