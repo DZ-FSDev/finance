@@ -23,10 +23,10 @@
 				left : 50
 			},
 			ohlc : {
-				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.5
+				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.6
 			},
 			indicator : {
-				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.15,
+				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.1 + 10,
 				padding : 5
 			}
 		};
@@ -86,17 +86,17 @@
 		var xAxis = d3.axisBottom(x);
 
 		var timeAnnotation = techan.plot.axisannotation().axis(xAxis).orient(
-				'bottom').format(d3.timeFormat('%Y-%m-%d-%H:%M:%S')) //.width(65)
+				'bottom').format(d3.timeFormat('%Y-%m-%d-%H:%M:%S')).width(100)
 				.translate([ 0, dim.plot.height ]);
 
 		var yAxis = d3.axisRight(y);
 
 		var ohlcAnnotation = techan.plot.axisannotation().axis(yAxis).orient(
-				'right').format(d3.format(',.2f')).translate([ x(1), 0 ]);
+				'right').format(d3.format(',.1f')).translate([ x(1), 0 ]);
 
 		var closeAnnotation = techan.plot.axisannotation().axis(yAxis).orient(
 				'right').accessor(candlestick.accessor()).format(
-				d3.format(',.2f')).translate([ x(1), 0 ]);
+				d3.format(',.1f')).translate([ x(1), 0 ]);
 
 		var percentAxis = d3.axisLeft(yPercent).tickFormat(d3.format('+.1%'));
 
@@ -181,7 +181,7 @@
 				"translate(" + dim.margin.left + "," + dim.margin.top + ")");
 
 		svg.append('text').attr("class", "symbol").attr("x", 20).text(
-				"$StockTicker");
+				[[${ticker}]]);
 
 		svg.append("g").attr("class", "x axis").attr("transform",
 				"translate(0," + dim.plot.height + ")");
@@ -303,7 +303,7 @@
 				svg.select("g.ema.ma-2").datum(
 						techan.indicator.ema().period(50)(data)).call(ema2);
 				svg.select("g.ema.ma-3").datum(
-						techan.indicator.ema().period(100)(data)).call(ema2);
+						techan.indicator.ema().period(100)(data)).call(ema3);
 				svg.select("g.macd .indicator-plot").datum(macdData).call(macd);
 				svg.select("g.rsi .indicator-plot").datum(rsiData).call(rsi);
 	
@@ -355,7 +355,7 @@
 			svg.select("g .ema.ma-0").call(ema0.refresh);
 			svg.select("g .ema.ma-1").call(ema1.refresh);
 			svg.select("g .ema.ma-2").call(ema2.refresh);
-			svg.select("g .ema.ma-2").call(ema3.refresh);
+			svg.select("g .ema.ma-3").call(ema3.refresh);
 			svg.select("g.macd .indicator-plot").call(macd.refresh);
 			svg.select("g.rsi .indicator-plot").call(rsi.refresh);
 			svg.select("g.crosshair.ohlc").call(ohlcCrosshair.refresh);
@@ -365,8 +365,6 @@
 			svg.select("g.supstances").call(supstance.refresh);
 			svg.select("g.tradearrow").call(tradearrow.refresh);
 		}
-		
-		
 	</script>
 </body>
 </html>
