@@ -1,8 +1,6 @@
 package com.dz_fs_dev.finance.liquidPoolMarkets.liquidPoolAsset;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +12,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Data
 @Builder
@@ -24,21 +22,25 @@ import lombok.ToString;
 public class DTOAssetLeft implements IAsset{
 	private @Id Long id;
 
+	private String symbol;
 	private String name;
 
 	private String units;
+	private String lastPrice;
 	private AssetClass assetClass;
 	
 	/**
 	 * 
 	 * @return
-	 * @since 0.0.4
+	 * @since 0.0.5
 	 */
 	public DTOAsset toDTOAsset() {
 		return DTOAsset.builder()
 				.id(id)
+				.symbol(symbol)
 				.name(name)
 				.units(units)
+				.lastPrice(lastPrice)
 				.assetClass(assetClass)
 				.build();
 	}
