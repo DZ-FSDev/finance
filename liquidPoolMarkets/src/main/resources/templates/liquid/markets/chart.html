@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
 	href="/DZLiquidAssetFinTechChartStyles.css">
+<link rel="stylesheet" type="text/css" href="/css/chart.css">
 <title th:text="'Chart of ' + ${ticker}"></title>
 </head>
 <body>
@@ -14,20 +15,23 @@
 	<script src="/js/techan.min.js"></script>
 	<script th:inline="javascript">
 		var dim = {
-			width : Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) * 0.9,
-			height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.8,
+			width : Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) * 0.99 - 220,
+			height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.7,
 			margin : {
 				top : 20,
-				right : 50,
-				bottom : 30,
-				left : 50
+				right : 150,
+				bottom : 50,
+				left : 80
 			},
 			ohlc : {
-				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.6
+				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.5
 			},
 			indicator : {
-				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.1 + 10,
-				padding : 5
+				height : Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) * 0.07 - 20,
+				padding : 15
+			},
+			annotation : {
+				yWidth: 80
 			}
 		};
 		dim.plot = {
@@ -47,13 +51,13 @@
 
 		var x = techan.scale.financetime().range([ 0, dim.plot.width ]);
 
-		var y = d3.scaleLinear().range([ dim.ohlc.height, 0 ]);
+		var y = d3.scaleSqrt().range([ dim.ohlc.height, 0 ]);
 
 		var yPercent = y.copy(); // Same as y at this stage, will get a different domain later
 
 		var yInit, yPercentInit, zoomableInit;
 
-		var yVolume = d3.scaleLinear().range([ y(0), y(0.2) ]);
+		var yVolume = d3.scaleLinear().range([ y(0), y(0.1) ]);
 
 		var candlestick = techan.plot.candlestick().xScale(x).yScale(y);
 
@@ -89,14 +93,15 @@
 				'bottom').format(d3.timeFormat('%Y-%m-%d-%H:%M:%S')).width(100)
 				.translate([ 0, dim.plot.height ]);
 
-		var yAxis = d3.axisRight(y);
+		var yAxis = d3.axisRight(y).ticks(3).tickFormat(
+				d3.format(",.4s"));
 
 		var ohlcAnnotation = techan.plot.axisannotation().axis(yAxis).orient(
-				'right').format(d3.format(',.1f')).translate([ x(1), 0 ]);
+				'right').translate([ x(1), 0 ]).width(dim.annotation.yWidth);
 
 		var closeAnnotation = techan.plot.axisannotation().axis(yAxis).orient(
-				'right').accessor(candlestick.accessor()).format(
-				d3.format(',.1f')).translate([ x(1), 0 ]);
+				'right').accessor(candlestick.accessor()).translate([ x(1), 0 ])
+				.width(dim.annotation.yWidth);
 
 		var percentAxis = d3.axisLeft(yPercent).tickFormat(d3.format('+.1%'));
 
@@ -254,7 +259,7 @@
 
 		update();
 		const sleep = ms => new Promise(r => setTimeout(r, ms));
-		var interval = setInterval(update, 100);
+		var interval = setInterval(update, 50);
 		
 		function update(){
 			d3.csv('/liquid/markets/chartcsv/[[${ticker}]]', function(error, data) {
@@ -365,6 +370,21 @@
 			svg.select("g.supstances").call(supstance.refresh);
 			svg.select("g.tradearrow").call(tradearrow.refresh);
 		}
+	</script>
+	<span id="tradeActivity"> Hi there! </span>
+	<script>
+		function updTradeActivity(){
+			let activityJSON = fetch("http://127.0.0.1:8080/v1/liquid/tradeActivity")
+			.then(response => response.json())
+			.then(data => {
+				let activityStr = '';
+				for(let d of data['activity'])
+					activityStr += `<span class="${d.charAt(0)=='B' ? 'buyActivity' : 'sellActivity'}">${d}</span><br>`;
+				tradeActivity.innerHTML = activityStr;
+			});
+		}
+		
+		setInterval(updTradeActivity,100);
 	</script>
 </body>
 </html>
