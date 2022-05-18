@@ -10,10 +10,15 @@ import reactor.core.publisher.Mono;
  * with an liquid pool trade activity service.
  * 
  * @author DZ-FSDev
- * @version 0.0.1
+ * @version 0.0.2
  * @since 17.0.2
  */
 @Service
 public interface ITradeActivityService {
-	
+	/**
+	 * 
+	 * @return
+	 * @since 0.0.2
+	 */
+	String getActivity();
 }
