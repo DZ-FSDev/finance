@@ -1,0 +1,18 @@
+#tradeActivity{
+	float: right;
+	width: 190px;
+	color: white;
+}
+
+.buyActivity {
+	color: green;
+}
+
+.sellActivity {
+	color: red;
+}
+
+.tradePanel{
+	position: absolute;
+	bottom: 25%;
+}
