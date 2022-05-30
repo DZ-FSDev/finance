@@ -51,13 +51,13 @@
 
 		var x = techan.scale.financetime().range([ 0, dim.plot.width ]);
 
-		var y = d3.scaleSqrt().range([ dim.ohlc.height, 0 ]);
+		var y = d3.scaleLog().range([ dim.ohlc.height, 1 ]);
 
-		var yPercent = y.copy(); // Same as y at this stage, will get a different domain later
+		// var yPercent = y.copy(); // Same as y at this stage, will get a different domain later
 
 		var yInit, yPercentInit, zoomableInit;
 
-		var yVolume = d3.scaleLinear().range([ y(0), y(0.1) ]);
+		var yVolume = d3.scaleLinear().range([ dim.ohlc.height, dim.ohlc.height * 0.9]);
 
 		var candlestick = techan.plot.candlestick().xScale(x).yScale(y);
 
@@ -102,12 +102,14 @@
 		var closeAnnotation = techan.plot.axisannotation().axis(yAxis).orient(
 				'right').accessor(candlestick.accessor()).translate([ x(1), 0 ])
 				.width(dim.annotation.yWidth);
-
+		
+		/*
 		var percentAxis = d3.axisLeft(yPercent).tickFormat(d3.format('+.1%'));
 
 		var percentAnnotation = techan.plot.axisannotation().axis(percentAxis)
 				.orient('left');
-
+		*/
+		
 		var volumeAxis = d3.axisRight(yVolume).ticks(3).tickFormat(
 				d3.format(",.3s"));
 
@@ -151,7 +153,7 @@
 				.yScale(ohlcAnnotation.axis().scale())
 				.xAnnotation(timeAnnotation)
 				.yAnnotation(
-						[ ohlcAnnotation, percentAnnotation, volumeAnnotation ])
+						[ ohlcAnnotation, /*percentAnnotation,*/ volumeAnnotation ])
 				.verticalWireRange([ 0, dim.plot.height ]);
 
 		var macdCrosshair = techan.plot.crosshair().xScale(
@@ -288,8 +290,8 @@
 				x.domain(techan.scale.plot.time(data).domain());
 				y.domain(techan.scale.plot.ohlc(data.slice(indicatorPreRoll))
 						.domain());
-				yPercent.domain(techan.scale.plot.percent(y,
-						accessor(data[indicatorPreRoll])).domain());
+				/*yPercent.domain(techan.scale.plot.percent(y,
+						accessor(data[indicatorPreRoll])).domain());*/
 				yVolume.domain(techan.scale.plot.volume(data).domain());
 	
 				var macdData = techan.indicator.macd()(data);
@@ -320,12 +322,10 @@
 				zoomableInit = x.zoomable().domain(
 						[ indicatorPreRoll, data.length ]).copy(); // Zoom in a little to hide indicator preroll
 				yInit = y.copy();
-				yPercentInit = yPercent.copy();
+				/*yPercentInit = yPercent.copy();*/
 	
 				draw();
 			});
-			clearInterval(interval);
-			interval = setInterval(update, 100);
 		}
 
 		function reset() {
@@ -338,7 +338,7 @@
 			x.zoomable().domain(
 					d3.event.transform.rescaleX(zoomableInit).domain());
 			y.domain(d3.event.transform.rescaleY(yInit).domain());
-			yPercent.domain(d3.event.transform.rescaleY(yPercentInit).domain());
+			//yPercent.domain(d3.event.transform.rescaleY(yPercentInit).domain());
 
 			draw();
 		}
@@ -347,7 +347,7 @@
 			svg.select("g.x.axis").call(xAxis);
 			svg.select("g.ohlc .axis").call(yAxis);
 			svg.select("g.volume.axis").call(volumeAxis);
-			svg.select("g.percent.axis").call(percentAxis);
+			/*svg.select("g.percent.axis").call(percentAxis);*/
 			svg.select("g.macd .axis.right").call(macdAxis);
 			svg.select("g.rsi .axis.right").call(rsiAxis);
 			svg.select("g.macd .axis.left").call(macdAxisLeft);
