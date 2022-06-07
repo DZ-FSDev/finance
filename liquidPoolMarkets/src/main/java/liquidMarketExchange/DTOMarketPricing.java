@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  * 
  * 
  * @author DZ-FSDev
- * @since 0.0.7
+ * @since 0.0.8
  */
 @Data
 @Builder
@@ -25,14 +25,11 @@ public class DTOMarketPricing {
 	private String leftUnits;
 	private String rightUnits;
 	
-	private double rsi3, rsi3_tmx49;
-	private double rsi4, rsi4_tmx49;
-	private double rsi5, rsi5_tmx49;
-	private double rsi6, rsi6_tmx49;
-	private double rsi13, rsi13_tmx49;
-	private double rsi14, rsi14_tmx49;
-	private double rsi15, rsi15_tmx49;
-	private double rsi21, rsi21_tmx49;
+	private double[] periods;
+	private double[] pema;
+	private double[] ema;
+	
+	private double[] rsi;
 	
 	private long ts;
 }
