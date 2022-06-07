@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  * 
  * 
  * @author DZ-FSDev
- * @since 0.0.8
+ * @since 0.0.9
  */
 @Data
 @Builder
@@ -30,6 +30,8 @@ public class DTOMarketPricing {
 	private double[] ema;
 	
 	private double[] rsi;
+	private double[] rsi_tmx;
+	private double[] rsi_tmn;
 	
 	private long ts;
 }
