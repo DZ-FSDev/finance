@@ -13,7 +13,7 @@ import lombok.ToString;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.2
+ * @version 0.0.3
  * @since 17.0.2
  */
 @Data
@@ -29,6 +29,8 @@ public class DTOAsset implements IAsset{
 	private String name;
 
 	private String units;
+	private String coldUnits;
+	
 	private String lastPrice;
 	private AssetClass assetClass;
 }
