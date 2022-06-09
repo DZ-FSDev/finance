@@ -32,7 +32,7 @@ import lombok.ToString;
  * Represents an Asset in liquid pool markets.
  * 
  * @author DZ-FSDev
- * @version 0.0.9
+ * @version 0.0.10
  * @since 17.0.2
  */
 @Data
@@ -47,6 +47,7 @@ public class Asset implements IAsset{
 	private String name;
 
 	private BigInteger units;
+	private BigInteger coldUnits;
 	private BigDecimal lastPrice;
 	private AssetClass assetClass;
 }
