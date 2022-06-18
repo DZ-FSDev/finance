@@ -12,7 +12,7 @@ import lombok.ToString;
  * 
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.5
+ * @version 0.0.7
  */
 @Data
 @Builder
@@ -26,13 +26,16 @@ public class DTOAssetLeft implements IAsset{
 	private String name;
 
 	private String units;
+	private String coldUnits;
 	private String lastPrice;
+	private String volume;
+	private Long volumeTS;
 	private AssetClass assetClass;
 	
 	/**
 	 * 
 	 * @return
-	 * @since 0.0.5
+	 * @since 0.0.7
 	 */
 	public DTOAsset toDTOAsset() {
 		return DTOAsset.builder()
@@ -40,7 +43,10 @@ public class DTOAssetLeft implements IAsset{
 				.symbol(symbol)
 				.name(name)
 				.units(units)
+				.coldUnits(coldUnits)
 				.lastPrice(lastPrice)
+				.volume(volume)
+				.volumeTS(volumeTS)
 				.assetClass(assetClass)
 				.build();
 	}
